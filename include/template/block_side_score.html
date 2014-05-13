@@ -1,0 +1,15 @@
+<div class="sbox">
+	<div class="sbox-top"></div>
+	<div class="sbox-content">
+		<div class="credit">
+			<h2>积分规则</h2>
+			<p>用户注册：+${abs(intval($INI['credit']['register']))}</p>
+			<p>用户登录：+${abs(intval($INI['credit']['login']))}</p>
+			<p>参与团购：+${abs(intval($INI['credit']['buy']))}</p>
+			<p>邀请好友：+${abs(intval($INI['credit']['invite']))}</p>
+			<p>购买返积比例：${moneyit($INI['credit']['pay'])}</p>
+			<p>充值返积比例：${moneyit($INI['credit']['charge'])}</p>
+		</div>
+	</div>
+	<div class="sbox-bottom"></div>
+</div>

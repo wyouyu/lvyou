@@ -1,0 +1,89 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('email')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>邮件设置</h2></div>
+                <div class="sect">
+                    <form method="post">
+						<div class="wholetip clear"><h3>1、发信配置</h3></div>
+						<div class="field">
+							<label>发信方式</label>
+							<div style="margin-top:5px;" id="mail-zone-div"><input type="radio" name="mail[mail]" value="smtp" ${$INI['mail']['mail']!='mail'?'checked':''} />&nbsp;SMTP发信方式&nbsp;<input type="radio" name="mail[mail]" value='mail' ${$INI['mail']['mail']=='mail'?'checked':''} />&nbsp;PHP自带的MAIL&nbsp;</div>
+						</div>
+						<div id="mail-zone-smtp" style="display:${$INI['mail']['mail']!='mail'?'block':'none'};">
+                        <div class="field">
+                            <label>SMTP主机</label>
+                            <input type="text" size="30" name="mail[host]" class="f-input" value="{$INI['mail']['host']}" style="width:200px;"/><span class="inputtip">如：smtp.qq.com</span>
+                        </div>
+                        <div class="field">
+                            <label>SMTP端口</label>
+                            <input type="text" size="30" name="mail[port]" class="number" value="{$INI['mail']['port']}"/><span class="inputtip">一般情况下端口为25，如果是SSL方式，可能为465</span>
+                        </div>
+                        <div class="field">
+                            <label>SSL方式？</label>
+                            <input type="text" size="30" name="mail[ssl]" class="number" value="{$INI['mail']['ssl']}"/>
+                            <span class="inputtip">false, ssl, tls  *[ SMTP 25端口选false, 465等端口选ssl]</span>
+                        </div>
+                        <div class="field">
+                            <label>验证用户名</label>
+                            <input type="text" size="30" name="mail[user]" class="f-input" value="{$INI['mail']['user']}" style="width:200px;"/><span class="inputtip">如：12345678@qq.com</span>
+                        </div>
+                        <div class="field">
+                            <label>验证密码</label>
+                            <input type="password" size="30" name="mail[pass]" class="f-input" value="{$INI['mail']['pass']}" style="width:200px;"/><span class="inputtip">邮箱的密码，这个不多说</span>
+                        </div>
+						</div>
+                        <div class="field">
+                            <label>发信地址</label>
+                            <input type="text" size="30" name="mail[from]" class="f-input" value="{$INI['mail']['from']}" style="width:200px;"/><span class="inputtip">对方收到邮件时显示的发信人邮件地址</span>
+                        </div>
+                        <div class="field">
+                            <label>回信地址</label>
+                            <input type="text" size="30" name="mail[reply]" class="f-input" value="{$INI['mail']['reply']}" style="width:200px;" /><span class="inputtip">对方回复邮件时的默认回复邮件地址</span>
+                        </div>
+                        <div class="field">
+                            <label>邮件编码</label>
+                            <input type="text" size="30" name="mail[encoding]" class="f-input" value="{$INI['mail']['encoding']}" style="width:200px; text-transform:uppercase;"/><span class="inputtip">邮件的编码如：UTF-8, GBK, BIG5 等</span>
+                        </div>
+                        <div class="field">
+                            <label>发信频率</label>
+                            <input type="text" size="30" name="mail[interval]" class="number" value="${abs(intval($INI['mail']['interval']))}"/>
+                            <span class="inputtip">请按邮局要求的频率，设置每封邮件的发送时间间隔，单位：秒，建议设置：2-5 之间</span>
+                        </div>
+
+						<div class="wholetip clear"><h3>2、订阅设置（发送邮件订阅时邮件内容中的联系方式）</h3></div>
+                        <div class="field">
+                            <label>联系电话</label>
+                            <input type="text" size="30" name="mail[helpphone]" class="f-input" value="{$INI['mail']['helpphone']}"/>
+                        </div>
+                        <div class="field">
+                            <label>联系邮件</label>
+                            <input type="text" size="30" name="mail[helpemail]" class="f-input" value="{$INI['mail']['helpemail']}"/>
+                        </div>
+
+                        <div class="act">
+                            <input type="submit" value="保存" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

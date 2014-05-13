@@ -1,0 +1,43 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('feedback')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>意见反馈及商务合作</h2>
+                    <ul class="filter">
+						<li><form action="/manage/misc/feedback.php" method="get"><input type="text" name="like" value="${htmlspecialchars($like)}" class="h-input" />&nbsp;<select name="cate">${Utility::Option($feedcate, $cate, '所有分类')}</select>&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="200">客户</th><th width="80">类型</th><th width="360">内容</th><th width="80">状态</th><th width="80">日期</th><th width="100">操作</th></tr>
+					<!--{loop $asks $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>${htmlspecialchars($one['title'])}<br/>${htmlspecialchars($one['contact'])}</td>
+						<td nowrap>{$feedcate[$one['category']]}</td>
+						<td>${htmlspecialchars($one['content'])}</td>
+						<td nowrap>${$one['user_id']?$users[$one['user_id']]['username']:''}</td>
+						<td nowrap>${date('Y-n-j',$one['create_time'])}</td>
+						<td class="op" nowrap><a href="/manage/misc/feedback.php?action=r&id={$one['id']}&r={$currefer}" class="remove-record">删除</a><!--{if !$one['user_id']}-->｜<a href="/manage/misc/feedback.php?action=m&id={$one['id']}&r={$currefer}">处理</a><!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="6">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

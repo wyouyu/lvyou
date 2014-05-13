@@ -1,0 +1,50 @@
+<!--{include manage_header}-->
+<style>
+#loadingform{text-align:center;margin:0 auto;}
+</style>
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_market('sms')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>短信群发</h2>
+				<ul class="filter">${mcurrent_market_sms('smsall')}</ul>
+				</div>
+                <div class="sect">
+						
+					<form method="{$sms_detail['method']}" action="smsall.php" id="loadingform">
+					<input type="hidden" name="formhash" value=""><br />
+					<input type="hidden" name="current" value="{$sms_detail['current']}"><br />
+					<input type="hidden" name="next" value="{$sms_detail['next']}"><br />
+					<input type="hidden" name="pertask" value="{$sms_detail['pertask']}"><br />
+					<input type="hidden" name="content" value="{$sms_detail['content']}"><br />
+					正在发送从 {$sms_detail['last']} 到{$sms_detail['current']},请稍后
+					<br />
+					<img src="/static/css/i/ajax_loader.gif"		class="marginbot" />
+					<br />
+					<p class="marginbot"><a href="###" onclick="$(\'loadingform\').submit();" class="lightlink"></a></p></form>
+					<br />
+					<script type="text/JavaScript">setTimeout("$('#loadingform').submit();", 2000);</script> 
+                        <div class="act">
+                             
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

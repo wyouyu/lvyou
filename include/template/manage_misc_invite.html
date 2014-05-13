@@ -1,0 +1,53 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('invite')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+				<!--{if 'index'==$s}-->
+                    <h2>待返邀请 (总金额：<span class="currency">{$currency}</span>{$summary})</h2>
+				<!--{elseif 'record'==$s}-->
+                    <h2>返利邀请 (总金额：<span class="currency">{$currency}</span>{$summary})</h2>
+				<!--{else}-->
+                    <h2>违规记录</h2>
+				<!--{/if}-->
+					<ul class="filter">${mcurrent_misc_invite($s)}</ul>
+				</div>
+				<div class="sect" style="padding:0 10px;">
+					<form method="get">
+						<input type="hidden" name="s" value="{$s}" />
+						<p style="margin:5px 0;">邀请用户：<input type="text" name="iuser" value="${htmlspecialchars($iuser)}" class="h-input" />&nbsp;被邀用户：<input type="text" name="puser" value="${htmlspecialchars($puser)}" class="h-input" />&nbsp;项目ID：<input type="text" name="tid" value="${abs(intval($tid))}" class="h-input" /></p>
+						<p stype="margin:5px 0;">邀请日期：<input type="text" class="h-input" onFocus="WdatePicker({isShowClear:false,readOnly:true})" name="iday" value="{$iday}" />&nbsp;购买日期：<input type="text" class="h-input" onFocus="WdatePicker({isShowClear:false,readOnly:true})" name="pday" value="{$pday}" />&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/></p>
+					<form>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="350">项目</th><th width="150">主动用户</th><th width="150">被邀用户</th><th width="140">邀买时间</th><!--{if 'index'==$s}--><th width="150">操作</th><!--{else}--><th width="150">操作员</th><!--{/if}--></tr>
+					<!--{loop $invites $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="order-list-id-{$one['id']}">
+						<td><a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$one['team_id']}({$teams[$one['team_id']]['title']})</a></td>
+						<td nowrap><a class="ajaxlink" href="/ajax/manage.php?action=userview&id={$one['user_id']}">{$users[$one['user_id']]['email']}</a><br/>{$users[$one['user_id']]['username']}<br/>{$one['user_ip']}<!--{if Utility::IsMobile($users[$one['user_id']]['mobile'])}--><br/><a href="/ajax/misc.php?action=sms&v={$users[$one['user_id']]['mobile']}" class="ajaxlink">{$users[$one['user_id']]['mobile']}</a><!--{/if}--></td>
+						<td nowrap><a class="ajaxlink" href="/ajax/manage.php?action=userview&id={$one['other_user_id']}">{$users[$one['other_user_id']]['email']}</a><br/>{$users[$one['other_user_id']]['username']}<br/>{$one['other_user_ip']}<!--{if Utility::IsMobile($users[$one['user_id']]['mobile'])}--><br/><a href="/ajax/misc.php?action=sms&v={$users[$one['other_user_id']]['mobile']}" class="ajaxlink">{$users[$one['other_user_id']]['mobile']}</a><!--{/if}--></td>
+						<td nowrap>${date('Y-m-d H:i', $one['create_time'])}<br/>${date('Y-m-d H:i', $one['buy_time'])}<br/>返利：{$currency}{$one['credit']}</td>
+						<td class="op" nowrap><!--{if 'index'==$s}--><a href="/ajax/manage.php?action=inviteok&id={$one['id']}" class="ajaxlink" ask="确认邀请返利成功？">确认</a>｜<a href="/ajax/manage.php?action=inviteremove&id={$one['id']}" ask="确定取消本条待返记录？" class="ajaxlink">取消</a><!--{else}-->{$users[$one['admin_id']]['email']}<br/>{$users[$one['admin_id']]['username']}<!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="8">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

@@ -1,0 +1,57 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+    <div class="dashboard" id="dashboard">
+        <ul>${mcurrent_zizhuyou('index')}</ul>
+    </div>
+    <div id="content" class="coupons-box clear mainwide">
+        <div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>自助游</h2>
+                    <ul class="filter">
+                    <li>
+                    <form method="get">
+                    线路标题：<input type="text" name="ptitle" class="h-input" value="${htmlspecialchars($ptitle)}" >&nbsp;
+                    <!--<select name="open" class="h-input">${Utility::Option($option_open, $open, '展示')}</select>&nbsp;-->
+                    <select name="city_id" class="h-input">${Utility::Option(option_category('city'), $city_id, '全部城市')}</select>&nbsp;
+                    <!--<select name="group_id" class="h-input">${Utility::Option(option_category('partner'), $group_id, '全部分类')}</select>-->
+                    &nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/><form></li></ul>
+                </div>
+                <div class="sect">
+                    <table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+                    <tr>
+                        <th width="40">ID</th>
+                        <th width="250">线路名称</th>
+                        <th width="200">景区图片</th>
+                        <th width="100">所在城市</th>
+                        <!--<th width="100">途经景区</th>
+                        <th width="100">住宿预订</th>-->
+                        <th width="140">操作</th>
+                    </tr>
+                    <!--{loop $partners $index $one}-->
+                    <tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+                        <td>{$one['id']}</td>
+                        <td style="text-align:left;"><a class="deal-title" target="_blank" href="/showzizhuyou.php?id={$one['id']}">{$one['title']}</a></td>
+                        <td nowrap><img src="${team_image($one['image'])}" width="200" height="100"></td>
+                        <td nowrap>{$groups[$one['group_id']]}<br/>{$cities[$one['city_id']]}</td>
+                        <!--<td nowrap><a href="/manage/ticket/ticket.php?id={$one['id']}">门票预订</a></td>
+                        <td nowrap><a href="/manage/ticket/hotel.php?id={$one['id']}">住宿预订</a></td>-->
+                        <td class="op" nowrap><a href="/manage/zizhuyou/create.php?id={$one['id']}">编辑</a>｜<a href="/ajax/manage.php?action=partnerremove&id={$one['id']}" class="ajaxlink" ask="确定删除本商户？">删除</a></td>
+                    </tr>
+                    <!--{/loop}-->
+                    <tr><td colspan="8">{$pagestring}</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

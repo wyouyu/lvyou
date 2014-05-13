@@ -1,0 +1,290 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="leader">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_team('team')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+				<!--{if $team['id']}-->
+					<h2>编辑项目</h2>
+					<ul class="filter">${current_manageteam('edit', $team['id'])}</ul>
+				<!--{else}-->
+					<h2>新建项目</h2>
+				<!--{/if}-->
+				</div>
+                <div class="sect">
+				<form id="-user-form" method="post" action="/manage/team/edit.php?id={$team['id']}" enctype="multipart/form-data" class="validator">
+					<input type="hidden" name="id" value="{$team['id']}" />
+					<div class="wholetip clear"><h3>1、基本信息</h3></div>
+					<div class="field">
+						<label>项目类型</label>
+						<select name="team_type" class="f-input" style="width:160px;" onchange="X.team.changetype(this.options[this.options.selectedIndex].value);">${Utility::Option($option_teamtype, $team['team_type'])}</select>
+						<select name="group_id" onchange="changecate(this.options[this.options.selectedIndex].value);" class="f-input" style="width:160px;">${Utility::Option($groups, $team['group_id'])}</select>
+                        <select name="sub_id" class="f-input" id="sub_id" style="width:160px;"><option value="0">选择细分类</option>${Utility::Option($level_groups, $team['sub_id'])}</select>
+					</div>
+					<div class="field">
+						<label>项目城市</label>
+						<input type="hidden" name="city_id" value="{$team['city_id']}">
+						<span style="width:80px;float:left;"><input type="checkbox" id="city_all" name="city_ids[]" value="0" <!--{if $team['city_id'] == 0}-->checked<!--{/if}-->/>全部</span>
+						<!--{loop $allcities $index $one}-->
+							<span style="width:80px;float:left;">
+								<input type="checkbox" class="city_checkbox" name="city_ids[]" value="{$one['id']}" <!--{if $team['city_id'] == $one['id'] or preg_match("/@".$one['id']."@/i", $team['city_ids']) or $team['city_id']==0}-->checked<!--{/if}-->/>{$one['name']}
+							</span>
+						<!-- {/loop} -->
+					</div>
+					<div class="field" id="field_limit">
+						<label>限制条件</label>
+						<select name="conduser" class="f-input" style="width:160px;">${Utility::Option($option_cond, $team['conduser'])}</select>
+						<select name="buyonce" class="f-input" style="width:160px;">${Utility::Option($option_buyonce, $team['buyonce'])}</select>
+					</div>
+                    
+                    <div class="field">
+                        <label>团购类型</label>
+                        <select name="group_type" class="f-input" style="width:160px;">
+                        
+                            <option value="1" <!--{if $team['group_type']=='1'}-->selected<!--{/if}-->>景点团购</option>
+                            <option value="2" <!--{if $team['group_type']=='2'}-->selected<!--{/if}-->>度假村团购</option>
+                            <option value="3" <!--{if $team['group_type']=='3'}-->selected<!--{/if}-->>自助游团购</option>
+                        </select>
+                    </div>
+                    
+                    <div class="field">
+                        <label>项目特性</label>
+                            <input type="checkbox" class="allowrefund" name="is_miaosha" value="1" <!--{if $team['is_miaosha']=='1'}-->checked<!--{/if}-->/>&nbsp;实时秒杀&nbsp;&nbsp;
+                            <input type="checkbox" class="allowrefund" name="is_chaozhi" value="1" <!--{if $team['is_chaozhi']=='1'}-->checked<!--{/if}-->/>&nbsp;超值特惠&nbsp;&nbsp;
+                            <input type="checkbox" class="allowrefund" name="is_renqi" value="1" <!--{if $team['is_renqi']=='1'}-->checked<!--{/if}-->/>&nbsp;人气团购&nbsp;&nbsp;                         
+                    </div>
+                    
+                    
+					<div class="field">
+						<label>项目标题</label>
+						<input type="text" size="30" name="title" id="team-create-title" class="f-input" value="${htmlspecialchars($team['title'])}" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>市场价</label>
+						<input type="text" size="10" name="market_price" id="team-create-market-price" class="number" value="${moneyit($team['market_price'])}" datatype="money" require="true" />
+						<label>网站价</label>
+						<input type="text" size="10" name="team_price" id="team-create-team-price" class="number" value="${moneyit($team['team_price'])}" datatype="double" require="true" />
+						<label>虚拟购买</label>
+						<input type="text" size="10" name="pre_number" id="team-create-pre_number" class="number" value="${moneyit($team['pre_number'])}" datatype="number" require="true" />
+					</div>
+					<div class="field">
+						<label>最低数量</label>
+						<input type="text" size="10" name="min_number" id="team-create-min-number" class="number" value="${intval($team['min_number'])}" maxLength="6" datatype="number" require="true" />
+						<label>最高数量</label>
+						<input type="text" size="10" name="max_number" id="team-create-max-number" class="number" value="${intval($team['max_number'])}" maxLength="6" datatype="number" require="true" />
+						<label>每人限购</label>
+						<input type="text" size="10" name="per_number" id="team-create-per-number" class="number" value="${intval($team['per_number'])}" maxLength="6" datatype="number" require="true" />
+					        <label>最低购买</label>
+						<input type="text" size="10" name="permin_number" id="team-create-per-min-number" class="number" value="${intval($team['permin_number'])}" maxLength="6" datatype="number" require="true" />
+                                          	<span class="hint">最低数量必须大于0，最高数量/每人限购：0 表示没最高上限 （产品数|人数 由成团条件决定）</span>
+					</div>
+					<div class="field">
+						<label>开始时间</label>
+						<input type="text" size="10" name="begin_time" id="team-create-begin-time" class="date" xd="${date('Y-m-d', $team['begin_time'])}" xt="${date('H:i:s', $team['begin_time'])}" value="${date('Y-m-d H:i:s', $team['begin_time'])}" maxLength="10" />
+						<label>结束时间</label>
+						<input type="text" size="10" name="end_time" id="team-create-end-time" class="date" xd="${date('Y-m-d', $team['end_time'])}" xt="${date('H:i:s', $team['end_time'])}" value="${date('Y-m-d H:i:s', $team['end_time'])}" maxLength="10" />
+						<label>{$INI['system']['couponname']}有效期</label>
+						<input type="text" size="10" name="expire_time" id="team-create-expire-time" class="number" value="${date('Y-m-d', $team['expire_time'])}" maxLength="10" />
+						<span class="hint">时间格式：hh:ii:ss (例：14:05:58)，日期格式：YYYY-MM-DD （例：2010-06-10）</span>
+					</div>
+					<div class="field">
+						<label>允许退款</label>
+
+								<input type="checkbox" class="allowrefund" name="allowrefund" value="Y" <!--{if $team['allowrefund']=='Y'}-->checked<!--{/if}-->/>&nbsp;是&nbsp;&nbsp;<span style="font-size:12px;color:#989898;">本项目允许用户发起 申请退款</span>						 
+					</div>
+					<div class="field">
+						<label>本单简介</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="summary" id="team-create-summary" class="f-textarea" datatype="require" require="true">${htmlspecialchars($team['summary'])}</textarea></div>
+					</div>
+					<div class="field">
+						<label>特别提示</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="notice" id="team-create-notice" class="f-textarea editor" style="width:710px;height:150px;">{$team['notice']}</textarea></div>
+						<span class="hint">关于本单项目的有效期及使用说明</span>
+					</div>
+					<!--kxx 增加-->
+					<div class="field">
+						<label>排序</label>
+						<input type="text" size="10" name="sort_order" id="team-create-sort_order" class="number" value="${$team['sort_order'] ? $team['sort_order'] : 0}" datatype="number"/><span class="inputtip">请填写数字，数值大到小排序，主推团购应设置较大值</span>
+					</div>
+					<!--xxk-->
+					<input type="hidden" name="guarantee" value="Y" />
+					<input type="hidden" name="system" value="Y" />
+					<div class="wholetip clear"><h3>2、项目信息</h3></div>
+					<div class="field">
+						<label>商户</label>
+						<select name="partner_id"  id="partner_select" datatype="require" require="require" class="f-input" style="width:200px;">${Utility::Option($partners, $team['partner_id'], '------ 请选择商户 ------')}</select>&nbsp;<input type="text" size="30" name="p_id" id="partner_id" class="partner" style="float: left;display:inline;width:200px;border-color: #89B4D6;border-style: solid;border-width: 1px;font-size: 14px;margin: 3px 15px 0 10px;padding: 5px 4px;" /><span class="inputtip">输入关键字查找,  商户为可选项</span>
+					</div>
+					<div class="field" id="field_card">
+						<label>代金券使用</label>
+						<input type="text" size="10" name="card" id="team-create-card" class="number" value="${moneyit($team['card'])}" require="true" datatype="money" />
+						<span class="inputtip">可使用代金券最大面额</span>
+					</div>
+					<div class="field" id="field_card">
+						<label>邀请返利</label>
+						<input type="text" size="10" name="bonus" id="team-create-bonus" class="number" value="${moneyit($team['bonus'])}" require="true" datatype="money" />
+						<span class="inputtip">邀请好友参与本单商品购买时的返利金额</span>
+					</div>
+					<div class="field">
+						<label>商品名称</label>
+						<input type="text" size="30" name="product" id="team-create-product" class="f-input" value="{$team['product']}" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>购买必选项</label>
+						<input type="text" size="30" name="condbuy" id="team-create-condbuy" class="f-input" value="{$team['condbuy']}" />
+						<span class="hint">格式如：{黄色}{绿色}{红色}@{大号}{中号}{小号}@{男款}{女款}，分组使用@符号分隔 , 用户购买的必选项</span>
+					</div>
+					<div class="field">
+						<label>商品图片</label>
+						<input type="file" size="30" name="upload_image" id="team-create-image" class="f-input" />
+						<!--{if $team['image']}--><span class="hint">${team_image($team['image'])}</span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>商品图片1</label>
+						<input type="file" size="30" name="upload_image1" id="team-create-image1" class="f-input" />
+						<!--{if $team['image1']}--><span class="hint" id="team_image_1">${team_image($team['image1'])}&nbsp;&nbsp;<a href="javascript:;" onclick="X.team.imageremove({$team['id']}, 1);">删除</a></span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>商品图片2</label>
+						<input type="file" size="30" name="upload_image2" id="team-create-image2" class="f-input" />
+						<!--{if $team['image2']}--><span class="hint" id="team_image_2">${team_image($team['image2'])}&nbsp;&nbsp;<a href="javascript:;" onclick="X.team.imageremove({$team['id']}, 2);">删除</a></span><!--{/if}-->
+					</div>
+					<div class="field">
+						<label>FLV视频短片</label>
+						<input type="text" size="30" name="flv" id="team-create-flv" class="f-input" value="{$team['flv']}" />
+						<span class="hint">形式如：http://.../video.flv</span>
+					</div>
+					<div class="field">
+						<label>本单详情</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="detail" id="team-create-detail" class="f-textarea editor">${htmlspecialchars($team['detail'])}</textarea></div>
+					</div>
+					<div class="field" id="field_userreview">
+						<label>网友点评</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="userreview" id="team-create-userreview" class="f-textarea">${htmlspecialchars($team['userreview'])}</textarea></div>
+						<span class="hint">格式：“真好用|小兔|http://ww....|XXX网”，每行写一个点评</span>
+					</div>
+					<div class="field">
+						<label>{$INI['system']['abbreviation']}推广辞</label>
+						<div style="float:left;"><textarea cols="45" rows="5" name="systemreview" id="team-create-systemreview" class="f-textarea editor" style="width:710px;height:150px;">${htmlspecialchars($team['systemreview'])}</textarea></div>
+					</div>
+					<div class="wholetip clear"><h3>3、配送信息</h3></div>
+					<div class="field">
+						<label>递送方式</label>
+						<div style="margin-top:5px;" id="express-zone-div">
+							<input type="radio" name="delivery" class="delivery" value="coupon" ${$team['delivery']=='coupon'?'checked':''} />&nbsp;{$INI['system']['couponname']}&nbsp;
+							<input type="radio" name="delivery" class="delivery" value='voucher' ${$team['delivery']=='voucher'?'checked':''} />&nbsp;商户券&nbsp;
+							<input type="radio" name="delivery" class="delivery" value='express' ${$team['delivery']=='express'?'checked':''} />&nbsp;快递</div>
+					</div>
+					<div id="express-zone-coupon" style="display:${$team['delivery']=='coupon'?'block':'none'};">
+						<div class="field">
+							<label>消费返利</label>
+							<input type="text" size="10" name="credit" id="team-create-credit" class="number" value="${moneyit($team['credit'])}" datatype="money" require="true" />
+							<span class="inputtip">消费{$INI['system']['couponname']}时，获得账户余额返利，单位CNY元</span>
+						</div>
+					</div>
+					<div id="express-zone-pickup" style="display:${$team['delivery']=='pickup'?'block':'none'};">
+						<div class="field">
+							<label>联系电话</label>
+							<input type="text" size="10" name="mobile" id="team-create-mobile" class="f-input" value="{$team['mobile']}" />
+						</div>
+						<div class="field">
+							<label>自取地址</label>
+							<input type="text" size="10" name="address" id="team-create-address" class="f-input" value="{$team['address']}" />
+						</div>
+					</div>
+					<div id="express-zone-express" style="display:${$team['delivery']=='express'?'block':'none'};">
+						<div class="field">
+							<label>快递(<a href="/manage/category/index.php?zone=express" target="_blank">编辑</a>)</label>
+							<table style="font-size:14px;width:400px;"><tbody>
+								<tr>
+									<td width="10%"></td>
+									<td width="20%">名称</td>
+									<td width=>价格<td>
+								</tr>
+							<!--{loop $express $index $one}-->
+								<tr>
+									<td><input type="checkbox" name="express_relate[]" value="{$one['id']}" {$one['checked']} class="express_relate"  datatype="require" require="true" /></td>
+									<td>{$one['name']}</td>
+									<td><input name="express_price_{$one['id']}" value="{$one['relate_data']}"></td>
+								</tr>
+							<!-- {/loop} -->
+							</tbody></table>
+						</div>
+						<div class="field">
+							<!-- <label>快递费用</label>
+							<input type="text" size="10" name="fare" id="team-create-fare" class="number" value="${intval($team['fare'])}" maxLength="6" datatype="money" require="true" />
+							 -->
+							<label>免单数量</label>
+							<input type="text" size="10" name="farefree" id="team-create-farefree" class="number" value="${intval($team['farefree'])}" maxLength="6" datatype="integer" require="true" />
+							<span class="hint">免单数量：-1表示免运费, 0表示不免运费，1表示，购买1件免运费, 2表示，购买2件免运费 ,以此类推</span>
+						</div>
+						<div class="field">
+							<label>配送说明</label>
+							<div style="float:left;"><textarea cols="45" rows="5" name="express" id="team-create-express" class="f-textarea">{$team['express']}</textarea></div>
+						</div>
+					</div>
+					<input type="submit" value="好了，提交" name="commit" id="leader-submit" class="formbutton" style="margin:10px 0 0 120px;"/>
+				</form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<script type="text/javascript">
+window.x_init_hook_teamchangetype = function(){
+	X.team.changetype("{$team['team_type']}");
+};
+window.x_init_hook_page = function() {
+	X.team.imageremovecall = function(v) {
+		jQuery('#team_image_'+v).remove();
+	};
+	X.team.imageremove = function(id, v) {
+		return !X.get(WEB_ROOT + '/ajax/misc.php?action=imageremove&id='+id+'&v='+v);
+	};
+};
+$(function(){
+	$('#city_all').click(function(){
+		if($(this).attr('checked') == true){
+			$('.city_checkbox').attr('checked',true);
+		}else{
+			$('.city_checkbox').attr('checked',false);
+		}
+	});
+	$('.city_checkbox').click(function(){
+		if($(this).attr('checked') == false){
+			$('#city_all').attr('checked',false);
+		}
+	});
+	$('.field input[name="p_id"]').keyup(function(){
+		$.get("part.php",{
+				'value':$("#partner_id").val()
+			},function(data){
+			s = $("#partner_id").val();
+			if(data=='0') $("#partner_id").css('color','#FFCC33');
+			else $("#partner_select").load('part.php?value='+s );
+		});
+	});
+
+});
+function changecate(cid) {
+	$.get("category.php",{
+		'cateid':cid
+		},function(data){
+			$("#sub_id").load('category.php?cateid='+cid );
+		});
+}
+</script>
+<!--{include manage_footer}-->

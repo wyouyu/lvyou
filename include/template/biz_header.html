@@ -1,0 +1,29 @@
+<!--{include biz_html_header}-->
+<script type="text/javascript" src="/static/js/xheditor/xheditor.js"></script>
+<div id="hdw">
+	<div id="hd">
+		<div id="logo"><a href="/index.php" class="link" target="_blank"><img src="/static/css/i/logo.gif" /></a></div>
+		<div class="guides">
+			<div class="city">
+				<h2>商户后台</h2>
+			</div>
+		</div>
+		<ul class="nav cf">${current_biz()}</ul>
+		<!--{if is_partner()}-->
+		<div class="logins">
+			<ul class="links">
+				<li class="username">欢迎您，{$login_partner['title']}！</li>
+				<li class="logout"><a href="/biz/logout.php">退出</a></li>
+			</ul>
+			<div class="line islogin"></div>
+		</div>
+		<!--{/if}-->
+	</div>
+</div>
+
+<!--{if $session_notice=Session::Get('notice',true)}-->
+<div class="sysmsgw" id="sysmsg-success"><div class="sysmsg"><p>{$session_notice}</p><span class="close">关闭</span></div></div> 
+<!--{/if}-->
+<!--{if $session_notice=Session::Get('error',true)}-->
+<div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>{$session_notice}</p><span class="close">关闭</span></div></div> 
+<!--{/if}-->

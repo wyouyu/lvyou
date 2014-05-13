@@ -1,0 +1,511 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />    
+    <link rel="stylesheet" href="/static/css/category.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/960head.css" type="text/css" media="screen" charset="utf-8" />
+    <link href="/static/css/soso_bg.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/lib/jquery-1.10.0.min.js" type="text/javascript"></script>
+    
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+</head>
+<body>
+
+<!--{include header_top}-->
+<div id="content">
+    <div class="left_side">
+        <span>                
+        <div class="udiyblock">    
+            <div id="soso_bg" class="soso_bg">
+            <!--cn首页新版搜索框-->
+                <div id="soso_17u" class="scenery_search search_Width">
+                    <div id="soso_title" class="searchBox_title">
+                        <h3>景点门票搜索</h3>
+                    </div>
+
+                    <div class="search_info">
+                        <div class="search_right" id="soso_tab_content">
+                        <!--景点搜索-->
+                            <div class="tray">
+                            <form action="/searchList.php" method="post" id="sceniform">
+                                <table cellspacing="0" cellpadding="0" id="tab_top_scenic">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span class="s_tit"> 2000余种景点门票免费预订</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="30">
+                                                <input type="text" value="" name="keywords" maxlength="20" id="txtScenicValue" class="input03">  
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="30">
+                                                <input type="button" class="btn01" id="scenicSubmit" onclick="javascript:document.getElementById('sceniform').submit()" value="搜 索">                                    
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="scenic_list03">精选目的地：</div>
+                                                <ul class="scenic_list01">
+                                               
+                                                    <div class="udiyblock">
+                                                    <!--{loop $hotcitys  $hotcity}-->
+                                                        <li><a target="_blank" title="{$hotcity['name']}景区门票" href="searchList.php?filter_attr={$hotcity['id']}-0-0-0">{$hotcity['name']}</a></li><!--{/loop}-->
+                                                        
+                                                    </div>
+                                              
+                                                </ul>
+                                                            
+                                                <div class="scenic_list01">热门景点推荐：</div>
+                                                <ul class="scenic_list02">
+                                                    <div id="portal-block-1285450536675" class="udiyblock" type="AdModel">
+                                                    <!--{loop $hotscenery  $scenery}-->
+                                                        <li><a target="_blank" title="{$scenery['title']}" href="/sceneryticket.php?id={$scenery['id']}">${mb_substr($scenery['title'],0,5,'UTF-8')}</a></li><!--{/loop}-->
+                                                        
+                                                    </div>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="clear:both;height:0px;overflow:hidden;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+    <!--门票预订-->
+    <div class="slogan mtop">
+        <div class="slogan_bg">
+            <span class="slogan_top"></span>
+            <ul class="slogan_main">
+                <li>
+                    <span class="scenery_pic"></span>
+                    <p><b class="cf60">2000余种</b>景点门票供您挑选</p>
+                </li>
+                <li>
+                    <span class="price_pic"></span>
+                    <p>天天有特价，点评奖金更给力</p>
+                </li>
+                <li>
+                    <span class="sale_pic"></span>
+                    <p>过去一年超过<b class="cf60">100万</b>游客选择蜗牛旅途网预订景点门票</p>
+                </li>
+                <li>
+                    <span class="brand_pic"></span>
+                    <p>荣获中国驰名商标</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--热销排行榜-->
+    <div class="udiyblock" type="CommonSource">
+        <div id="hotel_searchinfo" class="ht_blue_230 mtop">
+            <div class="ht_blue_head">
+                <h3>景点门票热销排行</h3>
+            </div>
+            <div class="ht_blue_main">
+                <ul id="hotel_searchlist" class="gul_info">
+                    <!--${$i=1}-->
+                   <!--{loop $sellpartners $sell}-->
+                    <li class="info_list0{$i}">
+
+                        <span class="info_list">
+                        <a target="_blank" href="sceneryticket.php?id={$sell['id']}" title="{$sell['title']}"><span>{$sell['title']}</span></a>
+                        </span>
+
+                        <span class="info_price">￥${floor($sell['ticketprice'])}</span>
+
+
+                    </li>
+                    <!--${$i++}-->
+                    <!--{/loop}-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--旅游主题-->
+    <div id="portal-block-251584409497" class="udiyblock" type="CommonSource">     
+        <div class="ht_blue_230 mtop">
+            <div class="ht_blue_head">
+               <h3>旅游主题</h3>
+            </div>
+            <div class="ht_blue_main">
+                <ul class="theme_ul">
+                    <!--{loop $themes $theme}-->
+                    <li class="memberDay">
+                        <span class="posnBox02">
+                            <a title="{$theme['name']}" href="/searchList.php?filter_attr=0-{$theme['id']}-0-0" target="_blank">{$theme['name']}</a>
+                            <div></div>
+                            <div></div>
+                        </span>
+                    </li>
+                    <!--{/loop}-->                                                                                          
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--最新点评-->
+    <div class="ht_blue_230 mtop" id="newdp_top">
+        <div class="ht_blue_head">
+            <h3>
+                最新景点点评</h3>
+        </div>
+        <div class="ht_blue_main">
+           
+           
+            <div id="new_dp_list" class="comment_02">
+            <!--{loop $comments $comm}-->
+                <div class="list01">
+                    <div class="hot_dp_title">
+                        <!--{if $comm['haoping']==1}-->
+                        <span class="span02"></span>
+                        <!--{/if}-->
+                        <a target="_blank" href="/sceneryticket.php?id={$partnerss[$comm['partner_id']]['id']}" title="{$partnerss[$comm['partner_id']]['title']}">[{$partnerss[$comm['partner_id']]['title']}]</a>
+                    </div>
+                    <div class="list_right">
+                        <span class="span01">{$comm['content']}</span>
+                    </div>
+                   
+                </div>
+            <!--{/loop}-->  
+            </div>
+    </div>
+    </div>
+    <!--最新订单-->
+    <div id="portal-block-727970998393" class="udiyblock" type="CommonSource"> <div id="neworderDiv" class="ht_blue_230 mtop">
+    <!-- 最新订单 start -->
+    <div class="ht_blue_head">
+        <h3>
+            最新景点订单信息</h3>
+    </div>
+    <div class="ht_blue_main">
+        <div id="Div1" class="new_dd">
+        <!--{loop $neworders $order}-->
+            <dl class="downbord">
+                <dt><!--{if $users[$order['user_id']]['username']}-->{$users[$order['user_id']]['username']}<!--{else}-->匿名用户<!--{/if}-->预订：</dt>
+                <dd><a href="/sceneryticket.php?id={$partners[$order['partner_id']]['id']}" title="{$partners[$order['partner_id']]['title']}" target="_blank">{$partners[$order['partner_id']]['title']}</a></dd>
+            </dl>
+        <!--{/loop}-->
+        </div>
+    </div>
+</div>
+</div>
+<!--end-->
+        </div>
+        
+        <!--left end-->
+        
+    
+    
+    <!--右侧开始-->
+    <div class="right_side">
+        <div class="hot_main">
+               <div class="block block-slider-top block-slider-top-processed">
+                <div class="block-content">
+                    <div id="portal-block-534449431585" class="udiyblock" type="AdModel">  
+                        <div class="slide_main_top" id="slide_main_top" style="overflow: hidden; position: relative;">
+                            <div class="slide_main" id="comSlide_main" style="width: 810px; position: relative;">
+                                <a href="/sceneryticket.php?id=9" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:1; z-index:1;"> <img alt="" src="/static/img/pic1.jpg"></a>
+                                <a href="/sceneryticket.php?id=8" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img alt="" src="/static/img/pic2.jpg"></a>
+                               <!-- <a href="/sceneryticket.php?id=11" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img src="/static/img/pic3.jpg" alt=""></a>-->
+                                <a href="/sceneryticket.php?id=11" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img src="/static/img/pic4.jpg" alt=""></a>
+                                
+                            </div>
+                            <ul id="magicNav" class="mSlider_nav_orange mSlider_nav">    
+                                <li class="current"><a href="javascript:void(0)">1</a></li>
+                                <li class=""><a href="javascript:void(0)">2</a></li>
+                                <!--<li class=""><a href="javascript:void(0)">3</a></li>-->
+                                <li><a href="javascript:void(0)">3</a></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>            
+                <!-- 幻灯 end -->    
+            </div>
+        <div id="tuijianDiv" class="current_recommend mtop">
+                <div id="portal-block-781942175124" class="udiyblock" type="CommonSource"> <span class="curent_title">当季推荐</span>
+                <ul class="curent_city">
+               <!--{loop $hotscenery  $scenery}-->
+                    <li><a href="/sceneryticket.php?id={$scenery['id']}" title="{$scenery['title']}" target="_blank" style="color:#ff6600;"><span>{$scenery['title']}</span></a></li>
+                <!--{/loop}-->
+                </ul></div>
+            </div>
+            <!--当季热推end-->
+            <div class="group_head">
+                <h3>
+                    今日景点团购</h3>
+                <a href="" title="更多景区团购">更多&gt;&gt;</a>
+            </div>
+        <div id="tg_groupTop" class="group_today">
+                <div class="group_left">
+                    <span id="tg_last" class="btn01_a"></span>
+                </div>
+                <div id="group_center_main" class="group_center" style="overflow: hidden; position: relative;">
+                   <div  class="udiyblock" > <ul id="rgt_tgList" style="width: 2331px; position: relative;">
+                
+        <li class="li01">
+            <div class="list_tp">
+                <a href="" target="_blank" title="" class="linka"><img alt="" src="/static/img/tuangou1.jpg"></a>
+            </div>
+            <div class="buying_to">
+            <div class="buying_left">
+                <a href="" target="_blank" title="“崂山精华游”套票（含观光车）">
+                    <div class="buying_01"><span class="buying_price">
+                    <span>¥</span>48</span>
+                    <span class="buying_btn">&nbsp;</span>
+                    </div>
+                </a>
+                <div class="buying_date" id="tg_dateTime1">
+                    <span>60</span>天<span>15</span>时<span>16</span>分<span>1</span>秒
+                </div>
+            </div>
+            <div class="buying_right">
+                <p>原价：<span>80元</span></p>
+                <p><label class="p_lef">折扣：<span>6折</span>
+                </label><strong><span class="spanRgt">¥<b>32</b></span>
+                </strong></p>
+                <p><b>678</b><span>人已购买</span>
+                </p>
+            </div>
+            </div>
+        </li>
+            
+        
+                                        
+        <li class="li02">
+            <div class="list_tp">
+                <a href="" target="_blank" title="竹泉村" nsrc="http://img.17u.com/jqadminpic/uploadpic/old/2013/8/23/2013082309233298874.jpg" nalt="竹泉村" class="linka"><img alt="竹泉村" src="/static/img/tuangou2.jpg"></a>
+            </div>
+            <div class="buying_to">
+            <div class="buying_left">
+                <a href="" target="_blank" title="竹泉村">
+                    <div class="buying_01"><span class="buying_price">
+                    <span>¥</span>30</span>
+                    <span class="buying_btn">&nbsp;</span>
+                    </div>
+                </a>
+                <div class="buying_date" id="tg_dateTime2">
+                    <span>59</span>天<span>13</span>时<span>57</span>分<span>1</span>秒
+                </div>
+            </div>
+            <div class="buying_right">
+                <p>原价：<span>60元</span></p>
+                <p><label class="p_lef">折扣：<span>5折</span>
+                </label><strong><span class="spanRgt">¥<b>30</b></span>
+                </strong></p>
+                <p><b>31090</b><span>人已购买</span>
+                </p>
+            </div>
+            </div>
+        </li>
+            
+
+                                        
+        <li class="li01">
+            <div class="list_tp">
+                <a href="" target="_blank" title="青岛海底世界" nsrc="http://img.17u.com/jqadminpic/uploadpic/old/2013/8/20/2013082009362672515.jpg" nalt="青岛海底世界" class="linka"><img alt="竹泉村" src="/static/img/tuangou1.jpg"></a>
+            </div>
+            <div class="buying_to">
+            <div class="buying_left">
+                <a href="" target="_blank" title="青岛海底世界">
+                    <div class="buying_01"><span class="buying_price">
+                    <span>¥</span>48</span>
+                    <span class="buying_btn">&nbsp;</span>
+                    </div>
+                </a>
+                <div class="buying_date" id="tg_dateTime5">
+                    <span>60</span>天<span>13</span>时<span>57</span>分<span>2</span>秒
+                </div>
+            </div>
+            <div class="buying_right">
+                <p>原价：<span>80元</span></p>
+                <p><label class="p_lef">折扣：<span>6折</span>
+                </label><strong><span class="spanRgt">¥<b>32</b></span>
+                </strong></p>
+                <p><b>10595</b><span>人已购买</span>
+                </p>
+            </div>
+            </div>
+        </li>
+            
+        
+                                        
+        <li class="li02">
+            <div class="list_tp">
+                <a href="" target="_blank" title="烟台37°梦幻海团购" nsrc="http://img.17u.com/jqadminpic/uploadpic/old/2013/8/29/2013082909545794060.jpg" nalt="烟台37°梦幻海团购" class="linka"><img alt="竹泉村" src="/static/img/tuangou2.jpg"></a>
+            </div>
+            <div class="buying_to">
+            <div class="buying_left">
+                <a href="" target="_blank" title="烟台37°梦幻海团购">
+                    <div class="buying_01"><span class="buying_price">
+                    <span>¥</span>30</span>
+                    <span class="buying_btn">&nbsp;</span>
+                    </div>
+                </a>
+                <div class="buying_date" id="tg_dateTime6">
+                    <span>61</span>天<span>7</span>时<span>19</span>分<span>2</span>秒
+                </div>
+            </div>
+            <div class="buying_right">
+                <p>原价：<span>60元</span></p>
+                <p><label class="p_lef">折扣：<span>5折</span>
+                </label><strong><span class="spanRgt">¥<b>30</b></span>
+                </strong></p>
+                <p><b>2560</b><span>人已购买</span>
+                </p>
+            </div>
+            </div>
+        </li>
+        </ul>
+</div>
+                </div>
+                
+                <div class="group_right">
+                    <span id="tg_next" class="btn02_a"></span>
+                </div>
+            </div>
+            <!--城市景区开始-->
+            <div class="slCiands mtop" id="hotelCity_list">
+                <div id="portal-block-789196551609" class="udiyblock" type="CommonSource">
+                <div class="sl_menu">
+                <ul class="sl_tab" id="hotel_cityTitle"> 
+                    <li class="at"><span><a href="javascript:void(0);">泰安</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">济南</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">青岛</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">威海</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">烟台</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">临沂</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">日照</a></span></li>
+                    <li class="not"><span><a href="javascript:void(0);">枣庄</a></span></li>
+                </ul>
+                </div>
+        <div class="tab_content" id="hotelCity_list1">
+                                                        
+           <div class="special_list">
+                               <div class="jq_ntlist">
+                               <!--${$i=1}-->
+                    <!--{loop $tickets $tks $ticket}-->
+                   <ul <!--{if $i!=1}-->style="display:none"<!--{/if}-->>
+                          <!--{loop $ticket $tk $one}-->                                                                                                                <li><span class="ntlist_img">
+                            <a href="/sceneryticket.php?id={$one['id']}" title="{$one['title']}" target="_blank">
+                                                        <img alt="{$one['title']}" src="${team_image($one['image'])}" style="background-image: url(http://img1.40017.cn/cn/comm/images/cn/public/transparent_loading.gif); background-attachment: scroll; background-color: rgb(255, 255, 255); background-position: 50% 50%; background-repeat: no-repeat no-repeat;" width="160" height="120">
+                            </a></span>
+                                                                                    <div class="mask">
+                            <b></b>
+                            <a href="/sceneryticket.php?id={$one['id']}" title="{$one['title']}" target="_blank">{$one['title']}</a>
+                            </div>
+                            <dl class="saveMne">
+                            <dt><span class="tcTxt">蜗牛价：</span> <span class="Mne">¥</span>${floor($one['ticketprice'])}</dt>
+                            <dd><p class="saveP">
+                            <span class="saveP_span">¥<i class="saveP_i">{$one['originalprice']-$one['ticketprice']}</i></span></p></dd></dl>                                                                                                                                                            </li>
+                                                                         <!--{/loop}-->                                                                                                                                                   </ul>
+                                                                          <!--${$i++}-->                                                                                                                                                  <!--{/loop}-->
+                               </div>
+               
+                              <ul class="con_list_info">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <li><div class="lef">
+                                                                                     <a href="/scenery/BookSceneryTicket_26630.html" target="_blank" title="金象山乐园"><span>金象山乐园</span></a></div>
+                            <dl class="saveMne"><dt><span class="Mne">¥</span>108</dt>
+                            <dd><p class="saveP" dpshownm="点评奖金" dpshowamount="¥2" dpreward="2" tcreward="108!" msreward="120" onmouseover="showBox(event,this)">
+                            <span class="saveP_span">¥<i class="saveP_i">14</i></span></p></dd></dl>
+                                                                                                                                                                                                                                                                         </li><li><div class="lef">
+                                                                                     <a href="/scenery/BookSceneryTicket_28472.html" target="_blank" title="日照海滨国家森林公园"><span>日照海滨国家森林公园</span></a></div>
+                            <dl class="saveMne"><dt><span class="Mne">¥</span>50</dt>
+                            <dd><p class="saveP" dpshownm="点评奖金" dpshowamount="¥1" dpreward="1" tcreward="50!" msreward="60" onmouseover="showBox(event,this)">
+                            <span class="saveP_span">¥<i class="saveP_i">11</i></span></p></dd></dl>
+                                                                                  </li></ul>
+                          </div>
+                    
+    <a class="show_pas" id="a_ProvinceAllScenery_1" href="/searchList.php">查看山东全部景区&gt;&gt;</a></div>
+    
+</div>
+            </div>
+            <!--旅游主题开始-->
+            <div id="themetuijian" class="ht_blue_720 mtop">
+                <div id="portal-block-344101736369" class="udiyblock" type="CommonSource">              
+<div class="ht_blue_head">   <h3>
+                        旅游主题推荐</h3>
+                </div>
+                <div class="ht_blue_main">
+    <ul class="dhotList" id="lvTitleList">
+            <li class="bder_rd">
+        <a href="" title="周村古商城" target="_blank">
+        <img src="/static/img/small1.jpg" alt="">
+        </a></li>
+            <li class="bder_rd">
+        <a href="/sceneryticket.php?id=26&type=2" title="智圣汤泉" target="_blank">
+        <img src="/static/img/small2.jpg" alt="">
+        </a></li>
+        
+        <li class="bder_rd">
+        <a href="/sceneryticket.php?id=8" title="青云山" target="_blank">
+        <img src="/static/img/small3.jpg" alt="">
+        </a></li>
+        
+        <li class="bder_rd">
+        <a href="/sceneryticket.php?id=27&type=2" title="艾山度假村" target="_blank">
+        <img src="/static/img/small4.jpg" alt="">
+        </a></li>
+        
+        <li class="bder_rd">
+        <a href="/sceneryticket.php?id=28&type=2" title="天沐温泉" target="_blank">
+        <img src="/static/img/small5.jpg" alt="">
+        </a></li>
+        
+        <li class="bder_rd">
+        <a href="/sceneryticket.php?id=19" title="蒙山龟蒙" target="_blank">
+        <img src="/static/img/small6.jpg" alt="">
+        </a></li>
+        
+        <!--<li class="bder_rd">
+        <a href="/sceneryticket.php?id=7" title="蓬莱阁" target="_blank">
+        <img src="/static/img/small7.jpg" alt="">
+        </a></li>-->
+        
+        <li class="bder_rd">
+        <a href="" title="" target="_blank">
+        <img src="/static/img/small8.jpg" alt="">
+        </a></li>
+        
+        <li class="bder_rd">
+        <a href="" title="" target="_blank">
+        <img src="/static/img/small9.jpg" alt="">
+        </a></li>
+        
+       
+        
+        </ul></div>
+</div>
+            </div>
+    </div>
+    
+    <!--right end-->
+    <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+<!--footer start-->
+<!--{include common_footer}-->

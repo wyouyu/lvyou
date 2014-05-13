@@ -1,0 +1,64 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('cache')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<h2>缓存设置（仅支持Memcache）</h2>
+					<ul class="filter">
+						<li><a href="/ajax/manage.php?action=cacheclear" class="ajaxlink">清空模板缓存</a></li>
+					</ul>
+				</div>
+                <div class="sect">
+                    <form method="post">
+						<div class="wholetip clear">
+							<h3>格式 127.0.0.1:11211:100 ，没有安装Memcache，保留下面为空即可</h3>
+						</div>
+						<div style="margin:0 20px;">
+							<p>127.0.0.1 为Memcache服务主机的IP</p>
+							<p>11211 为Memcache服务的端口号</p>
+							<p>100 为权重，任意大于 0 的整数</p>
+						</div>
+						<div class="wholetip clear"><h3>1、Cache主机</h3></div>
+                        <div class="field">
+                            <label>主机 1</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][0]}"/>
+                        </div>
+                        <div class="field">
+                            <label>主机 2</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][1]}"/>
+                        </div>
+                        <div class="field">
+                            <label>主机 3</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][2]}"/>
+                        </div>
+                        <div class="field">
+                            <label>主机 4</label>
+                            <input type="text" size="30" name="memcache[]" class="f-input" value="{$INI['memcache'][3]}"/>
+                        </div>
+
+                        <div class="act">
+                            <input type="submit" value="保存" name="commit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

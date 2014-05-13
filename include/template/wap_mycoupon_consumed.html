@@ -1,0 +1,16 @@
+<!--{include wap_header}-->
+<h2>我的{$INI['system']['couponname']}</h2>
+<p><a href="mycoupon.php">未消费</a>&nbsp;|&nbsp;已消费&nbsp;|&nbsp;<a href="mycoupon.php?s=expired">已过期</a></p>
+
+<!--{loop $coupons $index $one}-->
+<table id="order-list" style="margin:5px 0;" cellspacing="1" cellpadding="2" border="0" bgcolor="#999999" width="100%">
+	<tr><td bgcolor="#CCCCCC">编号：</td><td bgcolor="#FFFFFF">{$one['id']}</td></tr>
+	<tr><td bgcolor="#CCCCCC">密码：</td><td bgcolor="#FFFFFF">{$one['secret']}</td></tr>
+	<tr><td bgcolor="#CCCCCC">项目：</td><td bgcolor="#FFFFFF">{$teams[$one['team_id']]['product']}</td></tr>
+	<tr><td bgcolor="#CCCCCC" width="60" nowrap>消费：</td><td bgcolor="#FFFFFF">${date('Y-m-d', $one['consume_time'])}</td></tr>
+</table>
+<!--{/loop}-->
+
+<table><td>{$pagestring}</td></tr></table>
+
+<!--{include wap_footer}-->

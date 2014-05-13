@@ -1,0 +1,36 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_order('express')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>上传快递单号</h2>
+				</div>
+				<div class="sect" style="padding:0 10px;">
+					<form method="post" action="/manage/order/express.php" enctype="multipart/form-data">
+					<div class="field">
+						<label>上传文本文件</label>
+						<input type="file" size="30" name="upload_express" id="partner-create-image" class="f-input f-hint" />
+						<span class="hint">规定每行一条数据，格式为 “订单号,快递单号,快递ID,快递名称” ，每行数据使用 逗号,空格等分隔开</span>
+					</div>
+				    <div class="act">
+                      <input type="submit" value="上传" class="formbutton"/>
+                  </div>
+					<form>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

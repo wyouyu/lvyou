@@ -1,0 +1,9 @@
+<form id="order-pay-form" method="post" action="https://pay3.chinabank.com.cn/PayGate" target="_blank" sid="{$order_id}">
+	<input type="hidden" name="v_mid" value="{$v_mid}" />
+	<input type="hidden" name="v_oid" value="{$v_oid}" />
+	<input type="hidden" name="v_amount" value="{$total_money}" />
+	<input type="hidden" name="v_moneytype" value="{$v_moneytype}" />
+	<input type="hidden" name="v_url" value="{$v_url}" />
+	<input type="hidden" name="v_md5info" value="{$v_md5info}" />
+	<img src="/static/css/i/chinabank.png" /><br/><input type="submit" class="formbutton gotopay" value="前往网银在线支付" style="vertical-align:middle;"/>
+</form>

@@ -1,0 +1,24 @@
+<!--{if $team['flv']}-->
+<!--${
+	$flvswf = preg_match('#swf$#i', $team['flv']); 
+	$flvheight = $flvswf ? 210 : 173;
+}-->
+<div class="sbox">
+	<div id="team_{$team['id']}_player" style="height:{$flvheight}px;width:230px;"><img src="${team_image($team['image'])}" height="{$flvheight}" width="230" /></div>
+</div>
+<script>
+window.x_init_hook_player = function() {
+<!--{if $flvswf}-->
+	var fo = new SWFObject("{$team['flv']}", "flv_player", "100%", "100%", 7, "#FFFFFF");
+<!--{else}-->
+	var fo = new SWFObject("${WEB_ROOT}/static/img/player.swf", "flv_player", "100%", "100%", 7, "#FFFFFF");
+	fo.addParam("flashvars", "file={$team['flv']}&amp;stretching=fill&amp;image=${team_image($team['image'])}");
+<!--{/if}-->
+	fo.addParam("wmode","transparent");
+	fo.addParam("allowscriptaccess","always");
+	fo.addParam("allowfullscreen","true");
+	fo.addParam("quality","high");
+	fo.write("team_{$team['id']}_player");
+}
+</script>
+<!--{/if}-->

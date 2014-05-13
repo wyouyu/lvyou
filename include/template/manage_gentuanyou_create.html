@@ -1,0 +1,233 @@
+<!--{include manage_header}-->
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+<script type="text/javascript">
+window.x_init_hook_gm = function() {
+    X.misc.setgooglemap = function(ll) {
+        X.get(WEB_ROOT+'/ajax/system.php?action=googlemap&ll='+ll);
+    };
+    X.misc.setbaidumap = function(ll){
+        X.get(WEB_ROOT+'/ajax/system.php?action=baidumap&ll='+ll);    
+    };
+    X.misc.setgooglemappoint = function(latlng) {
+        jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+    };
+    X.misc.setbaidumappoint = function(e){
+        jQuery('#inputlonglat').val(e.point.lat+','+e.point.lng);    
+    };
+    X.misc.setgooglemapclick = function(overlay, latlng) {
+        jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+    };
+    X.misc.setbaidumapclick = function(e){
+        jQuery('#inputlonglat').val(e.point.lat+','+e.point.lng);    
+    };
+};
+$(function(){
+    var i=1;
+    $("#add").click(function(){
+        $("#piclist").append('<div style="display:block" id="file_'+i+'"><label>途经景点</label><select name="jingqu[]" class="f-input f-hint" style="width:160px;">{$option}</select><span class="delfile" style="cursor:pointer;">删除<span></div><div style="clear:both"></div>');
+        i++;
+    })
+    $(".delfile").live('click',function(){
+        $(this).parent().remove();
+        i--;
+    })
+});
+$(function () {
+            $("#GetShopPoint").click(function () {
+                var result = window.showModalDialog('partern_map.htm', window, "dialogWidth=750px;dialogHeight=537px;center:yes;status:no;scroll:yes;help:no;resizable:no;");
+                //var result = window.open('shop_map.htm',"", "height=537, width=750,top=" + iTop + ",left=" + iLeft + ",toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                if (typeof (result) == "undefined") {
+                    result = window.returnValue;
+                }
+                if (result!="") {
+                  //  var point = result.split(',');
+                  //  document.getElementById("txtLongitude").value = point[0];
+                    document.getElementById("inputlonglat").value = result;
+                }
+            });
+            //var admin = $('#ddlCity option:selected');
+            //$("#txtmap_city").val(admin.text());
+        });
+
+</script>
+
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+    <div class="dashboard" id="dashboard">
+        <ul>${mcurrent_gentuanyou('create')}</ul>
+    </div>
+    <div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>跟团游信息</h2></div>
+                <div class="sect">
+                    <form id="login-user-form" method="post" action="/manage/gentuan/create.php" enctype="multipart/form-data" class="validator">
+                    <!--基本信息-->
+                        
+                        <div class="wholetip clear"><h3>1、基本信息</h3></div>
+                        <div class="field">
+                            <label>排序</label>
+                            <input type="text" size="15" name="head" id="head" class="f-input f-hint" value="{$partner['head']}"/>
+                            <span class="hint">数字越大 越靠前</span>
+                        </div>
+                        
+                        <div class="field">
+                            <label>线路名称</label>
+                            <input type="text" name="title" id="partner-create-title" class="f-input f-hint" value="{$partner['title']}" require="true" datatype="require" />
+                        </div>
+                        <div class="field">
+                            <label>价格</label>
+                            <input type="text" name="price" id="partner-create-title" class="f-input f-hint" value="{$partner_teams['price']}" require="true" datatype="require" />元
+                        </div>
+                        <div class="field">
+                            <label>线路缩略图</label>
+                             <input type="file" size="30" name="main_page"    class="f-input f-hint" />
+                             <span class="hint">{$partner['image']}</span>
+                            <span class="hint">会显示在首页和栏目页等地方</span>
+                        </div>                    
+                        <div class="field">
+                            <label>联系人</label>
+                            <input type="text" size="30" name="contact" id="partner-create-contact" class="f-input f-hint" value="{$partner['contact']}" />
+                        </div>
+                        <div class="field">
+                            <label>联系电话</label>
+                            <input type="text" size="30" name="phone" id="partner-create-phone" class="f-input f-hint" value="{$partner['phone']}" maxLength="18" datatype="require" require="ture" />
+                        </div>
+                        
+                        <div class="field">
+                            <label>手机号码</label>
+                            <input type="text" size="30" name="mobile" id="partner-create-mobile" class="f-input f-hint" value="{$partner['mobile']}" maxLength="11" />
+                        </div>
+                                                                     
+                        <!--详细信息-->
+                        <div class="wholetip clear"><h3>2、属性</h3></div>
+                        
+                        <div class="field">
+                            <label>出发城市</label>
+                             <input type="text"  name="chufa_city" class="f-input f-hint" value="{$partner_teams['chufa_city']}"/>
+                        </div>
+                        
+                        <div class="field">
+                            <label>目的城市</label>
+                             <input type="text"  name="mudi_city" class="f-input f-hint" value="{$partner_teams['mudi_city']}"/>
+                        </div>
+                        
+                        <div class="field">
+                            <label>行程天数</label>
+                             <input type="text" size="15" name="tianshu" class="f-input f-hint" value="{$partner_teams['tianshu']}"/>天
+                        </div>
+                        
+                        <div class="field">
+                            <label>发团日期</label>
+                             <input type="text"  name="fatuan_day" class="f-input f-hint" value="{$partner_teams['fatuan_day']}"/>
+                        </div>
+                        
+                        <div class="field">
+                            <label>交通方式</label>
+                             <input type="checkbox" name=jiaotong[] <!--{if in_array("飞机",$partner_teams['jiaotong_arr'])}-->checked<!--{/if}--> value="飞机">飞机
+                             <input type="checkbox" name=jiaotong[] <!--{if in_array("火车",$partner_teams['jiaotong_arr'])}-->checked<!--{/if}--> value="火车">火车
+                             <input type="checkbox" name=jiaotong[] <!--{if in_array("客车",$partner_teams['jiaotong_arr'])}-->checked<!--{/if}--> value="客车">客车
+                             <input type="checkbox" name=jiaotong[] <!--{if in_array("轮船",$partner_teams['jiaotong_arr'])}-->checked<!--{/if}--> value="轮船">轮船 
+                        </div>
+                        
+                        <div class="field">
+                            <label>酒店类型</label>
+                            <select name="hotel_type">
+                             <option value="0">选择酒店类型</option> 
+                             <option value="普通酒店" <!--{if $partner_teams['hotel_type']=='普通酒店'}-->selected<!--{/if}--> >普通酒店</option>
+                             <option value="连锁型酒店" <!--{if $partner_teams['hotel_type']=='连锁型酒店'}-->selected<!--{/if}--> >连锁型酒店</option>
+                             <option value="高档型酒店" <!--{if $partner_teams['hotel_type']=='高档型酒店'}-->selected<!--{/if}--> >高档型酒店</option>
+                             </select>
+                        </div>
+
+						<div class="field">
+                            <label>跟团类型</label>
+                            <select name="leixing">
+                             <option value="0">选择跟团类型</option> 
+                             <option value="1" <!--{if $partner_teams['leixing']==1}-->selected<!--{/if}--> >国内游</option>
+                             <option value="2" <!--{if $partner_teams['leixing']==2}-->selected<!--{/if}--> >出境游</option>
+                             <option value="3" <!--{if $partner_teams['leixing']==3}-->selected<!--{/if}--> >周边游</option>
+                             </select>
+                        </div>
+                        
+                        
+                        
+                        <div class="wholetip clear"><h3>3、详细信息</h3></div>
+                        <div class="field">
+                        <label>费用介绍</label>
+                            <div style="float:left;"><textarea cols="45" rows="5" name="feiyong" id="team-create-tese" class="f-textarea editor" style="width:710px;height:150px;">{$partner_teams['feiyong']}</textarea></div>
+                            <span class="hint">费用介绍</span>
+                        </div>
+                        
+                        <div class="field">
+                        <label>线路行程</label>
+                            <div style="float:left;"><textarea cols="45" rows="5" name="other" id="team-create-notice" class="f-textarea editor" style="width:710px;height:150px;">{$partner['other']}</textarea></div>
+                            <span class="hint">详细描述行程安排</span>
+                        </div>
+                        
+                         <div class="field">
+                        <label>注意事项</label>
+                            <div style="float:left;"><textarea cols="45" rows="5" name="notice" id="team-create-notice2" class="f-textarea editor" style="width:710px;height:150px;">{$partner_teams['notice']}</textarea></div>
+                           
+                        </div>
+                        
+                        
+                        
+                       
+                        <!--其他-->
+                        <div class="wholetip clear"><h3>4、其他</h3></div>
+                        
+                        
+                        <div class="field">
+                            <label>首页显示</label>
+                           <input type="radio" name="shouye" <!--{if $partner['shouye']=='1'}-->checked<!--{/if}--> value="1">是 &nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="shouye" <!--{if $partner['shouye']=='0'}-->checked<!--{/if}--> value="0">否 &nbsp;&nbsp;&nbsp;
+                            <span class="hint">是否显示在首页</span>
+                        </div>
+                        
+                        <div class="field">
+                            <label>热门跟团游</label>
+                           <input type="radio" name="hot" <!--{if $partner['hot']=='1'}-->checked<!--{/if}--> value="1">是 &nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="hot" <!--{if $partner['hot']=='0'}-->checked<!--{/if}--> value="0">否 &nbsp;&nbsp;&nbsp;
+                            <span class="hint">设为热门景点后，会出现在首页热搜和栏目页中</span>
+                        </div>
+
+						 <div class="field">
+                            <label>特惠推荐</label>
+                           <input type="radio" name="tehui" <!--{if $partner_teams['tehui']=='1'}-->checked<!--{/if}--> value="1">是 &nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="tehui" <!--{if $partner_teams['tehui']=='0'}-->checked<!--{/if}--> value="0">否 &nbsp;&nbsp;&nbsp;
+                            <span class="hint">设为特惠推荐后，会显示在特惠栏目中</span>
+                        </div>
+
+                        
+                        
+                      
+                        <div class="act">
+                            <input type="hidden" name="type" value="3">
+                            <input type="hidden" name="id" value="{$partner['id']}">
+                            <!--{if $_GET['id']}-->
+                            <input type="hidden" name="tid" value="{$partner_teams['id']}">
+                            <input type="submit" value="编辑" name="commit" id="partner-submit" class="formbutton"/>
+                             <!--{else}-->
+                            <input type="submit" value="新建" name="commit" id="partner-submit" class="formbutton"/>
+                            <!--{/if}-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

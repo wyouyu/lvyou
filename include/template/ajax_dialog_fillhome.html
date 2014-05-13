@@ -1,0 +1,29 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:420px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>填写邮寄地址</h3>
+	<p class="info" id="smssub-dialog-display-id">请填写您的收货地址！<br/>1天内可以修改地址！</p>
+	<table width="96%" class="coupons-table">
+		<tr><td width="80" nowrap align="right"><b>收件人：</b></td><td>
+			<input type="text" class="f-input"  id="dialog_home_name" name="rname" size="15"  value="{$login_user['realname']}" require="true" datatype="require" />
+		</td></tr>
+		<tr><td width="80" nowrap align="right"><b>手机号：</b></td><td>
+			<input type="text" class="f-input"  id="dialog_home_rmobile" name="rmobile" size="15" value="{$login_user['mobile']}" require="true" datatype="mobile" maxLength="11" />
+		</td></tr>
+		<tr><td width="80" nowrap align="right"><b>邮编：</b></td><td>
+			<input type="text" class="f-input"  id="dialog_home_code" name="rcode" size="15"  value="{$login_user['zipcode']}" require="true" datatype="zip" maxLength="6" />
+		</td></tr>
+		<tr><td width="80" nowrap align="right"><b>地址：</b></td><td>
+			<input type="text" class="f-input"  id="dialog_home_address" name="raddress" size="40"  value="{$login_user['address']}" require="true" datatype="require" />
+		</td></tr>
+
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" onclick="X.misc.homeedit();" /></td></tr>
+	</table>
+</div>
+<script type="text/javascript">
+X.misc.homeedit = function() {
+	var n = jQuery('#dialog_home_name').val();
+	var m = jQuery('#dialog_home_rmobile').val();
+	var c = jQuery('#dialog_home_code').val();
+	var a = jQuery('#dialog_home_address').val();
+	if (n&&m&&c&&a) return !X.get(WEB_ROOT + '/credit/ajax.php?action=edithome&id={$goods['id']}&n='+encodeURIComponent(n)+'&m='+m+'&c='+c+'&a='+encodeURIComponent(a));
+};
+</script>

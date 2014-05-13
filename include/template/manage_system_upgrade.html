@@ -1,0 +1,74 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="help">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('upgrade')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>最土软件(${SYS_VERSION}_${SYS_SUBVERSION})</h2>
+				</div>
+                <div class="sect">
+					<div class="wholetip clear"><h3>最新版本{$newversion}_{$newsubversion}&nbsp;[<!--{if $isnew}--><span style="color:green">是</span><!--{else}--><span style="color:red">否</span><!--{/if}-->]&nbsp;[<a href="/manage/system/upgrade.php?action=db">升级数据库结构</a>]</h3></div>
+				<!--{if $install}-->
+					<div class="wholetip clear"><h3>全新安装包</h3></div>
+					<div style="margin:0 20px;">
+						<!--{loop $install $v $l}-->
+						<p><a href="{$l}">ZuituGo_{$v}</a></p>
+						<!--{/loop}-->
+					</div>
+				<!--{/if}-->
+				<div class="wholetip clear"><h3>升级步骤</h3></div>
+					<div style="margin:0 20px;">
+						<p>1、先升级数据库结构，升级数据库结构不会影响现有数据（后台-设置-升级-升级数据库结构）
+						</p>
+						<p>2、查看当前版本号，以当前最土版本为起点，下载升级包逐个向上覆盖升级，前台模板若有改动，请注意备份好你修改过的文件。（例：当前版本20110415版，下载20110415-20110601升级包，覆盖后下载20110601-20110701升级包覆盖……依次覆盖升级到最新版系统）
+						</p>
+						<p>3、升级完成后进入站点管理后台-设置-缓存栏目，清空模板缓存.</p>
+						<p>4、升级包文件覆盖，缓存清空后完成升级。</p>
+				</div>
+				<!--{if $upgrade}-->
+					<div class="wholetip clear"><h3>升级包</h3></div>
+					<div style="margin:0 20px;">
+					<!--{loop $upgrade $v $l}-->
+						<p><a href="{$l}">ZuituGo_Upgrade_{$v}</a></p>
+					<!--{if $upgradedesc[$v]}-->
+						<p style="text-index:2em;">{$upgradedesc[$v]}</p>
+					<!--{/if}-->
+					<!--{/loop}-->
+					</div>
+				<!--{/if}-->
+				<!--{if $patch}-->
+					<div class="wholetip clear"><h3>补丁包</h3></div>
+					<div style="margin:0 20px;">
+					<!--{loop $patch $v $l}-->
+						<p><a href="{$l}">ZuituGo_Patch_${SYS_VERSION}_{$v}</a></p>
+					<!--{if $patchdesc[$v]}-->
+						<p style="text-index:2em;">{$patchdesc[$v]}</p>
+					<!--{/if}-->
+					<!--{/loop}-->
+					</div>
+				<!--{/if}-->
+					
+
+					<div class="wholetip clear"><h3>软件信息</h3></div>
+					<div style="margin:0 20px;">
+					<!--{loop $software $n $meta}-->
+						<p>{$n}：<!--{if $meta[0]=='link'}--><a href="{$meta[1]}" target="_blank">{$meta[1]}</a><!--{else}-->{$meta[1]}<!--{/if}--></p>
+					<!--{/loop}-->
+					</div>
+				</div>
+			</div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

@@ -1,0 +1,30 @@
+<!--{include header}-->
+<!--{if is_get()}-->
+<div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>此订单尚未完成付款，请重新付款</p><span class="close">关闭</span></div></div>
+<!--{/if}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="order-pay">
+    <div id="content">
+        <div id="deal-buy" class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>充值金额：<strong class="total-money">${moneyit($total_money)}</strong> 元</h2>
+                </div>
+                <div class="sect">
+                    <div style="text-align:left;">
+						{$payhtml}
+						<!--<div class="back-to-check"><a href="order/tcheck.php?id={$order_id}">&raquo; 返回选择其他支付方式</a></div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

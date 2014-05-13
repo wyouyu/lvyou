@@ -1,0 +1,44 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_credit('goods')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>兑换记录</h2>
+                    <ul class="filter">
+						<li><a href="/manage/credit/ajax.php?action=edit" class="ajaxlink">新建兑换商品</a></li>
+						<li class="current"><a href="/manage/credit/records.php">兑换记录</a></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="50">ID</th><th width="200">Email/用户名</th><th width="100" nowrap>收货人</th><th width="40">电话</th><th width="400">详情</th><th width="200">操作</th></tr>
+					<!--{loop $credits $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$users[$one['user_id']]['email']}<br/>{$users[$one['user_id']]['username']}<!--{if Utility::IsMobile($users[$one['user_id']]['mobile'])}-->&nbsp;&raquo;&nbsp;<a href="/ajax/misc.php?action=sms&v={$users[$one['user_id']]['mobile']}" class="ajaxlink">短信</a><!--{/if}--></td>
+						<td>{$one['rname']}</td>
+						<td><span class="currency"></span>{$one['rmobile']}</td>
+						<td>${ZCredit::Explain($one)}</td>
+						<td><a href="/manage/credit/ajax.php?action=view&id={$one['id']}" class="ajaxlink">详情</a>&nbsp;|&nbsp;<!--{if ($one['state']=='unpay')}--><a href="/manage/credit/ajax.php?action=checkexpress&id={$one['id']}" class="ajaxlink">未发货</a><!--{else}-->已发货<!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="8">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

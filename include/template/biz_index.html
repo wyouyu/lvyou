@@ -1,0 +1,41 @@
+<!--{include biz_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>景点订单列表</h2>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="200">门票类型</th><th width="120">门票价格</th><th width="120">数量</th><th width="150">游玩日期</th><th width="150">购买人</th><th width="150">联系电话</th><th width="80">实到人数</th><th width="90">传真确认</th></tr>
+					<!--{loop $orders $index $one}-->
+					
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td style="text-align:left;font-size:12px">{$tickets[$one['team_id']]['t_name']}-({$tickets[$one['team_id']]['cate']})</td>
+						<td>{$tickets[$one['team_id']]['t_price']}元</td>
+                        <td>{$one['quantity']}</td>
+						<td>${date('Y-m-d',$one['outtime'])}</td>
+						<td>{$one['realname']}</td>
+						<td>{$one['mobile']}</td>
+						<td class="op" nowrap><!--{if $one['shidao']==''}--><a href="/ajax/partner_order.php?id={$one['id']}" class="ajaxlink">点击填写</a><!--{else}-->{$one['shidao']}<!--{/if}--></td>
+
+						<td class="op" nowrap><!--{if $one['is_confirm']==0}--><a href="/ajax/confirm.php?id={$one['id']}">点击确认</a><!--{else}-->已确认<!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="6">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

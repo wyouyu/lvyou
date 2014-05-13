@@ -1,0 +1,13 @@
+
+<form id="order-pay-form" method="post" action="cmpay/cmpay.php" sid="{$order_id}" target="_blank" >
+    <input type="hidden" name="orderId" value="{$orderId}" />
+	<input type="hidden" name="channelType" value="{$channelType}" />
+	<input type="hidden" name="amount" value="{$amount}" />
+	<input type="hidden" name="currency" value="{$currency}" />
+	<input type="hidden" name="productName" value="{$productName}" />
+	<input type="hidden" name="productDesc" value="{$productDesc}" />
+	<input type="hidden" name="productId" value="{$productId}" />
+
+	<img src="/static/css/i/cmpay.jpg" /><br />
+	<input type="submit" class="formbutton gotopay" value="前往手机支付付款" />
+</form>

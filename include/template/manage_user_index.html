@@ -1,0 +1,45 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_user('index')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>用户列表</h2>
+                    <ul class="filter">
+						<li><form action="/manage/user/index.php" method="get">用户名：<input type="text" name="uname" class="h-input" style="width:90px" value="${htmlspecialchars($uname)}" >&nbsp;邮件：<input type="text" name="like" class="h-input" value="${htmlspecialchars($like)}" >&nbsp;<select name="ucity" style="width:110px;">${Utility::Option(option_category('city'), $ucity, '所有城市')}</select>&nbsp;购买次数大于<input type="text" name="numbers" class="h-input" value="{$numbers}" style="width:20px">&nbsp;购买金额大于<input type="text" name="prices" class="h-input" value="{$prices}" style="width:30px">&nbsp;余额大于<input type="text" name="havemoney" class="h-input" value="{$havemoney}" style="width:20px">&nbsp;&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="50">ID</th><th width="200">Email/用户名</th><th width="100" nowrap>姓名/城市</th><th width="40">余额</th><th width="40">邮编</th><th width="120">注册IP/注册时间</th></th><th width="90">联系电话</th><th width="130">操作</th></tr>
+					<!--{loop $users $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$one['email']}<br/>{$one['username']}<!--{if Utility::IsMobile($one['mobile'])}-->&nbsp;&raquo;&nbsp;<a href="/ajax/misc.php?action=sms&v={$one['mobile']}" class="ajaxlink">短信</a><!--{/if}--></td>
+						<td>${$one['realname']?$one['realname']:'----';}<br/><!--{if $one['city_id']}-->{$allcities[$one['city_id']]['name']}<!--{else}-->其他<!--{/if}--></td>
+						<td><span class="currency">{$currency}</span>${moneyit($one['money'])}</td>
+						<td>{$one['zipcode']}</td>
+						<td>{$one['ip']}<br/>${date('Y-m-d H:i', $one['create_time'])}</td>
+						<td>{$one['mobile']}</td>
+						<td class="op"><a href="/ajax/manage.php?action=userview&id={$one['id']}" class="ajaxlink">详情</a>｜<a href="/manage/user/edit.php?id={$one['id']}">编辑</a><!--<br /><a href="/manage/user/ajax.php?action=delete&id={$one['id']}" class="ajaxlink" ask="确定删除该用户吗？">删除</a>｜<a href="/manage/user/ajax.php?action=consume&id={$one['id']}" class="ajaxlink">明细</a>｜<a href="/manage/user/ajax.php?action=flow&id={$one['id']}" class="ajaxlink">流水</a>--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="8">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

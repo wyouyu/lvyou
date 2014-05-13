@@ -1,0 +1,48 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="help">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_vote('feedback')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>“{$question['title']}”</h2>
+					<ul class="filter">
+						<li><a href="feedback.php?action=question_list">调查中的问题列表</a></li>
+						<li><a href="feedback.php?action=question_list&show_all=1">全部问题列表</a></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<div class="wholetip clear"><h3>{$options['name']}</h3></div>
+					<div style="margin:0 20px;">
+						<!--{if !$input_list}-->
+							<p>无自定义输入</p>
+						<!--{/if}-->
+
+
+						<!--{loop $input_list $index $one}-->
+							<p>
+								<strong><font color="red">{$one['num']}</font>
+								{$one['value']}
+							</strong></p>
+						<!--{/loop}-->
+					</div>
+
+					<div style="margin:0 20px;">
+						<p>{$pagestring}</p>
+                    </div>
+				</div>
+			</div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

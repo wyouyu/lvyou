@@ -1,0 +1,15 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:580px;">
+    <h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>项目备注</h3>
+    <div style="overflow-x:hidden;padding:10px;">
+    <form action="/ajax/beizhu.php?action={$action}" method="post">
+    <table width="96%" align="center" class="coupons-table">
+    <tr>
+		<td width="80"><b>内容：</b></td>
+		<td width="250"><input  type="input" class="f-input" id="contents" name="contents" style="width:250px" value={$order['beizhu']}></td>
+		<td><input type="submit" class="formbutton" value="提交" name="submit"></td>
+	</tr>
+    <input type="hidden" name="orderid" id="orderid" value="{$id}">  
+    </table>
+    </form>
+    </div>
+</div>

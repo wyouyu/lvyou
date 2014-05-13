@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>付款成功</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link href="/static/css/paysucc.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/960head.css" rel="stylesheet" type="text/css" />
+
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    <script src="/static/js/index.js" type="text/javascript"></script>
+    <script src="js/lib/jquery-1.10.0.min.js" type="text/javascript"></script>
+    ${Session::Get('script',true);}
+</head>
+
+<body>
+<!--{include header_top}-->
+<div id="header_lite" style="margin-top:10px;">
+        <div style="clear: both; overflow: hidden; height: 0;">
+        </div>
+        <div class="menu">
+            <ul class="menu_info06">
+                <li class="menu_not" style="width: 320px;">
+                    <h2>
+                        1、填写订单信息</h2>
+                </li>
+                <li class="menu_not" style="width: 320px;">
+                    <h2>
+                        2、等待客服审核</h2>
+                </li>
+                <li class="menu_at" style="width: 320px;">
+                    <h2>
+                        3、预订成功</h2>
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both; overflow: hidden; height: 0;">
+        </div>
+</div>
+
+<div id="content">
+    <div class="order_suc">
+            <div class="dingpiao_jq">
+                <!--提交说明 start-->
+                <div class="explain">
+                    <div class="content">
+                        <div class="succeed_icon">
+                        </div>
+                        <div class="succeed_words">
+                            <div class="succeed_tips">
+                                <span class="succeed_tips_title">您的预订已提交，我们会尽快为您审核房源，将给您发送确认短信。</span> <span class="onLinePay_tips_title">
+                                    </span>
+                                <div class="error_tips">
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--提交说明 end-->
+                <!--订单列表 start -->
+                <div class="list">
+                <!--新增活动引导 start-->
+                <div class="title_activityIntro">
+                    <h2>
+                        度假村名：<a href="/sceneryticket.php?id={$partner['id']}" target="_blank" class="order_num serial_number">{$partner['title']}</a><span>
+                            （查看订单状态请点击<a title="订单中心" href="/order/index.php" target="_blank">订单中心</a>）</span>
+                    </h2>
+                   
+                </div>
+                <!--新增活动引导 end--> 
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                        <tbody>
+                            <tr class="mesTitle">
+                                <th class="orderNum" scope="col">订单号</th>
+                                <th class="orderDate" scope="col" style="white-space: nowrap"> 房间类型</th>
+                                <th class="orderDate" scope="col"> 入住日期 </th>
+                                <th class="orderDate" scope="col"> 离开日期 </th>
+                                <th class="orderAmount" scope="col"> 天数 </th>
+                                <th class="orderAmount" scope="col"> 间数 </th>
+                                <th class="orderPrice" scope="col"> 需付金额 </th>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="spc_tab"> 
+                        <tbody>
+                            <tr class="underLine"> 
+                                <td class="orderNum"><a target="_blank" href="/order/index.php">{$order['smsid']}</a></td>
+                                <td class="orderDate" align="left">{$ticket['t_name']}</td>
+                                <td class="orderDate" align="top">${date('Y-m-d',$order['outtime'])}</td>
+                                <td class="orderDate" align="top">${date('Y-m-d',$order['lidiandate'])}</td>
+                                <td class="orderAmount" align="left">{$order['tianshu']}天</td>
+                                <td class="orderAmount" align="left">{$order['quantity']}间</td>
+                              
+                                <td class="orderPrice" align="left">¥{$order['money']}<br></td>
+                                
+                            </tr> 
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <!--订单列表 end-->
+               
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+$("#submitAllIcon").click(function(){
+    $("#orderdeal").submit();
+});
+$(function (){
+    $( "input[name=outtime]" ).datepick();
+});
+</script>
+<div style="clear:both">
+</div>
+<!--{include common_footer}-->

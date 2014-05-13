@@ -1,0 +1,50 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="help">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_vote('feedback')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>查看“${$feedback['username'] ? $feedback['username'] : '游客'}(IP:{$feedback['ip']})”的反馈</h2>
+					<ul class="filter">
+						<li>${date("Y-m-d H:i:s", $feedback['addtime'])}</li>
+						<li><a href="feedback.php">反馈列表</a></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<!--{if !$question_list}-->
+						<div class="wholetip clear"><h3>无问题</h3></div>
+					<!--{/if}-->
+
+					<!--{loop $question_list $index $question}-->
+						<!--{if $feedback_question_list[$question['id']]}-->
+							<div class="wholetip clear"><h3>{$question['title']}</h3></div>
+							<div style="margin:0 20px;">
+								<p>
+									<!--{loop $question['options_list'] $index $options}-->
+										<!--{if $feedback_question_list[$question['id']][$options['id']]}-->
+											{$options['name']}
+											${$options['is_input'] ? (isset($feedback_input_list[$options['id']]) ? '<font color="red">('.$feedback_input_list[$options['id']]['value'].')</font>' : '') : ''}
+											<br>
+										<!--{/if}-->
+									<!--{/loop}-->
+								</p>
+							</div>
+						<!--{/if}-->
+					<!--{/loop}-->
+				</div>
+			</div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

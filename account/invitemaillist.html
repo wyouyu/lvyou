@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://widgets.manyou.com//misc/scripts/ab.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+		function comma_to_nl(){
+			var emails = parent.parent.document.getElementById('recipients');
+			emails.value = emails.value.replace(/ /g, "");
+			emails.value = emails.value.replace(/,/g, "\n");
+		}
+		
+		function show_invitation_area(){
+
+			parent.parent.document.getElementById('email_invitation').style.display = 'block';
+		}
+	</script>
+  </head>
+  <body onload="MYABC.onCBPageLoad();  comma_to_nl(); show_invitation_area();">
+  </body>
+</html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>我的订单</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/member.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    
+    </head>
+
+<body>
+<!--{include header_top}-->
+<div id="content">
+<!--{include member_left_bar}-->
+<style type="text/css">
+    .rightside td,.rightside th{padding:5px 10px;}
+    .rightside th{font-weight:bold; color:#666;}
+    .tareccolor{border-color:#CCC}
+    .submitAllIcon {
+        background-color: #2484e4;
+        background-position: left -232px;
+        cursor: pointer;
+        width: 120px;
+        height: 38px;
+        font-family: "微软雅黑";
+        color: #fff;
+        text-align: center;
+        line-height: 38px;
+        font-size: 20px;
+        margin-top: 10px;
+        float: left;
+        overflow: hidden;
+    }
+</style>
+<div class="rightside" id="rightbox">
+            
+            <div class="order_unend" id="orderUnend">
+                <div class="order_head">
+                    <ul id="order_01">
+                        <li class="crt"><a action="scenery" href="javascript:void(0);" title="评价">评价</a></li>
+                    </ul>
+                </div>
+                <div class="order_con clearfix" style="display: block;">
+                    <form action="/order/comment.php?id={$id}" method="post" id="comment" enctype="multipart/form-data">    
+                    <table id="score-tb" style="width:100%" cellpadding="0">
+                    <tbody><tr>
+                        <th>标题：</th>
+                        <td colspan="3"><input type="text" name="title" size="30" style="border:#CCC 1px solid"></td>
+                    </tr>
+                    <tr>
+                        <th>评价内容：</th>
+                        <td colspan="3"><textarea cols="125" rows="2" name="content" class="tareccolor"></textarea></td>
+                    </tr>
+
+					<tr>
+                        <th>图片1：</th>
+                        <td colspan="3"><input type="file" size="30" name="upload_image1" id="team-create-image2" class="f-input" /></td>
+                    </tr>
+
+					<tr>
+                        <th>图片2：</th>
+                        <td colspan="3"><input type="file" size="30" name="upload_image2" id="team-create-image2" class="f-input" /></td>
+                    </tr>
+
+					<tr>
+                        <th>图片3：</th>
+                        <td colspan="3"><input type="file" size="30" name="upload_image3" id="team-create-image2" class="f-input" /></td>
+                    </tr>
+
+
+                    <tr>
+                        <th rowspan="5" align="center">
+                            <a href="" target="_blank" title="{$partner['title']}"><img src="${team_image($partner['image'])}" width="120" height="90" alt="{$partner['title']}"></a>
+                            <p style="text-align:center;"><a href="/sceneryticket.php?id={$partner['id']}&type={$partner['type']}" target="_blank" title="{$partner['title']}">{$partner['title']}</a></p>
+                        </th>
+                        <th width="65">服        务：</th>
+                        <td>
+                            
+                            <textarea cols="80" rows="2" name="service" class="tareccolor"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                       
+                        <th>食  购  娱：</th>
+                        <td>
+                            
+                            <textarea cols="80" rows="2" name="other" class="tareccolor"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <th>交        通：</th>
+                        <td>
+                           
+                            <textarea cols="80" rows="2" name="traffic" class="tareccolor"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <th>旅行感悟：</th>
+                        <td>
+                            
+                            <textarea cols="80" rows="2" name="feel" class="tareccolor"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>评      分：</th>
+                        <td>
+                            <div>
+                            <div style="width:8%;float:left;font-weight: bold;height:16px;line-height: 16px;">服务：</div>
+                            <p class="star-level fn-clear">
+                            
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <input type="hidden" name="fuwunum" value="">
+                            </p>
+                            </div>
+                            <div>
+                            <div style="width:8%;float:left;font-weight: bold;height:16px;line-height: 16px;">优惠：</div>
+                            <p class="star-level fn-clear">
+                            
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <input type="hidden" name="youhuinum" value="">
+                            </p>
+                            </div>
+                            <div>
+                            <div style="width:8%;float:left;font-weight: bold;height:16px;line-height: 16px;">便捷：</div>
+                             <p class="star-level fn-clear" style="width:92%;float:left">
+                            
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <span class="off"></span>
+                                <input type="hidden" name="bianjienum" value="">
+                            </p>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <td colspan="2" style="width:100%;text-align: center;">
+                            <input type="hidden" name="orderid" value="{$order['id']}">
+                            <input type="hidden" name="partner_id" value="{$partner['id']}">
+                            <input type="hidden" name="action" value="1">
+                            <div class="submitAllIcon" id="submitAllIcon">提交评论</div>
+                        </td>
+                    </tr>
+                   
+                    </tbody></table>
+                    </form>
+                    <style>
+                    .star-level{margin-bottom:10px;}
+                    .star-level span {
+                        float: left;
+                        display: inline-block;
+                        width: 16px;
+                        height: 15px;
+                        padding-left: 9px;
+                        background: url(/static/css/img/star.gif) no-repeat;
+                        cursor: pointer;
+                    }
+                    .star-level span.off {background-position: 0 0;}
+                    .star-level span.on {background-position: 0 -15px;}
+                    </style>
+                    <script type="text/javascript">
+                    (function(){
+                        var $star =$("#score-tb").find(".star-level").find("span");
+                        if($star.length > 0 ){
+                            $star.each(function(index, element) {
+                                $(this).click(function(){
+                                    var $parent = $(this).parent(),
+                                        ltIndex = index%5+1;
+                                    $parent.children("span:lt("+ltIndex+")").removeClass("off").addClass("on");
+                                    $parent.children("span:gt("+index%5+")").removeClass("on").addClass("off");
+                                    $(this).siblings("input").val(ltIndex);
+                                });
+                
+                                $(this).hover(function(){
+                                    var $parent = $(this).parent(),
+                                        ltIndex = index%5+1;
+                                    $parent.children("span:lt("+ltIndex+")").removeClass("off").addClass("on");
+                                    $parent.children("span:gt("+index%5+")").removeClass("on").addClass("off");
+                                },function(){
+                                    var $parent = $(this).parent(),
+                                        ltIndex = $(this).siblings("input").val();
+                                    if(ltIndex>0){
+                                        $parent.children("span:lt("+ltIndex+")").removeClass("off").addClass("on");
+                                        $parent.children("span:gt("+(ltIndex-1)+")").removeClass("on").addClass("off");
+                                    }else{
+                                        $parent.children("span").removeClass("on").addClass("off");
+                                    }
+                                });
+                            });
+                        }
+                    })();
+                    </script>
+                </div>
+                
+                <div id="orderMask" class="none">
+                    您暂时没有未结束的订单哦~~
+                </div>
+                <div id="waitingWrap" class="none">
+                    <img src="./pj_files/transparent_loading.gif">
+                </div>
+            </div>
+</div>
+</div>
+<div style="clear:both"></div>
+<script type="text/javascript">
+$("#submitAllIcon").click(function(){
+    $("#comment").submit();
+})
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+</script>
+<!--{include common_footer}-->

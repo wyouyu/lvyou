@@ -1,0 +1,41 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('smssubscribe')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>短信订阅列表</h2>
+					<ul class="filter">
+						<li><form method="get">城市：<input type="text" name="cs" value="${htmlspecialchars($cs)}" class="h-input" />&nbsp;手机号：<input type="text" name="like" value="${htmlspecialchars($like)}" class="h-input" />&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="350">手机号</th><th width="80">城市</th><th width="350">密钥</th><th width="80">操作</th></tr>
+					<!--{loop $subscribes $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td nowrap><!--{if !empty($one['mobile'])}--><a href="/ajax/misc.php?action=sms&v={$one['mobile']}" class="ajaxlink" target="_blank" title="点击给该手机发送短信！">{$one['mobile']}</a><!--{/if}--></td>
+						<td nowrap>{$cities[$one['city_id']]['name']}</td>
+						<td nowrap>{$one['secret']}</td>
+						<td class="op" nowrap><a ask="删不删？" href="/ajax/manage.php?action=smssubscriberemove&id={$one['id']}" class="ajaxlink">删除</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="6">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

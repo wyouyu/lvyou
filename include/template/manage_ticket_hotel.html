@@ -1,0 +1,212 @@
+<!--{include manage_header}-->
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
+<script type="text/javascript">
+window.x_init_hook_gm = function() {
+    X.misc.setgooglemap = function(ll) {
+        X.get(WEB_ROOT+'/ajax/system.php?action=googlemap&ll='+ll);
+    };
+    X.misc.setbaidumap = function(ll){
+        X.get(WEB_ROOT+'/ajax/system.php?action=baidumap&ll='+ll);    
+    };
+    X.misc.setgooglemappoint = function(latlng) {
+        jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+    };
+    X.misc.setbaidumappoint = function(e){
+        jQuery('#inputlonglat').val(e.point.lat+','+e.point.lng);    
+    };
+    X.misc.setgooglemapclick = function(overlay, latlng) {
+        jQuery('#inputlonglat').val(latlng.y+','+latlng.x);
+    };
+    X.misc.setbaidumapclick = function(e){
+        jQuery('#inputlonglat').val(e.point.lat+','+e.point.lng);    
+    };
+};
+$(function(){
+    var i=1;
+    $("#add").click(function(){
+        $("#piclist").append('<div style="display:block" id="file_'+i+'"><label>景区图片</label><input type="file" size="30" name="upload_image[]" class="f-input f-hint" /><span class="delfile" style="cursor:pointer;">删除<span></div><div style="clear:both"></div>');
+        i++;
+    })
+    $(".delfile").live('click',function(){
+        $(this).parent().remove();
+        i--;
+    })
+    $(".controll").click(function(){
+        var tid = $(this).attr('tid');
+        var result = window.showModalDialog('/manage/ticket/price.php?tid='+tid, window, "dialogWidth=750px;dialogHeight=537px;center:yes;status:no;scroll:yes;help:no;resizable:no;");
+    })
+}
+)
+</script>
+
+<style type="text/css">
+td{
+    height:30px;
+    border-bottom:1px solid #CCC;
+}
+</style>
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+    <div class="dashboard" id="dashboard">
+        <ul>${mcurrent_ticket('hotel')}</ul>
+    </div>
+    <div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>房型信息</h2>(提交完信息后不要做刷新操作，避免重复提交)</div>
+                <div class="sect">
+                    <form id="login-user-form" method="post" action="/manage/ticket/hotel.php" enctype="multipart/form-data" class="validator">
+                    <!--基本信息-->
+                        <div class="wholetip clear"><h3>1、基本信息</h3></div>
+                        
+                        <div class="field">
+                            <label>排序</label>
+                            <input type="text" size="30" style="width:80px" name="sort" id="sort" class="f-input f-hint" value="{$ticket['sort']}" require="true" datatype="require" />
+                            <span class="hint">数字越大越靠前</span>
+                        </div>
+                        
+                        <div class="field">
+                            <label>房型名称</label>
+                            <input type="text" size="30" name="t_name" id="ticket-create-name" class="f-input f-hint" value="{$ticket['t_name']}" require="true" datatype="require" />
+                        </div>
+                        
+                        
+                                             
+                        <div class="field">
+                            <label>市面价</label>
+                            <input type="text" size="30" style="width:120px;" name="t_origin" id="ticket-create-origin" class="f-input f-hint" value="{$ticket['t_origin']}" />&nbsp;元
+                        </div>
+                        <div class="field">
+                            <label>本站价</label>
+                            <input type="text" size="30" name="t_price" style="width:120px;" id="ticket-create-price" class="f-input f-hint" value="{$ticket['t_price']}" maxLength="18" datatype="require" require="ture" />&nbsp;元
+                        </div>
+                        
+                         <div class="field">
+                            <label>类型</label>
+                            <input type="radio" name="t_type" <!--{if $ticket['t_type']=='1'}-->checked<!--{/if}--> value="1">度假村现付 &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="t_type" <!--{if $ticket['t_type']=='2'}-->checked<!--{/if}--> value="2">预交定金 &nbsp;&nbsp;&nbsp;
+                        </div>
+
+						<div class="field">
+                            <label>分类</label>
+                            <select name="t_cate" class="f-input f-hint" style="width:160px;">${Utility::Option(option_category('ticket'), $ticket['t_cate'], '-选择分类-')}</select>
+                           
+                        </div>
+
+                        
+                        <div class="field">
+                            <label>定金</label>
+                            <input type="text" style="width:120px;"  name="deposit" value="{$ticket['deposit']}">&nbsp;&nbsp;&nbsp;
+                            <span class="hint">如果选择‘预交定金’的形式 请填写。其他无需填写</span>
+                        </div>
+                        
+                        <div class="field">
+                            <label>返现</label>
+                            <input type="text" style="width:120px;"  name="fanxian" value="{$ticket['fanxian']}">元&nbsp;&nbsp;&nbsp;
+                            <span class="hint">填写返现金额</span>
+                        </div>
+                        
+                        
+                        <div class="field">
+                            <label>起始预订数</label>
+                            <input type="text" style="width:120px;"  name="start_num" value="{$ticket['start_num']}">&nbsp;&nbsp;&nbsp;
+                        </div>
+                        
+                        <div class="field">
+                            <label>团队预订</label>
+                            团队价：<input type="text" style="width:120px;"  name="team_price" value="{$ticket['team_price']}">&nbsp;&nbsp;&nbsp;
+                            团队预订起始人数：<input type="text" style="width:120px;"  name="team_start_num" value="{$ticket['team_start_num']}"> &nbsp;&nbsp;&nbsp;
+                        </div>
+                        
+                        <div class="field">
+                            <label>提前预订天数</label>
+                            <select name="beforeday">
+                                <option value="0" selected>0</option>
+                                <option value="0">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                            </select>
+                        </div>
+                        
+                        <div class="field">
+                            <label>当天截至时间</label>
+                            <input type="text" style="width:120px;"  name="end_book_time" value="{$ticket['end_book_time']}">&nbsp;&nbsp;&nbsp;
+                            <span class="hint">格式比如：23:59:59</span>
+                        </div>
+
+						<div class="field">
+                            <label>房间状态</label>
+                           <input type="radio" name="t_status" <!--{if $ticket['t_status']=='1'}-->checked<!--{/if}--> value="1">有效 &nbsp;&nbsp;&nbsp;
+                           <input type="radio" name="t_status" <!--{if $ticket['t_status']=='0'}-->checked<!--{/if}--> value="0">无效 &nbsp;&nbsp;&nbsp;
+                            <span class="hint">如果选择无效，则该票作废不再显示</span>
+                        </div>
+                        
+                        
+
+                        <div class="act">
+                             <input type="hidden" name="type" value="2">
+                            <input type="hidden" name="t_partner" value="{$id}">
+                            <input type="hidden" name="t_id" value="{$ticket['id']}">
+                            <input type="hidden" name="oldprice" value="{$ticket['t_price']}">
+                            <!--{if $_GET['eid']}-->
+                            <input type="submit" value="编辑" name="commit" id="partner-submit" class="formbutton"/>
+                            <!--{else}-->
+                            <input type="submit" value="新建" name="commit" id="partner-submit" class="formbutton"/>
+                            <!--{/if}-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tickets_list" style="background: #fff;border-left: 2px solid #89b4d6;border-right: 2px solid #89b4d6;margin: 0;padding: 0;border-top:1px solid #def;padding-left:30px;padding-right: 10px;padding-bottom:10px">
+                 <table id="orders-list" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <th width="40">ID</th>
+                        <th width="400">房型类型</th>
+                      
+                        <th width="120">市面价</th>
+                        <th width="100">本站价格</th>
+                         <th width="120">价格管理</th>
+                        <th width="180">操作</th>
+                    </tr>
+                    <!--{loop $tickets $index $one}-->
+                    <tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+                        <td>{$one['id']}</td>
+                        <td style="text-align:left;">{$one['t_name']}</td>
+                      
+                        <td nowrap>{$one['t_origin']}</td>
+                        <td nowrap>{$one['t_price']}</td>
+                        <td nowrap><a href="javascript:," class="controll" tid="{$one['id']}">管理</a>｜<a href="/manage/ticket/price_update2.php?id={$one['id']}&tpid={$id}" >更新</a></td>
+                        <td nowrap><a href="/manage/hotel/hotel.php?id={$id}&eid={$one['id']}">编辑</a>｜<a href="/ajax/manage.php?action=ticketremove&id={$one['id']}" class="ajaxlink" ask="确定删除该票？">删除</a></td>
+                        
+                    </tr>
+                    <!--{/loop}-->
+                 </table>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

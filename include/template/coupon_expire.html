@@ -1,0 +1,44 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account('/coupon/index.php')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>我的{$INI['system']['couponname']}</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${current_coupon_sub('expire')}
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="400">项目名称</th><th width="100" nowrap>{$INI['system']['couponname']}编号</th><th width="100" nowrap>过期日期</th></tr>
+					<!--{loop $coupons $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}>
+							<td><a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a></td>
+							<td>{$one['id']}</td>
+							<td>${date('Y-m-d', $one['expire_time'])}</td>
+						</tr>	
+					<!--{/loop}-->
+						<tr><td colspan="3">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_aboutcoupon}-->
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

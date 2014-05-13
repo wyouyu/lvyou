@@ -1,0 +1,36 @@
+<!--${header('Content-Type: text/html;charset=UTF-8');}-->
+${'<?xml version="1.0" encoding="UTF-8"?>'}
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{if !$pagetitle||$request_uri=='index'}-->
+	<title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}|{$city['name']}购物|{$city['name']}团购|{$city['name']}打折</title>
+<!--{else}-->
+	<title>{$pagetitle} | {$INI['system']['sitename']} - {$INI['system']['sitetitle']} |{$city['name']}购物|{$city['name']}团购|{$city['name']}打折{$INI['system']['subtitle']}</title>
+<!--{/if}-->
+	<meta name="description" content="{$INI['system']['sitetitle']}|{$city['name']}购物|{$city['name']}团购|{$city['name']}打折" />
+	<meta name="keywords" content="{$INI['system']['sitename']}, {$city['name']}, {$city['name']}{$INI['system']['sitename']}，{$city['name']}购物，{$city['name']}团购，{$city['name']}打折，团购，打折，精品消费，购物指南，消费指南" />
+<style type="text/css">
+body,ul,ol,form{margin:0 0;padding:0 0}
+ul,ol{list-style:none}
+h1,h2,h3,div,li,p{margin:0;padding:2px;font-size:medium}
+h2,li,.s{border-bottom:1px solid #ccc}
+h1{background:#FF8A00;}
+h2{background:#EEEEEE;}
+.n{border:1px solid #ffed00;background:#fffcaa}
+.t,.a,.stamp,#ft{color:#999;font-size:small}
+a{color:#C55400;}
+img{border:0px;}
+h1 a{color:#FFFFFF; text-decoration:none;}
+</style>
+</head>
+<body>
+<h1><a href="index.php">{$INI['system']['sitename']}&nbsp;-&nbsp;{$city['name']}</a></h1>
+<!--${$notice = Session::Get('notice', true)}-->
+<!--{if $notice}-->
+<p class='n'>{$notice}</p>
+<!--{/if}-->
+<!--${$error = Session::Get('error', true)}-->
+<!--{if $error}-->
+<p class='n'>{$error}</p>
+<!--{/if}-->

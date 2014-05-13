@@ -1,0 +1,816 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/hotelinfo.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <!--<link rel="stylesheet" href="/static/css/list.css" type="text/css" media="screen" charset="utf-8" />-->
+    
+    <script type="text/javascript">var WEB_ROOT = '${WEB_ROOT}';</script>
+    <script type="text/javascript">var LOGINUID= ${abs(intval($login_user_id))};</script>
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    <script src="/static/js/index.js" type="text/javascript"></script>
+    
+    ${Session::Get('script',true);}
+	<style type="text/css">
+		.Meetingtable {
+width: 100%;
+border: solid #DDD;
+border-width: 1px 0px 0px 1px;
+font-size: 14px;
+}
+.Meetingtd {
+text-align: center;
+border: solid #DDD;
+border-width: 0px 1px 1px 0px;
+}
+.sh_dui {
+background: url(/static/images/dui.jpg) no-repeat;
+vertical-align: bottom;
+width: 22px;
+height: 20px;
+display: block;
+margin: 0 auto;
+}
+.div1{margin-top:5px}
+.div1 li {
+width: 160px;
+overflow: hidden;
+margin: 0 25px 10px 0;
+text-align: center;
+float: left;
+
+padding: 3px;
+border: 1px #DFDFDF solid;
+}
+.clear {
+clear: both;
+}
+	</style>
+</head>
+<body>
+    <!--{include header_top}-->
+<div id="content" style="width:1200px;margin:10px auto">
+    <div class="headNav clearfix">
+       
+            <div class="hty_nav">
+                <span>您所在位置：</span>
+                <a target="_blank" href="/" title="蜗牛旅途首页">蜗牛旅途首页</a>&gt;&nbsp;
+                <a target="_blank" href="/hotel.php" title="景区门票">度假村</a>&gt;&nbsp;
+                <a target="_blank" href="/hotelSearch.php?txtHotelName={$city_id['name']}" title="{$city_id['name']}度假村">{$city_id['name']}度假村</a>&gt;&nbsp;{$partner['title']}
+            </div>
+       
+    </div>
+    <div class="udiyblock">
+        <div class="nameAndSliderInfo clearfix">
+            <div class="name_slider">
+                <div class="topNameInfo clearfix">
+                    <div class="nameInfo ">
+                        <a class="" title="30">
+                        </a>
+                        <h3>
+                            {$partner['title']}
+                        </h3>
+                        
+                    </div>
+                    <div class="leftNameInfo">
+                        <div class="locationInfo clearfix">
+                            <span class="locSpan">
+                                度假村地址：{$partner['address']}
+                            </span>
+                            <a href="#" title="" target="_blank" class="lookMap">
+                                查看地图
+                            </a>
+                        </div>
+                        <p id="phone_num" style="display: none;">
+                        </p>
+                    </div>
+                    <div class="rightPriceInfo clearfix" style="">
+                        <a href="#" title="" class="ydBtn">
+                        </a>
+                        <span class="leftPrice">
+                            <span class="priceList">
+                                <span class="priceInner">
+                                    ¥
+                                    <span class="price">
+                                        ${floor($minprice)}
+                                    </span>
+                                </span>
+                                起
+                            </span>
+                            <span class="priceSpan" style="display: none;">
+                                ¥39
+                                <span class="heightPirce">
+                                    &nbsp;
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="clear_float">
+                    </div>
+                </div>
+                <div class="sliderInfo clearfix">
+                    <div class="leftSlider">
+                        <div id="slideWrap" class="slider clearfix">
+                            <!--{if $partnerImg[0]}-->
+                            <img class="bigImg" src="${team_image($partnerImg[0])}"
+                            alt="{$partner['title']}">
+                            <!--{/if}-->
+                            <ul class="imgList">
+                                <!--{if $partnerImg[1]}-->
+                                <li class="w160">
+                                    <img src="${team_image($partnerImg[1])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                                <!--{if $partnerImg[2]}-->
+                                <li class="w110">
+                                    <img src="${team_image($partnerImg[2])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                                <!--{if $partnerImg[3]}-->
+                                <li class="w110">
+                                    <img src="${team_image($partnerImg[3])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                                <!--{if $partnerImg[4]}-->
+                                <li class="w110">
+                                    <img src="${team_image($partnerImg[4])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                                <!--{if $partnerImg[5]}-->
+                                <li class="w160">
+                                    <img src="${team_image($partnerImg[5])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                                <!--{if $partnerImg[6]}-->
+                                <li class="w110">
+                                    <img src="${team_image($partnerImg[6])}"
+                                    alt="">
+                                </li>
+                                <!--{/if}-->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!--图片展示end-->
+            <!--右侧地图-->
+            <div class="righDP">
+                
+                <div id="hotel_map">
+                    <!--{include holiday_map}-->
+                </div>
+            </div>
+            <!--地图end-->
+        </div>
+    </div>
+    <!--下面部分-->
+    <div class="detailContent clearfix">
+        <div class="leftside" style="margin-top:0px;">
+            <div id="portal-block-1313284950666" class="udiyblock" type="CommonSource">
+                <div class="bgColor clearfix" id="navTab" style="width: 810px; top: 0px;">
+                    <div class="navInfos">
+                        <ul class="hotel_tabs layoutfix clearfix" id="contentTab">
+                            <li ids="0" class="jsTab tab_1 current1">
+                                <a href="javascript:void(0);">
+                                    房型预订
+                                </a>
+                            </li>
+                            <li ids="4" class="jsTab tab_5">
+                                <a href="javascript:void(0);">
+                                    门票预订
+                                </a>
+                            </li>
+                            <li ids="1" class="tab_2">
+                                <a href="#review">
+                                    住客点评 ({$count1})
+                                </a>
+                            </li>
+                            <li ids="2" class="jsTab tab_3">
+                                <a href="javascript:void(0);">
+                                    酒店图片
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+            <script type="text/javascript">
+            $(function(){
+                //订票部分
+                $(".closeTit").click(function(){
+                    $(this).parents(".moveTit").hide();
+                });
+                
+                //房型预订tab切换
+                (function(){
+                    var navTop = $("#navTab").offset().top;
+                    $(window).scroll(function(){
+                        var winTop = $(window).scrollTop();
+                        if(winTop >= navTop){
+                            $("#navTab").attr("style","position:fixed;top:0; z-index:100;_position:absolute;_top:"+winTop);
+                        }else{
+                            $("#navTab").attr("style","position:static;");
+                        }
+                    });
+
+                })()
+                $("#contentTab>li.jsTab").each(function(index, element) {
+                    $(this).click(function(){
+                        $(this).addClass("current1").siblings("li").removeClass("current1");
+                        for(var i=0, len = $(".jsTabCon").length; i<len; i++){
+                            if(i==index){$(".jsTabCon").eq(i).show();}
+                            else{
+                                $(".jsTabCon").eq(i).hide();
+                            }
+                        }
+                    });
+                });
+                $("#contentTab>li.tab_2").click(function(){
+                    $(this).addClass("current1").siblings("li").removeClass("current1");
+                });
+                
+                
+            });
+            </script>
+            <!--tab 切换结束-->
+			<!--{if $rooms}-->
+            <div class="hotelInfoContainer clearfix" id="hotelInfoContainer">
+                <div class="hotelInfoBox infoInnerHTMLBox">
+                    <div class="udiyblock">
+                        <!--订票 start-->
+                        <div id="ticket-block" class="jsTabCon detailRoomList clearfix">
+                            <div class="roomsy_main" id="api_14269">
+                                <table class="hotel_api_html" cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <th width="225" style="text-indent: 26px; text-align: left;">
+                                                房型
+                                            </th>
+                                            
+                                            <th align="center" width="77">
+                                                门市价
+                                            </th>
+                                            <th width="109" align="center" class="tcPriceTH">
+                                                蜗牛价
+                                            </th>
+                                            <th width="100" align="center">
+                                                评价返现
+                                            </th>
+                                            <th width="100" align="center">
+                                                支付方式
+                                            </th>
+                                            
+                                            <th width="125" align="center">
+                                                &nbsp;
+                                            </th>
+                                        </tr>
+                                        <!--{if $rooms}-->
+                                        <!--{loop $rooms $r}-->
+                                        <tr class="normal">
+                                            <td>
+                                                <div class="clearfix">
+                                                    
+                                                    <div class="room_wrap">
+                                                        <span class="link_wrap" style="color:#005bb5">
+                                                            
+                                                                {$r['t_name']}
+                                                           
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                           
+                                            <td align="center">
+                                                <div>
+                                                    {$r['t_origin']}
+                                                </div>
+                                            </td>
+                                            <td class="tcPriceTD" align="center">
+                                                <div>
+                                                   
+                                                    <div class="posDiv clearfix">
+                                                        <dfn class="no_underline">
+                                                            ¥
+                                                            <span>
+                                                                ${floor($r['t_price'])}
+                                                            </span>
+                                                        </dfn>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td align="center">
+                                                <div>
+                                                   ¥ {$r['fanxian']}
+                                                </div>
+                                            </td>
+                                            
+                                            <td align="center"><!--{if $r['t_type']==1}-->景区现付<!--{else}-->预付现金<!--{/if}--></td>
+                                            <td align="right">
+                                                <div class="clearfix">
+                                                    <a class="yd_butm btmStat" href="/order/tpay.php?sceneryid={$pid}&ticketid={$r['id']}&type=2" target="_blank">
+                                                        预订
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                       <!--{/loop}-->
+                                       <!--{/if}-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+						<!--{/if}-->
+                        <!--订票 end-->
+                        <!--订票 start-->
+                        <div id="ticket-block" class="jsTabCon detailRoomList clearfix" style="display:none">
+							<!--{if $alltickt}-->
+                            <div id="bannerFloat_ticket" class="leftSingleBox">
+                    <div class="udiyblock"> 
+                        <div class="leftContentBorder leftDazheBox" id="cheaptab1">
+                            <div id="dazhe">
+                                <div class="sAPI" id="tickets"> 
+                                    <div class="scenery-piao"> 
+                                        <div class="scenery-piao-head"> 
+                                            <span class="s-type" style="width:360px">门票类型</span> 
+											<span class="s-price" style="width:75px">票面价</span> 
+											<span class="s-tcPrice" style="width:75px">蜗牛价</span>  
+                                            <span class="s-favorable" style="width:75px">优惠</span>
+											<!--<span class="s-favorable" style="width:90px">返现</span> -->
+											<span class="s-payment" style="width:75px">支付方式</span> 
+											<span class="s-operate" style="width:75px">操作</span> 
+                                        </div>  
+                                        <div class="scenery-piao-content"> 
+                                        <!--{loop $alltickt $index $at}-->
+                                            <div class="api-piao "> 
+                                                <div class="piao-name">{$at['name']['name']}</div> 
+                                                <div class="piao-info">
+                                                <!--{loop $at['ticket']  $piao}-->
+                                                    <div class="piao-list" id="tp_0">
+                                                        <dl class="piao-dl ">
+                                                            <dt class="W01" style="width:340px">
+                                                                <div class="p-type">
+                                                                    <a class="lp-name" href="javascript:;" style="font-weight:bold;color:#0073b6">{$piao['t_name']}</a> 
+                                                                </div> 
+                                                            </dt> 
+                                                            <dd class="W02" style="width:75px"> <span class="gray">¥{$piao['t_origin']}</span> </dd>
+                                                            <dd class="W03" style="width:75px"><span class="b-orange" ><b>¥</b>{$piao['t_price']}</span></dd> 
+                                                            <dd class="W04" style="width:75px"><span class="ico save"> ¥{$piao['t_origin']-$piao['t_price']}</span> </dd> 
+                                                            
+                                                            <dd class="W05" style="width:75px"><a href="javascript:;" class="a-tip">
+                                                             <!--{if $piao['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                            </a></dd> 
+                                                            <dd class="W06" style="width:75px"> <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao['id']}" target="_blank">预订</a> </dd> 
+                                                        </dl> 
+                                                    </div>
+                                                <!--{/loop}-->
+                                                </div> 
+                                            </div> 
+                                       <!--{/loop}-->        
+                                            
+                                        </div> 
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--{/if}-->
+                        </div>
+                        <!--订票 end-->
+                        
+                        
+                        <!--酒店图片 start-->
+                        <div id="hotel-block" class="jsTabCon hotelPicBox infoInnerHTMLBox" style="display:none;">
+                            <div class="facility picFacility">
+                                <div class="largeImg clearfix">
+                                    <div class="largeImgBox">
+                                        <img src="${team_image($partnerImg[0])}" alt="" id="imgInner">
+                                    </div>
+                                    <div class="clearfix">
+                                        <!--<span class="largeImgTip">外观</span>-->
+                                        <span class="largeImgPage"><span class="largeImgCurrentPage">1</span>/<span class="largeImgAllPage">10</span></span>
+                                    </div>
+                                </div>
+                                <div class="imgListBox clearfix">
+                                    <a href="javascript:void(0);" title="" class="toleft canNotClickBtnLeft"></a>
+                                    <div class="sliderFilter">
+                                        <ul style="margin-left: 0px;" class="imgListUL">
+                                        <!--${$i=0}-->
+                                        <!--{loop $partnerImg $img}-->
+                                        <!--{if !empty($img)}-->
+                                            <li ids="{$i}" >
+                                                <img src="${team_image($img)}" alt="">
+                                            </li>
+                                            <!--${$i++}-->
+                                        <!--{/if}-->
+                                         <!--{/loop}-->  
+                                        </ul>
+                                    </div>
+                                    <a href="javascript:void(0);" title="" class="toright canClickBtnRight"></a>
+                                </div>
+                                <script>
+                                $(function(){
+                                    (function(){
+                                        var wrapWidth = $(".sliderFilter").width();
+                                        var imgIndex = 0;
+                                        var imgWidth = 110;
+                                        var len = $(".imgListUL>li").length;
+                                        
+                                        function showImg(index){
+                                            var curPosotion = imgWidth*(index+2)+10;
+                                            var title = $(".imgListUL>li").eq(index).attr("tits");
+                                            var id = parseInt($(".imgListUL>li").eq(index).attr("ids"))+1;
+                                            var src = $(".imgListUL>li").eq(index).children("img").attr("src");
+                                            $(".imgListUL>li").eq(index).addClass("liHover").siblings("li").removeClass("liHover");
+                                            $(".largeImgBox>img").attr("src",src);
+                                            $(".largeImgTip").text(title);
+                                            $(".largeImgCurrentPage").text(id);
+                                            if( index > 2 && index <len-2 ){
+                                                $(".imgListUL").width(curPosotion+2*imgWidth);
+                                                $(".imgListUL").stop().animate({"margin-left":-imgWidth*(index-2)+"px"},500);
+                                            }else if(index<=2){
+                                                $(".imgListUL").stop().animate({"margin-left":"0px"},500);
+                                            }
+                                            
+                                            if(index<=0){
+                                                $(".toleft").removeClass("canClickBtnLeft").addClass("canNotClickBtnLeft");
+                                            }else{
+                                                $(".toleft").removeClass("canNotClickBtnLeft").addClass("canClickBtnLeft");
+                                            }
+                                            
+                                            if(index>=len-1){
+                                                $(".toright").removeClass("canClickBtnRight").addClass("canNotClickBtnRight")
+                                            }else{
+                                                $(".toright").removeClass("canNotClickBtnRight").addClass("canClickBtnRight")
+                                            }
+                                        }
+                                        $(".imgListUL>li").each(function(index, element) {
+                                            $(this).click(function(e) {
+                                                imgIndex = index;
+                                                showImg(imgIndex);
+                                            });
+                                        });
+                                        $(".toleft").click(function(e) {
+                                            imgIndex--;
+                                            if(imgIndex>=0){
+                                                showImg(imgIndex);
+                                            }else{
+                                                imgIndex=0;
+                                            }
+                                        });
+                                        $(".toright").click(function(e) {
+                                            imgIndex++;
+                                            if(imgIndex<len){
+                                                showImg(imgIndex);
+                                            }else{
+                                                imgIndex = len-1;
+                                            }
+                                        });
+                                        
+                                    })()
+                                    
+                                })
+                                </script>
+                            </div>
+                        </div>
+                        <!--酒店图片 end-->
+                        <!--交通地图 start-->
+                        
+                        <!--交通地图 end-->
+                    <!--new add-->
+                     <div class="leftSingleBox bannerFloat_zbtj" id="bannerFloat_recom">
+                    <div id="portal-block-786638739773" class="udiyblock" type="CommonSource"> 
+					<!--{if $tesecai}-->
+					<div id="review-block" class="udiyblock">
+                            <div class="facility mtop">
+                                <h3>
+                                <a name="review"></a>
+                                    特色菜
+                                </h3>
+							</div>
+							<ul class="div1">
+								<!--{loop $tesecai $te}-->
+								<li style="position:relative;">
+                                <p>
+                                 
+                                    <a target="_blank"  class="float_l" title="{$te['c_name']}" href="#">
+                                       <img src="${team_image($te['image'])}"  alt="{$te['c_name']}"  width="160" height="120" style="display: inline; ">
+                                    </a>
+                                </p>
+                                <p class="clear">
+                                  
+                                        {$te['c_name']}
+                                </p>
+                            </li>
+								<!--{/loop}-->
+							</ul>
+					</div>
+					<div style="clear:both"></div>
+					<!--{/if}-->
+                    <!--{if $huiyishi}-->
+					<div id="review-block" class="udiyblock">
+                            <div class="facility mtop">
+                                <h3>
+                                <a name="review"></a>
+                                    会议室
+                                </h3>
+							</div>
+							<table class="Meetingtable">
+                    
+                    <tbody>
+					<!--{loop $huiyishi $h}-->
+					<tr>
+                        <td rowspan="3" class="Meetingtd" style="width: 120px">
+                        <div style="text-align:left; line-height:22px; margin-bottom:3px;"><span style="background-color:#99cc00; padding:3px 10px; color:#fff; font-weight:700;">{$h['m_name']}</span></div>
+                            <a href="#">
+                                <img alt="{$h['m_name']}" title="" width="107px" height="77px" src="${team_image($h['image'])}"></a>
+                     
+                        </td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2" style="width:80px;">
+                            容纳人数
+                        </td>
+                         <td class="Meetingtd MeetingTitle" rowspan="2" style="width:80px;">
+                            面积(m<sup>2</sup>)
+                        </td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2" style="width:60px;">投影仪</td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2" style="width:60px;">话筒</td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2" style="width:60px;">音响</td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2" style="width:70px;">LED滚动字屏</td>
+                        <td class="Meetingtd MeetingTitle" rowspan="2">其他</td>
+                        <td class="Meetingtd MeetingTitle" colspan="2">
+                            预定价格
+                        </td>
+                    </tr>
+                      <tr>
+    <td class="Meetingtd MeetingTitle" style="padding:0 5px; width:84px;">半天价<br><span class=" f12 c88" style="font-weight:normal;">(门市价/<em class="orange">本站价</em>)</span></td>
+    <td class="Meetingtd MeetingTitle" style="padding:0 5px; width:84px;">全天价<br><span class=" f12 c88" style="font-weight:normal;">(门市价/<em class="orange">本站价</em>)</span></td> 
+  </tr>
+                    <tr>
+                        <td class="Meetingtd">
+                            {$h['m_num']}人
+                        </td>
+                        <td class="Meetingtd">
+                            {$h['m_squre']}
+                        </td>
+                        
+                        <td class="Meetingtd">
+                        <!--{if strpos($h['shebei'],'1')!==false}--><i class="sh_dui"></i><!--{/if}-->
+                                    
+                        </td>
+                        <td class="Meetingtd">
+                         <!--{if strpos($h['shebei'],'2')!==false}--><i class="sh_dui"></i><!--{/if}-->
+                             
+                        </td>
+                        <td class="Meetingtd">
+                         <!--{if strpos($h['shebei'],'3')!==false}--><i class="sh_dui"></i><!--{/if}-->
+                             
+                        </td>
+                        <td class="Meetingtd">
+                        <!--{if strpos($h['shebei'],'4')!==false}--><i class="sh_dui"></i><!--{/if}-->
+                           
+                        </td>
+                        <td class="Meetingtd" style="padding:0 10px;">{$h['qita']}</td>
+                        
+                        <td class="Meetingtd">
+                            <span class="c88 f12 yahei">{$h['half_or_prrice']}</span>/
+                            <span class="orange f14 b yahei">{$h['half_curr_prrice']}</span>
+                        </td>
+                        <td class="Meetingtd">
+                            <span class="c88 f12 yahei">{$h['full_or_prrice']}</span>/
+                            <span class="orange f14 b yahei">{$h['full_curr_prrice']}</span>
+                        </td>
+                    </tr>
+                    <!--{/loop}-->
+                    
+                    
+                </tbody></table>
+					</div>
+					<!--{/if}-->
+                    <!--客户点评 start-->
+                        <div id="review-block" class="udiyblock">
+                            <div class="facility mtop">
+                                <h3>
+                                <a name="review"></a>
+                                    住客点评
+                                </h3>
+                                <div class="detail_intro_main">
+                                    <div data-des="new-modify" class="clearfix yanke_title_hd">
+                                        <div class="yanke_title">
+                                            所有点评内容均是住客真实入住后发表，真实可靠，值得信赖！
+                                        </div>
+                                        <div class="comment_des_link">
+                                            <span class="comment_des">
+                                                我在蜗牛旅途网入住过此酒店
+                                            </span>
+                                            <a target="_blank" title="立刻点评" class="comment_link" href="/order/index.php">
+                                                我要点评
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div data-des="new-modify" class="cmtTop clearfix" id="div_hotelDp">
+                                        <div class="lodger_item lodger_recommend">
+                                            <p class="lodger_recommend_num_tray">
+                                                <span class="lodger_recommend_num">
+                                                    <!--{if $baifenbi==0}-->100%<!--{else}-->{$baifenbi}%<!--{/if}-->
+                                                </span>
+                                                的人入住后推荐
+                                            </p>
+                                            <div class="lodger_recommend_bar">
+                                                <div style="width: <!--{if $baifenbi==0}-->100%<!--{else}-->{$baifenbi}%<!--{/if}-->" class="lodger_recommend_bar_inner">
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="lodger_item lodger_comment_tray">
+                                            <p class="lodger_comment_item lodger_comment_num">
+                                                {$count1}条住客点评
+                                            </p>
+                                            <p class="lodger_comment_item lodger_up">
+                                                {$comments_tuijian}人推荐
+                                            </p>
+                                            <p class="lodger_comment_item lodger_down">
+                                                {$comments_butuijian}人不推荐
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="lodger_comment_mtab">
+                                        <ul class="lodger_comment_tab_tray clearfix">
+                                            <li ids="0" class="lodger_comment_tab_item lodger_comment_tab_item_on">
+                                                <span class="lodger_comment_tab_type">
+                                                    全部评论
+                                                </span>
+                                                ({$count1}条)
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="contentTab">
+                                            <div class="lodger_comment_tab_content none">
+                                                <div id="id_lodger_comment_all">
+                                                
+                                                <!--{loop $comments $c}-->
+                                                    <div class="lodger_comment_tab_content_item lodger_comment_tab_content_item_1st clearfix">
+                                                        
+                                                        <div class="lodger_info">
+                                                            
+                                                            <p class="lodger_username">
+                                                                {$users[$c['userid']]['username']}
+                                                            </p>
+                                                            <p class="lodger_publish_time">
+                                                                ${date('Y-m-d',$c['c_time'])}
+                                                            </p>
+                                                        </div>
+                                                        <div class="lodger_comment_content">
+                                                            <div class="clearfix">
+                                                            <!--{if $c['tuijian']==1}-->
+                                                                <span class="lodger_comment_level lodger_comment_up">
+                                                                    推荐
+                                                                </span>
+                                                            <!--{else}-->
+                                                                <span class="lodger_comment_level lodger_comment_down">
+                                                                    不推荐
+                                                                </span>
+                                                            <!--{/if}-->    
+                                                            </div>
+                                                            <p class="lodger_comment_remark">
+                                                                    {$c['content']}
+                                                            </p>
+                                                        </div>
+                                                        
+                                                       
+                                                    </div>
+                                                   <!--{/loop}-->
+                                                </div>
+                                                <div id="pager_unreco_tray" class="page_tray clearfix">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--客户点评 end-->
+                  <!-- 周边推荐 start -->
+                    <div class="mtop"></div>
+                        <div class="leftBannerBorder">
+                            <h3>周边旅游推荐</h3>
+                        </div>
+                    <div class="leftContentBorder">
+                        <div class="nearby">
+                            <h3 class="zbtjBan">{$partner['title']}附近景点：</h3>
+                               <div class="recmBox"> 
+                                    <ul class="recmBox_left">
+                                    <!--{loop $same_city_scenery $sindex $t_scenery}-->
+                                    <!--{if $sindex==1||$sindex==0||$sindex==2}-->                          
+                                        <li>
+                                            <div class="recmNameSome">
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" title="{$t_scenery['title']}">{$t_scenery['title']}</a>
+                                                                                                                                                                                                                    
+                                            </div>
+                                            <div class="recmPrice"><span class="orangeColor">¥{$t_scenery['minprice']}</span>起</div>
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" class="recmLink">查看</a>
+                                        </li>
+                                     <!--{/if}-->
+                                     <!--{/loop}-->                                                                                                                                                                      
+                                        
+                                        
+                                    </ul>
+                                    <ul class="recmBox_right">
+                                    <!--{loop $same_city_scenery $sindex $t_scenery}-->
+                                    <!--{if $sindex==3||$sindex==4||$sindex==5}-->
+                                    <li>
+                                            <div class="recmNameSome">
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" title="{$t_scenery['title']}">{$t_scenery['title']}</a>
+                                                                                                                                                                                                                    
+                                            </div>
+                                            <div class="recmPrice"><span class="orangeColor">¥{$t_scenery['minprice']}</span>起</div>
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" class="recmLink">查看</a>
+                                        </li>
+                                    <!--{/if}-->
+                                     <!--{/loop}-->
+                                    </ul>  
+                                  </div>
+                         </div>                
+                        </div>
+                <!-- 周边推荐 end -->
+                    </div>
+                </div>
+                <!--附近酒店开始-->
+                <div class="leftSingleBox mtop" id="bannerFloat_hotel">
+                    <div id="portal-block-858524577854" class="udiyblock">                     
+                        <div class="leftBannerBorder">
+                            <h3>附近度假村</h3>
+                        </div>
+                     <div class="leftContentBorder">
+                        <table class="nearby_hotel">
+                            <tbody><tr>
+                                <th class="W01">特惠度假村</th>
+                               
+                                <th class="W03">蜗牛旅途价</th>
+                                <th class="W04">操作</th>
+                            </tr>
+                             <!--{loop $same_city_holiday_village $vindex $v_scenery}-->
+                <tr>                                                                                                                            <tr class="">
+                                <td>
+                                    <div class="name">
+                                        <a target="_blank" href="/sceneryticket.php?id={$v_scenery['id']}">{$v_scenery['title']}</a> 
+                                    </div>
+
+                                </td>
+                                
+                                <td>
+                                    <span class="num_f60">¥{$v_scenery['minprice']}</span><span class="col_gray">起</span>
+                                </td>
+                                <td>
+                                    <a class="recmLink" target="_blank" href="/sceneryticket.php?id={$v_scenery['id']}">查看</a>
+                                </td>
+                            </tr>
+                <!--{/loop}-->
+                                
+                                                                                    </tbody></table>
+                        <div class="more_box">
+                            <a href="/hotelSearch.php" target="_blank">更多度假村&gt;&gt;</a>
+                        </div>
+                    </div>
+                    <!--new add end-->
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+            <!--左侧 类型结束-->
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!--{include common_footer}-->

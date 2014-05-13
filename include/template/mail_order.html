@@ -1,0 +1,6 @@
+﻿您好，管理员,<br />
+<br />
+有新的【<!--{if $order['type']==1}-->景点订单<!--{elseif $order['type']==2}-->度假村订单<!--{/if}-->】订单需要您处理，项目名称为：【{$partner['title']}】，订单ID为{$order['id']},该门票支付类型为<!--{if $order['ptype']==1}-->【景点支付】<!--{elseif $order['ptype']==2}-->【在线支付】<!--{/if}-->。下单时间为:${date('Y-m-d',$order['create_time'])},总价为{$order['money']},份数为：{$order['quantity']}份。订单人：【{$order['realname']}】，电话：{$order['mobile']},订单号：{$order['smsid']}<br />
+<br />
+--爱米易旅游网
+

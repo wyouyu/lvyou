@@ -1,0 +1,16 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:420px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>用户发货</h3>
+	<p class="info" id="smssub-dialog-display-id">给用户发货</p>
+	<table width="96%" class="coupons-table">
+		<tr><td width="80" nowrap align="right"><b>发货状态：</b></td><td>
+			<select name="commnet_grade" id="dialog_express_state">${Utility::Option($option_checkexpress, $credit['state'])}</select>
+		</td></tr>
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" onclick="X.misc.express();" /></td></tr>
+	</table>
+</div>
+<script type="text/javascript">
+X.misc.express = function() {
+	var s = jQuery('#dialog_express_state').val();
+	if (s) return !X.get(WEB_ROOT + '/manage/credit/ajax.php?action=editexpress&id={$credit['id']}&s='+s);
+};
+</script>

@@ -1,0 +1,33 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="signuped">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head success"><h2>恭喜您，注册成功！</h2></div>
+                <div class="sect login-bind-mobile">
+                    <h3 class="notice-title">
+                        下一步，请验证您的手机号码
+                    </h3>
+                    <div class="notice-content">
+                       <!--{if $user['mobilecode'] != 'yes'}-->
+					<div id="bindmobile">
+                   <h3>现在绑定手机号，参与团购更流畅</h3>
+                   <a href="javascript:;" onclick="X.bindajax('sms','bindmobile','{$user['id']}');">点击绑定手机号码</a>
+                    </div>
+	               <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+<!--{include footer}-->

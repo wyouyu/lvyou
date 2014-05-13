@@ -1,0 +1,42 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="content">
+    <div id="order-pay-return" class="box">
+        <div class="box-top"></div>
+        <div class="box-content">
+			<div class="success"><h2>您的订单，支付成功了！</h2> </div>
+            <div class="sect">
+                 <p class="info">查看所购项目<a href="/team.php?id={$order['team_id']}">{$team['title']}</a></p>
+				 <!--{if $order['zipcode']=='' && $team['now_number'] >= $team['min_number']}-->
+				 <div class="coupon-tip">
+                        <div class="tipped cf">
+                            <div class="coupon-status cf">
+                                <div class="check">
+                                    <a class="coupon-see-button" hidefocus="true" href="/coupon/index.php" title="查看我的{$INI['system']['couponname']}">查看{$INI['system']['couponname']}</a>
+                                    <p class="tip">(以后可随时查看)</p>
+                                </div>
+                                <p class="coupon-sms"><!--{if $order['mobile']}-->已将{$INI['system']['couponname']}密码发送到手机：<strong>{$order['mobile']}</strong><!--{else}-->已将{$INI['system']['couponname']}密码发送到您注册信息的手机<!--{/if}--></p>
+                                <p class="tip">凭{$INI['system']['couponname']}密码，即可去商家处享受超值服务！</p>
+                            </div>
+                            <h4>没收到短信？您可以：</h4>
+                            <ul class="no-sms-tip cf">
+                                <li class="delay pngfix">再等待一会<p>短信可能延迟</p></li>
+                                <li class="coupon pngfix"><a href="/coupon/index.php">查看{$INI['system']['couponname']}</a><p>下载、打印或重发{$INI['system']['couponname']}短信</p></li>
+                                <li class="mobile pngfix">手机访问{$INI['system']['mobileurl']}<p>手机也能查看{$INI['system']['couponname']}</p></li>
+                                <li class="consult pngfix"><a href="/team/ask.php?id={$order['team_id']}#post">在线提问</a><p>让我们的客服人员来帮您</p></li>
+                            </ul>
+				     </div>
+                   </div>
+                   <!--{/if}-->
+              </div>
+		</div>
+		<div class="box-bottom"></div>
+	</div>
+</div>
+<div id="side">
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

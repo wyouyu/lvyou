@@ -1,0 +1,19 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:620px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>{$partner['title']}</h3>
+	<div id="map_canvas" style="width:620px; height:420px"></div> 
+</div>
+<script type="text/javascript">
+function GShowMap() {
+	if (GBrowserIsCompatible()) { 
+		var map = new GMap2(document.getElementById("map_canvas")); 
+		var glatlng = new GLatLng({$longi}, {$lati});
+		var marker = new GMarker(glatlng);
+		var html = '<strong>{$partner['title']}</strong><p>{$partner['address']}</p>';
+		map.addOverlay(marker);
+		map.setUIToDefault();
+		map.setCenter(glatlng, 12); 
+		marker.openInfoWindowHtml(html);
+	} 
+}
+setTimeout(GShowMap,100);
+</script>

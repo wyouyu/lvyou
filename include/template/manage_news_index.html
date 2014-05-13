@@ -1,0 +1,40 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_news($selector)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>全部新闻</h2>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="40">ID</th><th width="500">新闻标题</th><th width="100">日期</th><th width="140">操作</th></tr>
+					<!--{loop $news $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</a></td>
+						<td>
+							<a class="deal-title" href="/news.php?id={$one['id']}" target="_blank">{$one['title']}</a>
+						</td>
+						<td nowrap>${date('Y-m-d',$one['begin_time'])}</td>
+						<td class="op" nowrap><a href="/manage/news/edit.php?id={$one['id']}">编辑</a>｜<a href="/ajax/manage.php?action=newsremove&id={$one['id']}" class="ajaxlink" ask="确定删除本条新闻吗？" >删除</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="7">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

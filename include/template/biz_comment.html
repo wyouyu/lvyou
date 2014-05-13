@@ -1,0 +1,43 @@
+<!--{include biz_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>用户点评</h2>
+					<ul class="filter">
+						<li><form action="/biz/comment.php" method="get">项目：<input type="text" class="h-input" name="title" value="${htmlspecialchars($title)}" >&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/>&nbsp;<select name="grad">${Utility::Option($option_grad, $grad, '--所有--')}</select><input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+				    <div class="all_intro" style="text-indent:10px;">共组织<b> {$team_count} </b>次团购, 购买 <b>{$join_number} </b>人次. <!-- {if $comments_num>0} -->
+								<b> {$comments_num} </b>次点评,满意度<b> ${number_format(100*$login_partner['comment_good']/$comments_num,2)}% </b>
+								<!-- {/if} --></div>
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="100" nowrap>用户</th><th width="450">项目名称</th><th width="80">满意度</th><th width="60" nowrap>是否愿意再来</th><th width="240" nowrap>评价</th></tr>
+					<!--{loop $orders $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}>
+							<td>{$users[$one['user_id']]['username']}</td>
+							<td>{$one['team_id']}&nbsp;(<a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a>)</td>
+							<td nowrap><!--{if $one['comment_grade']=='good'}-->满意<!--{elseif $one['comment_grade']=='none'}-->一般<!--{else}-->失望<!--{/if}--></td>
+							<td><!--{if $one['comment_wantmore']=='Y'}-->是<!--{elseif $one['comment_wantmore']=='N'}-->否
+							<!--{else}-->暂未填写<!--{/if}--></td>
+							<td>{$one['comment_content']}</td>
+						</tr>	
+					<!--{/loop}-->
+						<tr><td colspan="6">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

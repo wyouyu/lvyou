@@ -1,0 +1,26 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:620px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>{$partner['title']}</h3>
+	<div id="map_container" style="width:620px; height:420px"></div> 
+</div>
+<script type="text/javascript">
+function BShowMap() {
+		var map = new BMap.Map("map_container");
+		map.enableScrollWheelZoom();
+		var point = new BMap.Point({$lati},{$longi} );
+
+		var marker = new BMap.Marker(point);
+		var opts = {
+			width : 250,
+			height: 100,
+			title : "商家信息"
+		}
+		map.centerAndZoom(point, 13);
+		map.addOverlay(marker);
+		var infoWindow = new BMap.InfoWindow('{$partner['title']}', opts); 
+		marker.addEventListener("click", function(){ 
+			this.openInfoWindow(infoWindow); 
+		});
+		
+}
+setTimeout(BShowMap,100);
+</script>

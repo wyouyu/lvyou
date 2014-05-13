@@ -1,0 +1,46 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="forum">
+	<div class="dashboard" id="dashboard">
+		<!--{if $id}-->
+		<ul>${current_forum(null)}<li class="current"><a href="/forum/public.php?id={$id}">{$public['name']}</a><span></span></li></ul>
+		<!--{else}-->
+		<ul>${current_forum('public')}</ul>
+		<!--{/if}-->
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<!--{if $public}-->
+                    <h2>{$public['name']}话题</h2>
+					<!--{else}-->
+					<h2>公共讨论区话题</h2>
+					<!--{/if}-->
+					<ul class="filter"><li><a href="/forum/new.php<!--{if $public}-->?id={$public['id']}<!--{/if}-->">＋发表新话题</a></li></ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="360">话题</th><th width="80" nowrap>讨论区</th><th width="80" nowrap>回复/阅读</th><th width="100">最后发表</th></tr>
+					<!--{loop $topics $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}><td style="text-align:left;"><a class="deal-title" href="/forum/topic.php?id={$one['id']}" style="${$one['head']?'color:#F00;':''}">${htmlspecialchars($one['title'])}</a></td><td nowrap><a href="/forum/public.php?id={$one['public_id']}">{$publics[$one['public_id']]}</a></td><td align="center" nowrap>{$one['reply_number']}/{$one['view_number']}</td><td class="author" nowrap>{$users[$one['last_user_id']]['username']}<br/>${Utility::HumanTime($one['last_time'])}</td></tr>
+					<!--{/loop}-->
+						<tr><td colspan="4">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_subscribe}-->
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

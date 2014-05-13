@@ -1,0 +1,38 @@
+<!--{include header}-->
+<!--{if is_get()}--><div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>此订单尚未完成付款，请重新付款</p><span class="close">关闭</span></div></div><!--{/if}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="order-pay">
+    <div id="content">
+        <div id="deal-buy" class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>应付总额：<strong class="total-money">{$v_amount}</strong> 元</h2>
+                </div>
+                <div class="sect">
+                    <div style="text-align:left;">
+<!-- chinabank -->
+<form id="order-pay-form" method="post" action="https://pay3.chinabank.com.cn/PayGate" target="_blank" sid="{$order['id']}">
+	<input type="hidden" name="v_mid" value="{$v_mid}" />
+	<input type="hidden" name="v_oid" value="{$v_oid}" />
+	<input type="hidden" name="v_amount" value="{$v_amount}" />
+	<input type="hidden" name="v_moneytype" value="{$v_moneytype}" />
+	<input type="hidden" name="v_url" value="{$v_url}" />
+	<input type="hidden" name="v_md5info" value="{$v_md5info}" />
+	<input type="image"  class="button-image" src="/static/css/i/chinabank.png" value="网银在线支付" name="commit" style="vertical-align:middle;"/>
+	<input type="submit" class="formbutton gotopay" value="前往网银在线支付" style="vertical-align:middle;"/>
+</form>
+<!-- chinabank end -->
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

@@ -1,0 +1,65 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="recent-deals">
+<!--{if option_yes('cateteam')}-->
+	<div class="dashboard" id="dashboard">
+		<ul>${current_teamcategory($group_id)}</ul>
+	</div>
+<!--{/if}-->
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>{$category['name']}{$pagetitle}</h2></div>
+			        <form method="get">
+                                   <div id="jqtgss">
+                                        <div id="jqtgssa">
+                	                   <ul>
+                	                      <li>
+                	                 	<span id="gjc">关键字:</span><input type="text" value="{$searchName}" class="hw-input" name="searchName">&nbsp;&nbsp;&nbsp;
+                		时间范围：<input type="text" value="{$start_time}" id="start_time" class="Wdate" name="start_time" onFocus="WdatePicker({isShowClear:false,readOnly:true})"/>&nbsp;至&nbsp;
+                		<input type="text" value="{$search_end_time}" class="Wdate" id="end_time" name="end_time" onFocus="WdatePicker({isShowClear:false,readOnly:true})"/>
+					      </li>
+                	                   </ul>
+					 </div> 
+                                   <div id="jqtgssb"><input type="submit"
+  class="formbutton" value="筛选"></div>
+                                        </div>
+                                       </form> 
+                        	<div class="sect">
+					<ul class="deals-list">
+					<!--{loop $teams $index $one}-->
+						<li class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+							<p class="time">${date('Y年n月j日', $one['begin_time'])}</p>
+							<h4><a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank">${mb_strimwidth($one['title'],0,86,'...')}</a></h4>
+							<div class="pic">
+								<div class="{$one['picclass']}"></div>
+								<a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'], true)}" width="200" height="121"></a>
+							</div>
+							<div class="info">
+								<p class="total"><strong class="count">{$one['now_number']}</strong>人购买</p>
+								<p class="price">原价：<strong class="old"><span class="money">{$currency}</span>${moneyit($one['market_price'])}</strong><br />折扣：<strong class="discount">${team_discount($one)}折</strong><br />现价：<strong><span class="money">{$currency}</span>${moneyit($one['team_price'])}</strong><br />节省：<strong><span class="money">{$currency}</span>${moneyit($one['market_price']-$one['team_price'])}</strong><br /></p>
+							</div>
+							<!--{if option_yes('moneysave')}--><div id="info_a">共为用户节省:<strong class="count">{$currency}${moneyit($one['now_number']*($one['market_price']-$one['team_price']))}</strong></div><!--{/if}-->
+						</li>
+					<!--{/loop}-->
+					</ul>
+					<div class="clear"></div>
+					<div>{$pagestring}</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+	<div id="sidebar">
+		<!--{include block_side_mobile}-->
+        <!--{include block_side_news}-->
+		<!--{include block_side_subscribe}-->
+	</div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+<script type="text/javascript" src="/static/js/datepicker/WdatePicker.js"></script>
+<!--{include footer}-->

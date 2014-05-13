@@ -1,0 +1,62 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="help">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('index')}</ul>
+	</div>
+    <style>.sect table td{padding:5px;}</style>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>子扬软件(ZiYangSoft)(V1.0.0)</h2>
+				</div>
+				<div class="sect">
+					<div class="wholetip clear"></div>
+					
+					<div class="wholetip clear"><h3>全站统计表</h3></div>
+					<div style="margin:0 20px;">
+                    <table style="width:100%;"cellpadding='5' cellspacing='0' border='1' bordercolor="#89B4D6">
+                        <tr>
+                            <Td>今日门票订单：{$ticket_order}</td><td>今日自助游订单：{$zizhuyou_order}</td>
+                        </tr>
+                        
+                        <tr>
+                            <Td>今日团购订单：{$tuangou_order}</td><td>今日度假村订单：{$dujiacun_order}</td>
+                        </tr>
+                        
+                        <tr>
+                            <Td>景点门票项目数：{$ticket}</td><td>自助游项目数：{$zizhuyou}</td>
+                        </tr>
+                        <tr>
+                            <Td>团购项目数：{$tuangou}</td><td>度假村项目数：{$dujiacun}</td>
+                        </tr>
+                        
+                        <tr>
+                            <Td>今日新增会员数目：{$usercount}</td><td>会员总数量：{$user_count}</td>
+                        </tr>
+                        
+                        <tr>
+                            <Td>今日新增商户数目：{$partnercount}</td><td>商户总数量：{$partner_count}</td>
+                        </tr>
+                        
+                        <tr>
+                            <Td>使用短信数目：{$team_count}</td><td>短信总费用：{$user_count}</td>
+                        </tr>
+                        
+                    </table>
+						
+					</div>
+				</div>
+			</div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

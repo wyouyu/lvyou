@@ -1,0 +1,32 @@
+<div id="LiList" class="leftside">
+            <div class="left_head">
+                <h3><a class="orderCentreNav" href="/order/index.php" title="">个人中心</a></h3>
+            </div>
+            <div class="left_main">
+                <div class="main02_head">
+                    <h3>订单中心</h3>
+                </div>
+                <ul class="main02" id="MyOrder">
+            <li class="<!--{if $current=='index'}-->menu_at<!--{/if}-->"><a href="/order/index.php">景点订单</a></li>
+                    <li class="<!--{if $current=='dujiacun'}-->menu_at<!--{/if}-->"><a href="/order/dujiaorder.php">度假村订单</a></li>
+            <li class="<!--{if $current=='zhoubianyou'}-->menu_at<!--{/if}-->"><a href="/order/zhoubianyou.php">周边自助游订单</a></li>
+            <li class="<!--{if $current=='guoneiyou'}-->menu_at<!--{/if}-->"><a href="/order/guoneiyou.php">国内自助游订单</a></li>
+            
+            
+                </ul>
+                <div class="main02_head">
+                    <h3>资料中心</h3>
+                </div>
+                <ul id="ziliao" class="main02">
+                   <li class="<!--{if $current=='memberinfo'}-->menu_at<!--{/if}-->"><a href="/account/memberinfo.php">个人信息</a></li>
+           
+                </ul>
+                <div class="main02_head">
+                    <h3>账户中心</h3>
+                </div>
+                <ul class="main02">
+                  <li class="<!--{if $current=='memberaccount'}-->menu_at<!--{/if}-->"><a href="/account/memberaccount.php">奖金账户</a></li>
+          
+                </ul>
+            </div>
+</div>

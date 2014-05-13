@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html>
+<head>
+<body bgcolor="#ffffff" style="padding:10px; width:750px; margin:auto;">
+<style type="text/css">
+body {font-family:Helvetica, Arial, sans-serif; color:#000;}
+a { color: #000; text-decoration:none;}
+a:hover { color: #399; text-decoration:none; }
+p { line-height: 1.5em; }
+</style>
+<center>
+<div style="margin:0; padding:0; font-size:14px; color:#000; font-family: Helvetica, Arial, sans-serif;font-size:12px; color:#929292; text-align:center;padding-bottom:10px;">
+	<p style='margin:0; padding:0; font-size:14px; color:#000; font-family: Helvetica, Arial, sans-serif;text-align:center; font-size:12px; color:#929292;'>如不想继续收{$INI['system']['abbreviation']}每日推荐邮件，您可随时<a href="{$INI['system']['wwwprefix']}/unsubscribe.php?code={$subscribe['secret']}" style="" title="取消订阅">取消订阅</a>。</p>
+    <p style='margin:0; padding:0; font-size:14px; color:#000; font-family: Helvetica, Arial, sans-serif;text-align:center;font-size:12px; color:#929292; '>请把 <a href="mailto:{$notice_email}" style="" title="">{$notice_email}</a> 加到您的邮箱联系人中，以确保能正确接收此邮件。</p>
+。
+<br>
+</div>
+	<div style="border: 5px solid rgb(222, 237, 204); padding: 20px; width: 700px; background-color: rgb(163, 220, 239); background-image: url({$INI['system']['wwwprefix']}/static/css/i/bg-deal.jpg); background-repeat: no-repeat; background-position: center top;">
+	<div id="mail-header" style="background: rgb(45, 45, 45) none repeat scroll 0% 0%; width: 700px; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous;">
+	<table cellspacing="0" cellpadding="0" width="100%">
+	<tbody>
+	<tr>
+	<td height="80px" align="center" width="180px" valign="middle">
+	<a target="_blank" href="{$INI['system']['wwwprefix']}/index.php" style="color: rgb(255, 255, 255); text-decoration: none;">
+	<img style="border: medium none ; padding-top: 6px; font-size: 24px;" src="{$INI['system']['wwwprefix']}/static/img/mail-tpl-logo.gif">
+	</a>
+	</td>
+	<td height="80px" valign="middle">
+	<span style="padding: 3px 10px; background: rgb(96, 96, 96) none repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; font-size: 14px; color: rgb(255, 255, 255);"></span>
+	</td>
+	<td height="80px" align="right" style="color: rgb(255, 255, 255); font-size: 12px; padding-right: 20px;"> {$today} </td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+<div id="first-deal" style="border: 2px solid rgb(140, 177, 210); padding: 12px 12px 12px 0pt; background-color: rgb(255, 255, 255); margin-top: 20px; text-align: left; width: 684px;">
+	<table width="684px">
+	<tbody>
+	<tr>
+	<td colspan="2" style="padding: 0pt 0pt 12px 12px;">
+	<a target="_blank" href="{$INI['system']['wwwprefix']}/team.php?id={$first['id']}" title="{$INI['system']['wwwprefix']}/team.php?id={$first['title']}" style="color: rgb(51, 153, 153); font-size: 20px; margin-bottom: 12px; line-height: 1.5; text-decoration: none;">{$first['title']}</a>
+	</td>
+	</tr>
+	<tr>
+	<td valign="top">
+	<table height="60px" cellspacing="0" cellpadding="0" bgcolor="#4bc1dd" background="{$INI['system']['wwwprefix']}/static/img/mail-tpl-tag.gif" width="233px">
+	<tbody>
+		<tr>
+		<td style="padding: 0pt 0pt 0pt 35px; width: 82px; font-size: 28px; color: rgb(255, 255, 255); font-weight: 700;">{$INI['system']['currency']}${moneyit($first['team_price'])}</td>
+		<td width="116px" style="padding-top: 2px;">
+		<a title="{$first['title']}" href="{$INI['system']['wwwprefix']}/team.php?id={$first['id']}" target="_blank">
+		<img style="border: medium none ; height: 47px;" src="{$INI['system']['wwwprefix']}/static/img/mail-tpl-view.gif">
+		</a>
+		</td>
+		</tr>
+	</tbody>
+	</table>
+<div style="padding-left: 17px;">
+	<table cellspacing="0" cellpadding="0" style="border: 1px solid rgb(72, 193, 221); background-color: rgb(208, 238, 246); width: 216px; text-align: center; font-size: 12px;">
+	<tbody>
+		<tr>
+		<td style="padding: 6px 0pt; width: 72px;">原价</td>
+		<td style="padding: 6px 0pt; width: 72px;">折扣</td>
+		<td style="padding: 6px 0pt; width: 72px;">现价</td>
+		</tr>
+		<tr>
+		<td style="padding: 0pt 0pt 6px; font-size: 14px; font-weight: 700;">
+{$INI['system']['currency']}
+		<del>{$first['market_price']}</del>
+		</td>
+		<td style="padding: 0pt 0pt 6px; font-size: 14px; font-weight: 700;"><!--{if $team['team_price']>0}-->${moneyit($first['team_price']/$first['market_price']*10)}<!--{else}-->&nbsp;?&nbsp;<!--{/if}-->折</td>
+		<td style="padding: 0pt 0pt 6px; font-size: 14px; font-weight: 700;">{$first['team_price']}</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+</td>
+<td rowspan="2">
+<a target="_blank" href="{$INI['system']['wwwprefix']}/team.php?id={$first['id']}" title="{$first['title']}">
+<img height="259" width="428" src="${team_image($first['image'])}" style="border: medium none ;">
+</a>
+</td>
+</tr>
+<tr>
+<td valign="top" style="font-size: 12px; padding-left: 15px;">
+
+ 
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!--{loop $teams $tindex $team}-->
+<div style="border: 2px solid rgb(140, 177, 210); padding: 12px; background-color: rgb(255, 255, 255); margin-top: 10px; text-align: left; width: 672px;">
+	<table cellspacing="0" cellpadding="0" width="678px">
+		<tbody>
+		<tr>
+			<td valign="top">
+				<div style="overflow: hidden; width: 180px; height: 108px;">
+					<a target="_blank" href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}" title="{$team['title']}">
+					<img style="border: medium none ; background: rgb(239, 239, 239) none repeat scroll 0% 0%; width: 180px; height: 108px; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous;" src="${team_image($team['image'])}">
+					</a>
+				</div>
+			</td>
+			<td valign="top" style="padding: 0pt 12px;">
+				<a style="font-size: 18px; line-height: 1.5; text-decoration: none; color: rgb(51, 153, 153);" target="_blank" href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}">{$team['title']}</a>
+				<div style="font-size: 14px; color: rgb(130, 130, 130); padding-top: 6px;">
+					<span style="padding-right: 15px;">
+					现价
+					<strong style="font-weight: 700; color: red; padding-left: 6px;">{$INI['system']['currency']}{$team['team_price']}</strong>
+					</span>
+					<span style="padding-right: 15px;">
+					折扣
+					<span style="font-weight: 700; padding-left: 6px;"><!--{if $team['team_price']>0}-->${moneyit($team['team_price']/$team['market_price']*10)}<!--{else}-->&nbsp;?&nbsp;<!--{/if}-->折</span>
+					</span>
+					<span>
+					原价
+					<del style="font-weight: 700; padding-left: 6px;">{$INI['system']['currency']}{$team['market_price']}</del>
+					</span>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<!--{/loop}-->
+
+ <table width="100%" style="background-color: rgb(222, 237, 204); margin-top: 15px;">
+<tbody>
+<tr>
+<td style="padding: 10px; font-family: Helvetica,Arial,sans-serif; color: rgb(84, 84, 84); font-size: 12px; text-align: center; line-height: 16px;">电子邮箱:<a href="mailto:{$help_email}" style="" title="">{$help_email}</a>&nbsp;&nbsp;&nbsp; 客服电话: {$help_mobile}&nbsp;&nbsp;<span style='font-weight:normal; font-size:12px;'>星期一至星期六 9:00-18:00</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+ 
+ 
+<div style="margin:0; padding:0; font-size:14px; color:#000; font-family: Helvetica, Arial, sans-serif;font-size:12px; color:#929292; text-align:center; padding-top:10px;">
+您收到此邮件是因为您订阅了{$INI['system']['sitename']}每日推荐更新。如果您不想继续接收此类邮件，可随时
+<a title="" style="" target="_blank" href="{$INI['system']['wwwprefix']}/unsubscribe.php?code={$subscribe['secret']}">取消订阅</a>
+。
+</div>
+<div></div>
+
+</center>
+</body>
+</html>

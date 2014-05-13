@@ -1,0 +1,48 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_coupon('paycard')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<h2>充值卡</h2>
+					<ul class="filter">
+						<li><form method="get">充值密码：<input type="text" name="tid" value="${htmlspecialchars($tid)}" class="h-input" />&nbsp;状态：<select name="state">${Utility::Option($usage, $state, '所有')}</select>&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/>&nbsp;<input type="submit" name="download" value="下载" class="formbutton"  style="padding:1px 6px;"/><form></li>
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="200">充值密码</th><th width="60">面额</th><th width="200">充值时间</th><th width="200">有效期限</th><th width="100">状态</th><th width="100">充值用户</th><th width="100">操作</th></tr>
+					<!--{loop $cards $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td nowrap>${moneyit($one['value'])}</td>
+						<td nowrap><!--{if $one['consume']=='Y'}-->${date('Y-m-d',$one['recharge_time'])}<!--{else}-->未使用<!--{/if}--></td>
+						<td nowrap>${date('Y-m-d',$one['expire_time'])}</td>
+						<td nowrap>${$one['consume']=='Y' ? '已用':'未用'}</td>                       
+                                                <td nowrap>{$users[$one['user_id']]['username']}</td>
+						<td class="op" nowrap><a href="/ajax/manage.php?action=paycardremove&id={$one['id']}" class="ajaxlink" ask="确定删除本张充值卡？">删除</a>&nbsp;</td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="7">{$pagestring}</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

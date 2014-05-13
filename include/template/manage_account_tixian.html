@@ -1,0 +1,237 @@
+<!--{include manage_header}-->
+<script type="text/javascript" src="/static/js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/js/jquery.skygqbox.1.3.js"></script>
+<script language="javascript" src="/static/js/LodopFuncs.js"></script>
+<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+    <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0 pluginspage="/static/js/install_lodop32.exe"></embed>
+</object> 
+<style type="text/css" id="style1">
+ table{border-collapse:collapse;}.reportTop{padding:5px 16px;line-height:35px;}.reportTop span{font-size:14px;}.reportEnd{margin:20px auto;line-height:18px;font-size:12px;}.reportEnd p{padding-left:8px;line-height:18px;margin:0;}.reportEnd p span{margin-left:15px;}.reportEnd span{padding-right:8px;}.reporttit{margin:20px 0;text-align:center;}.reporttit h1{font-size:20px;font-weight:700;margin:5px 0;line-height:40px;}.reporttit p{line-height:20px;font-size:14px;}.reporttit p span{margin:0 10px;}.inforep{line-height:25px;font-size:13px;padding:0 8px;margin:0;}.reportTab{border:2px solid #486284;}.reportTab caption{line-height:35px;font-size:16px;font-weight:700;}.reportTab th{font-size:14px;font-weight:700;padding:6px;border:2px solid #486284;}.reportTab td{text-align:center;padding:5px;border:2px solid #486284;}.reportTab tfoot{background:#eef5ff;}.summary{text-align:right;}.summary span{margin:0 12px;}.f_right{float:right;}.f_left{float:left;}.ui-autocomplete-loading{background:white url('/Styles/Images/ui-anim_basic_16x16.gif') right center no-repeat;}.onshow{background:#d6e6f5;}
+    </style>
+
+<script type="text/javascript">
+function getSelectValue(e) {
+    $('#HiddenField1').val('0');
+    //HideSelectedAll();
+    var hiddenId = document.getElementById("HSelectId").value;
+    if (e.checked == true) {
+        if (document.getElementById("HSelectId").value.indexOf(e.value) == -1) {
+            document.getElementById("HSelectId").value += e.value + ',';
+        }
+    }
+    else {
+        document.getElementById("HSelectId").value = document.getElementById("HSelectId").value.replace(e.value + ",", "");
+    }
+	oeday = $("#oeday").val();
+	obday = $("#obday").val();
+    orderids = $("#HSelectId").val();
+    
+    $.ajax({
+        url: "/ajax/print.php",
+        data:{id:e.value,orderids:orderids,oeday:oeday,obday:obday},
+        type :"POST",
+        dataType:'json',
+        success :function(data){
+            //alert(msg);
+            $("#orderprint").html(data.print);
+            $("#divExcel").html(data.excel);
+        },
+    })
+}
+
+
+function getValueByTime() {
+
+	oeday = $("#oeday").val();
+	obday = $("#obday").val();
+	partner = $("#name").val();
+    $.ajax({
+        url: "/ajax/timeprint.php",
+        data:{oeday:oeday,obday:obday,name:partner},
+        type :"POST",
+        dataType:'json',
+        success :function(data){
+            $("#divExcel").html(data.excel);
+        },
+    })
+}
+
+
+function textboxSelect() {
+    var checkbox = document.getElementsByName("cbxSingle");
+    var cbxAll = document.getElementById("cbxAll");
+    if (cbxAll.checked) {
+        //checkAllSelect();
+    }
+    else {
+        //HideSelectedAll();
+    }
+    for (var i = 0; i < checkbox.length; i++) {
+        if (cbxAll.checked) {
+            checkbox[i].checked = true;
+            var hiddenId = document.getElementById("HSelectId").value;
+            if (hiddenId.indexOf(checkbox[i].value) == -1) {
+                document.getElementById("HSelectId").value += checkbox[i].value + ',';
+            }
+            else {
+                document.getElementById("HSelectId").value = document.getElementById("HSelectId").value.replace(checkbox[i].value + ",", "");
+            }
+        }
+        else {
+            checkbox[i].checked = false;
+            document.getElementById("HSelectId").value = document.getElementById("HSelectId").value.replace(checkbox[i].value + ",", "");
+        }
+    }
+}
+
+//显示本页全选按钮点击后div
+        function checkAllSelect() {
+            //$('#isDisplaySelectAll').show("slow");
+        }
+        
+var LODOP; //声明为全局变量 
+    function prn1_preview() {
+        orderids = $("#HSelectId").val();
+        /*if((orderids.split(",").length-1)>1)
+        {
+            alert('仅能选择一个订单导出！');
+            exit();
+        }*/
+        $.ajax({
+            url:'/ajax/print.php',
+            data:{orderids:orderids,action:'check'},
+            type:"POST",
+            datatype:'json',
+            success:function(data)
+            {
+                json = eval("(" + data + ")");
+                if(json.error==1)
+                {
+                    alert('请选择同一个商户的订单打印！');
+                    return false;
+                }
+                else
+                {
+                    CreateOneFormPage();    
+                    LODOP.PREVIEW();    
+                }
+            }
+            
+        })
+        
+    };
+    
+    function CreateOneFormPage(){
+        LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));
+        var strBodyStyle="<style>"+document.getElementById("style1").innerHTML+"</style>";
+        var strFormHtml=strBodyStyle+"<body>"+document.getElementById("div1").innerHTML+"</body>";
+        LODOP.PRINT_INIT("蜗牛旅途网(www.wnltu.com)-预订单");
+        LODOP.SET_PRINT_STYLE("FontSize",18);
+        LODOP.SET_PRINT_STYLE("Bold",1);
+        LODOP.ADD_PRINT_TEXT(30,30,600,600,"蜗牛旅途网(www.wnltu.com)-预订单");
+        LODOP.ADD_PRINT_HTM(88,30,350,600,strFormHtml);
+    };                         
+   
+
+    
+    function SaveAsFile(){
+        //alert('123');
+        LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));   
+        LODOP.PRINT_INIT(""); 
+        LODOP.ADD_PRINT_TABLE(100,20,500,80,document.getElementById('divExcel').innerHTML); 
+        LODOP.SET_SAVE_MODE("Orientation",2); //Excel文件的页面设置：横向打印   1-纵向,2-横向;
+        LODOP.SET_SAVE_MODE("PaperSize",9);  //Excel文件的页面设置：纸张大小   9-对应A4
+        LODOP.SET_SAVE_MODE("Zoom",90);       //Excel文件的页面设置：缩放比例
+        LODOP.SET_SAVE_MODE("CenterHorizontally",true);//Excel文件的页面设置：页面水平居中
+        LODOP.SET_SAVE_MODE("CenterVertically",true); //Excel文件的页面设置：页面垂直居中
+        LODOP.SET_SAVE_MODE("QUICK_SAVE",true);//快速生成（无表格样式,数据量较大时或许用到） 
+        LODOP.SAVE_TO_FILE("新文件名.xls"); 
+    };     
+
+
+
+
+</script>
+<div id="bdw" class="bdw" >
+<div id="bd" class="cf" style="width:1200px">
+<div id="coupons">
+    <div class="dashboard" id="dashboard" style="margin-left:8px;bottom:0">
+        <ul>${mcurrent_order('tixian')}</ul>
+    </div>
+    <div id="content" class="coupons-box clear mainwide" style="width:1200px">
+        <div class="box clear">
+            <!--<div class="box-top"></div>-->
+            <div class="box-content">
+                <div class="head">
+                    <h2>用户提现</h2>
+                </div>
+               
+                <div class="sect" style="width:1176px;">
+                    <table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+                    <tr>
+                        <th width="40"><input id="cbxAll" type="checkbox" onclick="textboxSelect()"></th>
+                        <th width="40">序号</th>
+                        <th width="200">用户名</th>
+                        <th width="200">提现金额</th>
+                        <th width="200">申请时间</th>
+						<th width="200">提现状态</th>
+                        <th width="90">操作</th>
+                    </tr>
+                    <!--{loop $tixian $index $one}-->
+                    <tr ${$index%2?'':'class="alt"'} id="order-list-id-{$one['id']}">
+                        <td><input id="" type="checkbox" value="{$one['id']}" name="cbxSingle" onclick="getSelectValue(this);"></td>
+                        <td>{$one['id']}</td>
+						<td>{$users[$one['uid']]['username']}</td>
+						<td>{$one['money']}</td>
+						<td>${date('Y-m-d',$one['create_time'])}</td>
+                        <td><!--{if $one['status']==1}--><font color="green">已提现</font><!--{else}--><font color="red">未处理</font><!--{/if}-->
+						</td>
+                        <td><!--{if $one['status']==0}--><a href="/manage/order/tixian.php?action=do&tid={$one['id']}">标记为已提现</a></td>
+                        
+                       
+                    </tr>
+                    <!--{/loop}-->
+                    <tr><td colspan="9">{$pagestring}</tr>
+                    </table>
+                    <input type="hidden" name="HSelectId" id="HSelectId" />
+                    <input type="hidden" name="HiddenField1" id="HiddenField1" value="0" />
+
+                </div>
+            </div>
+            <!--<div class="box-bottom"></div>-->
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+<!--预订单打印表-->
+    <div id="div1" style=" display:none;">
+        <div style="clear:both;" class="reporttit" id="orderprint">
+
+        </div>
+    </div>
+<div id="divExcel" style="display: none">
+        
+    </div>
+
+<script type="text/javascript">
+    function changestate(id)
+    {
+        var val = $("#state_"+id).val();
+        $.ajax({
+            url:'/ajax/return.php',
+            data:{state:val,id:id},
+            type:"POST",
+            datatype:'json',
+            success:function(data)
+            {
+                json = eval("(" + data + ")");
+                //alert(json.str);
+                $("#chstate_"+id).html(json.str);
+                $("#state_"+id).val(json.state);
+            }
+            
+        })
+    }
+</script>
+<!--{include manage_footer}-->

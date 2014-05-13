@@ -1,0 +1,42 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('backup')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>数据库恢复</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${mcurrent_misc_backup('restore')}
+					</ul>
+				</div>
+                <div class="sect">
+
+<form action="restore.php" method="post" enctype="multipart/form-data">
+    <table width="96%" border="0" class="coupons-table">
+    <tr><td width="17%" height="25"><input type="radio" name="restorefrom" value="server" checked> 从服务器上恢复</td>
+		<td width="41%" height="25"><select name="serverfile">
+		${Utility::Option($bs, null, '请选择文件')}
+		</td>
+		<td width="41%" rowspan="4" valign="top"><ul><!--{loop $show $index $one}--><li>${$index+1}、{$one}</li><!--{/loop}--></ul></td></tr>
+    <tr><td height="22"><input type="radio" name="restorefrom" value="localpc"> 从本地文件恢复</td>
+    <td height="22"><input type="hidden" name="MAX_FILE_SIZE" value="1500000"><input type="file" name="myfile"></td></tr>
+    <tr height="50px"><td align="left"><input type="hidden" name="action" value="restore"><input type="submit" value="恢 复" class="formbutton"></td></tr>
+    </table>
+</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+<!--{include manage_footer}-->

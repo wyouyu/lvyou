@@ -1,0 +1,41 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="recent-deals">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>积分商城</h2></div>
+				<div class="sect">
+					<ul class="deals-list">
+					<!--{loop $goods $index $one}-->
+						<li class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+							<h4>${mb_strimwidth($one['title'],0,86,'...')}</h4>
+							<div class="pic">
+								<img alt="{$one['title']}" src="${team_image($one['image'], true)}" width="200" height="121">
+							</div>
+							<div class="info">
+								<p class="total"><strong class="count">{$one['score']}</strong>积分</p>
+								<p class="price">已兑：<strong class="old">{$one['consume']}</strong><br />限兑：<strong class="discount">{$one['per_number']}</strong><br />存量：<strong>{$one['number']-$one['consume']}</strong><br /><a href="/credit/ajax.php?id={$one['id']}&action=exchange" class="ajaxlink" ask="确定使用{$one['score']}点积分兑换{$one['title']}吗？">马上兑换</a></p>
+							</div>
+						</li>
+					<!--{/loop}-->
+					</ul>
+					<div class="clear"></div>
+					<div>{$pagestring}</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+	<div id="sidebar">
+		<!--{include block_side_mobile}-->
+		<!--{include block_side_subscribe}-->
+	</div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

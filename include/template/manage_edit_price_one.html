@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑价格</title>
+    
+<script type="text/javascript" src="/static/js/jquery-1.10.0.min.js"></script>   
+    <script type="text/javascript">
+        $(function () {
+            
+            setHidValue();
+            var hidValue = '';
+            $('#btnSubmit').click(function () {
+                setHidValue();
+            });
+        });
+        function setHidValue() {
+            $("input['name=cbxWeek']:checked").each(function () {
+                alert(123);
+                hidValue += $(this).val() + ',';
+            });
+            
+            if (hidValue.length > 0) {
+                hidValue = hidValue.substring(0, hidValue.length - 1);
+            }
+            $('#hidWeek').val(hidValue);
+        }
+    </script>
+    <style type="text/css">
+    p,span,em,img,div,body,form,h1,h2,h3,h4,h5,h6,strong,dl,dt,dd,ul,li,input{margin:0;padding:0;}
+body{font-family:"宋体",Arial, Helvetica, sans-serif;font-size:12px;line-height:22px;color:#606060;}
+ul,li {list-style-type:none;text-transform:capitalize;}
+.clear {clear:both; *display:inline;/*IE only*/}
+img{border:none;}
+html{height:101%;}
+a{color:#606060;}
+a:hover{color:#F47F00;text-decoration:none;}
+a.red{color:#F47F00;text-decoration:none;}
+a.red:hover{text-decoration:underline;}
+.red{color:#F47F00;}
+.pad5px{padding:5px;}
+.fl{float:left;}
+.fr{float:right;}
+.text_right{text-align:right;}
+.clearfix:after{content: ".";display:block;height:0px;clear:both;visibility:hidden;}
+
+#Header{height:84px;}
+#Header_area{height:55px;margin-top:10px;padding:0px 10px;position:relative;}
+#Header_area h1,#Header_area h1 img,#Header_area h1 a{width:185px;height:57px;cursor:pointer;}
+#Header_area h1{position:absolute;top:0px;left:10px;}
+#Header_area .notice{width:365px;height:45px;background:url(../Images/fenge.jpg) no-repeat 0px 10px;position:absolute;top:0px;left:210px;padding:10px 0px 0px 15px;z-index:1;}
+#Header_area .notice h2{font-size:16px;font-family:"黑体";font-weight:normal;}
+#Header_area .skin{position:absolute;top:8px;right:10px;text-align:right;}
+#Header_area .skin dl{float:right;height:22px;line-height:22px;}
+#Header_area .skin dl dt,#Header_area .skin dl dd{float:left;}
+#Header_area .skin dl dt{margin-left:10px;display:inline;}
+#Header_area .skin dl dd{width:11px;height:10px;margin:4px 0px 0px 8px;}
+.menu_tree{width:100%;}
+
+.tree_list{padding:5px;}
+.tree_list li a{padding-left:12px;text-decoration:none;}
+
+.main_content{width:100%;}
+.gray_bd{border:1px solid #FDD29D;margin-top:10px;}
+.table_title{height:28px;line-height:28px;padding-left:10px;background:url(../Images/hcmanage_11.jpg) repeat-x;border-bottom:1px solid #DFDFDF;overflow:hidden;font-weight:bold;}
+table td{padding:3px;}
+.table_half{width:48.8%;overflow:hidden;}
+.table_bt{background:#F7F7F6;border:1px solid #FFFFFF;}
+.border_b_dotted{border-bottom:1px dotted #B5B5B5;padding-bottom:5px;margin-bottom:10px;}
+.input_key{width:430px;height:18px;border:1px solid #D5D4D4;line-height:20px;}
+.input_btn{width:80px;height:20px;background:#EAEAEA;line-height:20px;text-align:center;border:none;color:#999999}
+.btn
+ {
+    border: 1px solid #7b9ebd;
+    padding-right: 2px; 
+        padding-left: 2px; 
+        font-size: 12px; 
+        filter: progid:dximagetransform.microsoft.gradient(gradienttype=0, startcolorstr=#ffffff, endcolorstr=#cecfde); 
+        cursor: hand; 
+        color: black; 
+        padding-top: 2px; 
+        height: 25px;
+}
+.tableliststyle
+{
+    width: 100%; 
+    border-collapse: collapse; 
+    border-left: solid 1px #808080; 
+    border-top: solid 1px #808080;
+}
+#runing
+{
+    z-index: 12000; 
+    left: 0px; 
+    width: 100%; 
+    cursor: wait;
+    position: absolute; 
+    top: 0px; 
+    height: 100%;
+}
+.middle
+{
+    margin:auto;
+}
+.loadingStyle
+{
+    width:60px;
+    height:60px;
+    background-color:gray;
+    background-image:url(../Images/loding.gif);
+    color:white;
+} 
+body{  background-color:#F7F7FF;}
+.header_bc{background:url(../Images/hcmanage_01.jpg) repeat-x;border-bottom:4px solid #F68C19;}
+#Header #Header_r_bc{height:84px;background:url(../Images/header_r_bc.jpg) no-repeat right top;overflow:hidden;}
+.menu_tree h3{height:30px;background:#F68C19;line-height:30px;font-size:14px;}
+.menu_tree_bd{border:1px solid #FECF9B;border-top:none;border-bottom:none;overflow:hidden;background:#fffff;}
+.menu_tree h3 a{display:block;padding-left:14px;color:#FFFFFF;}
+.menu_tree h3 a:hover{color:#FFFFFF;text-decoration:underline;}
+.tree_title_open,.gridheader{height:28px;line-height:28px;border-top:1px solid #FECF9B;border-bottom:1px solid #FECF9B;background:url(../Images/title_open.jpg) no-repeat;color:#F07C01;padding-left:15px;font-weight:bold;}
+.gridheader{ background:url(../Images/yellow_th.jpg) repeat-x;}
+#Footer{border-top:4px solid #F78B1E;border-bottom:1px solid #F78B1E;text-align:center;padding:7px 0px;margin-top:10px;}
+.mt20{margin-top:20px;}
+.green{color:#86a800;}
+.blue{color:#157693;}
+.pink{color:#990033;}
+.tree_title_open a,.tree_title_open a:link,.tree_title_open a:visited{color:#F07C01; text-decoration:none; cursor:pointer;}
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* ������Ϣ----------companyServer*/
+.float_l{float:left;}
+.fuwu_menu{clear:both; background:url(/Styles/images/repeat_orange.jpg) bottom repeat-x; border-bottom:2px #e28f00 solid; height:27px;}
+.fuwu_menu li{ float:left; margin:0 3px;  width:75px; height:27px; background:url(/images/index_navonbg.jpg) 0 -34px; text-align:center;}
+.fuwu_menu li.now{background:url(/images/index_navonbg.jpg) 0 -63px;  width:75px; height:27px; text-align:center;}
+.fuwu_menu li a{text-decoration:none;  font:700 15px/24px yahei,΢���ź�; line-height:27px;}
+.fuwu_menu li.now a,.fuwu_menu li.now a:link,.fuwu_menu li.now a:visited{color:#fff;}
+input.form_textBottom{border:0 none; border-bottom:1px #e28f00 solid; background-color:transparent; width:60px;}
+input.middle{ vertical-align:middle;}
+.mr40{margin-right:40px;}
+.mr20{margin-right:16px;}
+.dingdan{margin-top:30px;}
+.dingdan h3{font:700 16px yahei,΢���ź�; margin-bottom:10px; background-color:#fff5eb; height:30px; color:#f07c01; line-height:30px; padding-left:10px;}
+.dingdan li{ height:30px; padding-left:10px;}
+.dingdan li a{color: #f68d1a; font:700 13px yahei,΢���ź�;}
+.gonggao{width:830px;}
+.gonggao li a,.gonggao li a:link,.gonggao li a:visited{color:#ff6600; text-decoration:none; font:300 13px ����;}
+.gonggao li a:hover{ text-decoration:underline;}
+.jia,.jian{ cursor:pointer;}
+.jia i{ background:url(/Images/icon.gif); width:9px; height:9px; overflow:hidden; margin-right:5px; display:inline-block; float:left; margin-top:8px;}
+.jian i{ background:url(/Images/icon.gif) 0 -9px; width:9px; height:9px; overflow:hidden; margin-right:5px; display:inline-block; float:left; margin-top:8px;}
+.bluebg{background:url(../Images/title_open_blue.jpg) no-repeat; border-top:1px #bcd5ee solid;  border-bottom:1px #bcd5ee solid;}
+.greenbg{background:url(../Images/title_open_green.jpg) no-repeat; border-top:1px #b7ce7e solid;  border-bottom:1px #b7ce7e solid;}
+.pinkbg{background:url(../Images/title_open_pink.jpg) no-repeat; border-top:1px #dd75a6 solid;  border-bottom:1px #dd75a6 solid;}
+.gray_bd { overflow:hidden; padding-bottom:5px;}
+.field-manage-con {float:left; width:48.5%; padding:0 5px 5px; border-color:#F78B1E; margin:0 2px;}
+.fieldset_mt5 {margin-top:5px;}
+    </style>
+</head>
+<body>
+<form action="/manage/ticket/edit_price_one.php" method="post">        <div class="gray_bd">
+            <div class="table_title">
+                编辑价格</div>
+            <div class="pad5px">
+                <table align="center" cellspacing="0" style="width: 100%">
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            日期：
+                        </td>
+                        <td>
+                            {$price['tdate']}
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            市场价：
+                        </td>
+                        <td>
+                            <input id="market_price" name="market_price" style="width:60px;" type="text" value="{$price['market_price']}" />
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            本站价：
+                        </td>
+                        <td>
+                            <input  id="site_price" name="site_price" style="width:60px;" type="text" value="{$price['site_price']}" />
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            团队价：
+                        </td>
+                        <td>
+                            <input  id="team_price" name="team_price" style="width:60px;" type="text" value="{$price['team_price']}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            定金：
+                        </td>
+                        <td>
+                            <input id="deposit" name="deposit" style="width:60px;" type="text" value="{$price['deposit']}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px; text-align: right;">
+                            团队定金：
+                        </td>
+                        <td>
+                            <input id="team_deposit" name="team_deposit" style="width:60px;" type="text" value="{$price['team_deposit']}" />
+                        </td>
+                    </tr>
+                        
+                  
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <input type="hidden" name="pid" value="{$price['id']}" />
+                            <input type="hidden" name="tid" value="{$ticket['id']}" />
+                            <input type="submit" name="submit" value="提交" id="btnSubmit" />
+                            <input type="reset" value="返回" onclick="window.history.go(-1)" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</form></body>
+</html>

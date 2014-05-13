@@ -1,0 +1,28 @@
+<!--{include wap_header}-->
+
+<h2>今日主推&nbsp;|&nbsp;<a href="now.php">正在团购</a>&nbsp;|&nbsp;<a href="done.php">往期团购</a></h2>
+<p><a href="team.php?id={$team['id']}">{$team['title']}</a></p>
+<p>{$team['now_number']}人已购买&nbsp;<!--{if $team['state']=='soldout'}-->已售罄<!--{elseif $team['close_time']}-->已结束<!--{else}--><a href="buy.php?id={$team['id']}">购买</a><!--{/if}--></p>
+
+<p>现价：{$currency}${moneyit($team['team_price'])} , 原价：{$currency}${moneyit($team['market_price'])} , 折扣：${team_discount($team)}折 , 节省：{$currency}${moneyit($team['market_price']-$team['team_price'])}</p>
+<p><a href="buy.php?id={$team['id']}"><img src="${team_image($team['image'], true)}" width="200" height="120" /></a></p>
+<!--{if trim(strip_tags($team['summary']))}-->
+<h2>本单详情</h2>
+<p>${htmlspecialchars($team['summary'])}</p>
+<!--{/if}-->
+<!--{if trim(strip_tags($team['notice']))}-->
+<h2>特别提示</h2>
+<p>{$team['notice']}</p>
+<!--{/if}-->
+<!--{if trim(strip_tags($team['userreview']))}-->
+<h2>他们说</h2>
+<p>${userreview($team['userreview'])}</p>
+<!--{/if}-->
+<!--{if trim(strip_tags($team['systemreview']))}-->
+<h2>{$INI['system']['abbreviation']}说</h2>
+<p>{$team['systemreview']}</p>
+<!--{/if}-->
+<h2>购买</h2>
+<p>{$team['now_number']}人已购买&nbsp;<!--{if $team['state']=='soldout'}-->已售罄<!--{elseif $team['close_time']}-->已结束<!--{else}--><a href="buy.php?id={$team['id']}">购买</a><!--{/if}--></p>
+
+<!--{include wap_footer}-->

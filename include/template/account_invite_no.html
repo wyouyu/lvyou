@@ -1,0 +1,44 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="referrals">
+    <div id="content" class="refers">
+        <div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>邀请有奖</h2></div>
+                <div class="sect islogin">
+					<!--{if $money}-->
+					<p class="notice-total">您已成功邀请 <strong>{$count}</strong> 人，累计获得 <strong><span class="money">{$currency}</span>{$count*$INI['system']['invitecredit']}</strong> 返利，<a href="/account/refer.php">查看邀请成功列表</a>。</p>
+					<!--{/if}-->
+					<div class="share-links">
+                    <ul class="share-list cf">
+                        <li class="site">
+                            <a class="logo" href="javascript:void 0" id="referrals-share-others-link"><img src="{$INI['system']['wwwprefix']}/static/css/i/logo_msn.png" /></a>
+                            <p class="im">这是您的专用邀请链接，请通过 MSN 或 QQ 发送给好友：
+                                <input id="share-copy-text" type="text" value="{$INI['system']['wwwprefix']}/r.php?r={$login_user_id}" size="35" class="f-input" onfocus="this.select()" />
+                            </p>
+                        </li>
+                    </ul>
+					<div class="nodeal cf">
+						<ul class="share-list">
+							<li><a class="logo" href="${share_kaixin($team)}" target="_blank" title="开心网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/css/i/logo_kaixin.gif" /></a><p class="link"><a href="${share_kaixin($team)}" target="_blank" title="开心网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到开心网</a></p></li>
+							<li><a class="logo" href="${share_renren($team)}" target="_blank" title="人人网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/css/i/logo_renren.png" /></a><p class="link"><a href="${share_renren($team)}" target="_blank" title="人人网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到人人网</a></p></li>
+							<li><a class="logo" href="${share_sina($team)}" target="_blank" title="关注者点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/css/i/logo_sina.png" /></a><p class="link"><a href="${share_sina($team)}" target="_blank" title="关注者点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到新浪微博</a></p></li>
+							<li><a class="logo" href="${share_douban($team)}" target="_blank" title="豆瓣网友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/css/i/logo_douban.gif" /></a><p class="link"><a href="${share_douban($team)}" target="_blank" title="豆瓣网友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到豆瓣</a></p></li>
+							<li><a class="logo" href="${share_mail($team)}" target="_blank" title="好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/css/i/logo_email.gif" /></a><p class="link"><a href="${share_mail($team)}" target="_blank" title="好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">通过邮件发给好友</a></p></li>
+						</ul>
+						</div>
+					</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}--> 

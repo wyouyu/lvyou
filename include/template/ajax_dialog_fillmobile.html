@@ -1,0 +1,19 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:380px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>填写接收手机号码</h3>
+    <p></p>
+	<p class="notice">手机号码：<input id="sms-dialog-input-mobile" type="text" name="mobile"  class="f-input" maxLength="11" value="{$mobile}" /></p>
+	<p class="act" style="text-align:center">
+	<input id="coupon-dialog-send" class="formbutton" value="发送" name="query" type="submit" onclick="sms_send();"/></p>
+</div>
+<script type="text/javascript">
+function sms_send() {
+	var mobile = jQuery('#sms-dialog-input-mobile').val();
+	if(mobile == '') {
+		alert('手机号不能为空');
+		jQuery('#sms-dialog-input-mobile').focus();
+	} else {
+		X.get(WEB_ROOT + "/ajax/coupon.php?action=sms&mobile="+mobile+"&id="+{$cid});
+	}
+}
+
+</script>

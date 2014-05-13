@@ -1,0 +1,34 @@
+<!--${
+	$_fl_logos = DB::LimitQuery('friendlink', array(
+				'condition' => array( 
+					'LENGTH(logo)>0',
+					'display' => 'Y',
+					),
+				'order' => 'ORDER BY sort_order DESC',
+				));
+	$_fl_texts = DB::LimitQuery('friendlink', array(
+				'condition' => array( 
+					'LENGTH(logo)=0',
+					'display' => 'Y',
+			),
+			'order' => 'ORDER BY sort_order DESC',
+			));
+}-->
+<!--{if ($_fl_logos||$_fl_texts)}-->
+<div class="bdw" style="margin:-50px auto 20px;; width:944px;">
+<div class="box mainwide cf">
+	<div class="box-top"></div>
+	<div class="box-content cf" style="padding:15px;">
+	<!--{loop $_fl_logos $one}-->
+		<a href="{$one['url']}" title="{$one['title']}" target="_blank"><img src="{$one['logo']}" alt="{$one['title']}" /></a>
+	<!--{/loop}-->
+		<div class="cl"></div>
+	<!--{loop $_fl_texts $one}-->
+		<a href="{$one['url']}" title="{$one['title']}" target="_blank">{$one['title']}</a>
+	<!--{/loop}-->
+		<a href="/help/link.php">&gt;&gt;更多</a>
+	</div>
+	<div class="box-bottom"></div>
+</div>
+</div>
+<!--{/if}-->

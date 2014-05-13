@@ -1,0 +1,67 @@
+<!--${
+$today = Utility::GetDate();
+$daytime = strtotime(date('Y-m-d'));
+if ( abs($INI['system']['givemoney']) || abs($INI['system']['givecredit'])){
+$condition = array( 
+			'user_id' => $login_user['id'],
+            'create_time' => $daytime,
+			);
+$userdaysign = DB::LimitQuery('daysign', array(
+				'condition' => $condition,
+				));
+}
+$count = Table::Count('daysign', array(
+		'user_id' => $login_user['id'],)
+		);
+$income_money = Table::Count('daysign', array(
+	    'user_id' => $login_user['id'],
+        ), 'money');
+$income_credit = Table::Count('daysign', array(
+	    'user_id' => $login_user['id'],
+        ), 'credit');
+}-->
+<!--{if option_yes('daysign')}-->
+<div class="sbox">
+	<div class="sbox-top"></div>
+	<div class="sbox-content">
+		<div class="daysign">
+			<h2>每日签到</h2>
+			<!--{if $userdaysign}-->
+			<div class="havesign" id="nowsign">
+			    <div class="weekday">{$today['week']}</div> 
+			</div>
+			<div class="signtip" id="showSignTips">今日已签到</div>
+			<!--{else}-->
+            <div class="signweek" id="nowsign">
+			    <a href="/ajax/daysign.php?action=daily&id={$login_user['id']}" class="ajaxlink"><div class="weekday">{$today['week']}</div> </a>
+			</div>
+			<div class="signtip" id="showSignTips">今日未签到</div>
+			<!--{/if}-->
+			<div class="clear"> </div>
+            <!-- {if !$login_user} -->
+			<div class="signinfo">
+			您还没有<a href="/account/login.php">登陆</a>,要登陆才能签到。
+			</div>
+			<!--{/if}-->
+			<!--{if $userdaysign}-->
+            <div class="signinfo">
+			累计签到{$count}次.获得<!--{if option_yes('givemoney')}-->{$income_money}元<!--{/if}--><!--{if option_yes('givecredit')}-->&nbsp;{$income_credit}积分<!--{/if}-->.
+			</div>
+			<!--{/if}-->
+			<!--{if option_yes('givemoney')}-->
+			<div class="signinfo">
+			每日签到可赚取{$INI['system']['givemoney']}元
+			</div>
+			<!--{/if}-->
+			<!--{if option_yes('givecredit')}-->
+			<div class="signinfo">
+			每日签到可赚取{$INI['system']['givecredit']}积分
+			</div>
+            <!--{/if}-->
+			
+		</div>
+	</div>
+	<div class="sbox-bottom"></div>
+</div>
+
+<!--{/if}-->

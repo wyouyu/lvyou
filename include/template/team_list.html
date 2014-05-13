@@ -1,0 +1,528 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <link rel="stylesheet" href="/static/css/list.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/1200head.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+</head>
+<!--{include header_top}-->
+    <!--nav end-->
+    <div id="content" class="content">
+            
+        <!-- 景点小导航栏 -->
+        <div class="s_crumbs mt20">
+            <span>您所在的位置：</span> <a target="_self" href="/">蜗牛首页</a>&nbsp;&gt;&nbsp;<a target="_self" href="/scenery.php">景点门票</a><span id="daohang">&nbsp;&gt;&nbsp;搜索</span>
+        </div>
+        <!-- 景点小导航栏 end -->
+        <!-- 景点筛选 box -->
+        <div class="search_screen_box" id="searchScreenBox">
+            <div class="search_screen_pos">
+                
+                <div class="search_screen_dl">
+                <!--{loop $result $tindex $v}-->
+                    <dl  class="searchBoxMore_dl">
+                        <dt>{$v['catname']}</dt>
+                        <dd>
+                        
+                            
+                            <div class="right">  
+                                <!--{loop $v['child'] $index $vv}-->
+                                <!--{if $vv['selected'] }-->
+                                <a class="current" href="/searchList.php?filter_attr={$vv['url']}"  title="{$vv['cname']}">{$vv['cname']}</a>
+                                <!--{else}-->
+                                <a  href="/searchList.php?filter_attr={$vv['url']}"  title="{$vv['cname']}">{$vv['cname']}</a>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                                
+                                <!--${$pp = explode('-',$vv['url']);}-->
+                                <!--${$pp[$tindex]=0;}-->
+                                <!--${$tt = implode('-',$pp);}-->
+                                
+                                <a style="color:#999999" href="/searchList.php?filter_attr={$tt}">不限</a>
+                            </div>
+                        </dd>
+                        <dd style="display: none;" class="more"><a class="" href="javascript:;">更多</a></dd>
+                    </dl>
+                 <!--{/loop}-->   
+                </div>
+            </div>
+        </div>
+        <!-- 景点筛选 box end-->
+        
+        <div id="leftPage">
+            <div class="scenery_content">
+                <div id="mainhead" class="scenery_head">
+                    <h3>
+                        景点门票</h3>
+                   
+                </div>
+              
+                <!--项目列表-->
+                <div class="scenery_main" id="sceneryListInfo">
+                <!--{if $allinfo}-->
+                    <!--{loop $allinfo $index $partner}-->
+                    <div class="scenery_list mt15"> 
+                        <div class="s_info">
+                            <div class="img_con">
+                                <a class="a_img" target="_blank" title="{$partner['title']}" href="sceneryticket.php?id={$partner['id']}">
+                                    <img class="LAZYLOADIMG" alt="{$partner['title']}" src="${team_image($partner['image'])}">
+                                </a>
+                            </div>
+                            <div class="info_con">
+                                <dl class="info_top">
+                                    <dt>
+                                        <a class="fir_name" href="sceneryticket.php?id={$partner['id']}" title="{$partner['title']}" target="_blank">{$partner['title']}</a>
+                                        <b class="sec_name">
+                                        [<a href="/searchList.php?filter_attr={$citys[$partner['city_id']]['id']}-0-0-0" title="{$partner['title']}" target="_blank">{$citys[$partner['city_id']]['name']}</a>]</b>
+                                        <span class="s_level"><!--{if $partner['jibie']=='5A'}-->AAAAA<!--{elseif $partner['jibie']=='4A'}-->AAAA<!--{else}-->AAA<!--{/if}--></span>
+                                    </dt>
+                                    <dd class="scenery_area">
+                                        <span>{$partner['address']} </span>
+                                    </dd>
+                                    <!--{if $partner['commentnum']>0}-->
+                                    <dd class="scenery_remark">
+                                        <span class="remark_top"><span style="color:#0073B6">{$partner['commentnum']}人点评</span>
+                                        
+                                        ，最新点评来自<span><!--{if $partner['comment']['userid']==99999}-->匿名用户<!--{else}-->${getUserById($partner['comment']['userid'])}<!--{/if}-->：</span></span>
+                                        <div class="remark_info"> 
+                                            <span class="quotes_l"></span>
+                                            <p>{$partner['comment']['content']}</p>
+                                            <span class="quotes_r"></span>
+                                        </div>
+                                        
+                                    </dd>
+                                    <!--{else}-->
+                                    <dd class="scenery_remark">
+                                    <div class="comment_des_link">
+                                        <span class="comment_des">该景区我去过,</span>
+                                            <a target="_blank" title="立刻点评" class="comment_link" href="/order/index.php">我要点评</a>
+                                    </div>
+                                    </dd>
+                                    <!--{/if}-->
+                                    
+                                    <dd class="scenery_details">
+                                        <div class="s_price">
+                                            <span class="m_sign">¥</span><b>${floor($partner['minprice'])}</b>起
+                                        </div>
+                                        <a class="details_btn" href="sceneryticket.php?id={$partner['id']}">查看详情</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        
+                        <div class="s_ticket">
+                            <div class="scenery-piao"> 
+                                <div class="scenery-piao-content">
+                                
+                                 
+                                <!--{if $partner['chengren']}-->
+                                    <div class="api-piao"> 
+                                        <div class="piao-name">
+                                           成人票
+                                        </div> 
+                                        <div class="piao-info"> 
+                                            <!--{loop $partner['chengren'] $piao1}-->
+                                            <div class="piao-list" id="tp_0">
+                                                <dl class="piao-dl">
+                                                    <!--门票标题-->
+                                                    <dt class="W01">
+                                                        <div class="p-type">
+                                                            <span style="color:#0073B6">{$piao1['t_name']}
+                                                            </span>
+                                                        </div> 
+                                                    </dt>
+                                                    <!--门票原始价-->
+                                                    <dd class="W02"> 
+                                                        <span class="gray">{$piao1['t_origin']}</span>
+                                                    </dd>
+                                                    <!--门票蜗牛价-->
+                                                    <dd class="W03">
+                                                        <span class="b-orange">
+                                                            <b>¥</b>
+                                                           {$piao1['t_price']}
+                                                        </span>
+                                                    </dd>
+                                                    <!--节省-->
+                                                    <dd class="W04"> 
+                                                        <span class="ico save">¥{$piao1['t_origin']-$piao1['t_price']}</span>
+                                                    </dd>
+                                                    <!--付款方式-->
+                                                    <dd class="W05">
+                                                        <span class="a-tip">
+                                                            <!--{if $piao1['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </dd>  
+                                                    <dd class="W06"> 
+                                                    <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao1['id']}"  target="_blank">预订</a> </dd> 
+                                                </dl> 
+                                            </div> 
+                                            <!--{/loop}-->
+                                        </div> 
+                                    </div>
+                                    <!--{/if}-->
+                                    
+                                    
+                                    <!--{if $partner['taopiao']}-->
+                                    <div class="api-piao"> 
+                                        <div class="piao-name">
+                                           套票
+                                        </div> 
+                                        <div class="piao-info"> 
+                                            <!--{loop $partner['taopiao'] $piao2}-->
+                                            <div class="piao-list" id="tp_0">
+                                                <dl class="piao-dl">
+                                                    <!--门票标题-->
+                                                    <dt class="W01">
+                                                        <div class="p-type">
+                                                            <span style="color:#0073B6">{$piao1['t_name']}
+                                                            </span>
+                                                        </div> 
+                                                    </dt>
+                                                    <!--门票原始价-->
+                                                    <dd class="W02"> 
+                                                        <span class="gray">{$piao2['t_origin']}</span>
+                                                    </dd>
+                                                    <!--门票蜗牛价-->
+                                                    <dd class="W03">
+                                                        <span class="b-orange">
+                                                            <b>¥</b>
+                                                           {$piao2['t_price']}
+                                                        </span>
+                                                    </dd>
+                                                    <!--节省-->
+                                                    <dd class="W04"> 
+                                                        <span class="ico save">¥{$piao2['t_origin']-$piao2['t_price']}</span>
+                                                    </dd>
+                                                    <!--付款方式-->
+                                                    <dd class="W05">
+                                                        <span class="a-tip">
+                                                            <!--{if $piao2['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </dd>  
+                                                    <dd class="W06"> 
+                                                    <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao2['id']}"  target="_blank">预订</a> </dd> 
+                                                </dl> 
+                                            </div> 
+                                            <!--{/loop}-->
+                                        </div> 
+                                    </div>
+                                    <!--{/if}-->
+                                    
+                                    <!--{if $partner['ertong']}-->
+                                    <div class="api-piao"> 
+                                        <div class="piao-name">
+                                           儿童票
+                                        </div> 
+                                        <div class="piao-info"> 
+                                            <!--{loop $partner['ertong'] $piao3}-->
+                                            <div class="piao-list" id="tp_0">
+                                                <dl class="piao-dl">
+                                                    <!--门票标题-->
+                                                    <dt class="W01">
+                                                        <div class="p-type">
+                                                            <span style="color:#0073B6">{$piao1['t_name']}
+                                                            </span>
+                                                        </div> 
+                                                    </dt>
+                                                    <!--门票原始价-->
+                                                    <dd class="W02"> 
+                                                        <span class="gray">{$piao3['t_origin']}</span>
+                                                    </dd>
+                                                    <!--门票蜗牛价-->
+                                                    <dd class="W03">
+                                                        <span class="b-orange">
+                                                            <b>¥</b>
+                                                           {$piao3['t_price']}
+                                                        </span>
+                                                    </dd>
+                                                    <!--节省-->
+                                                    <dd class="W04"> 
+                                                        <span class="ico save">¥{$piao3['t_origin']-$piao3['t_price']}</span>
+                                                    </dd>
+                                                    <!--付款方式-->
+                                                    <dd class="W05">
+                                                        <span class="a-tip">
+                                                            <!--{if $piao3['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </dd>  
+                                                    <dd class="W06"> 
+                                                    <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao3['id']}"  target="_blank">预订</a> </dd> 
+                                                </dl> 
+                                            </div> 
+                                            <!--{/loop}-->
+                                        </div> 
+                                    </div>
+                                    <!--{/if}-->
+                                    
+                                    <!--{if $partner['xuesheng']}-->
+                                    <div class="api-piao"> 
+                                        <div class="piao-name">
+                                           学生票
+                                        </div> 
+                                        <div class="piao-info"> 
+                                            <!--{loop $partner['xuesheng'] $piao4}-->
+                                            <div class="piao-list" id="tp_0">
+                                                <dl class="piao-dl">
+                                                    <!--门票标题-->
+                                                    <dt class="W01">
+                                                        <div class="p-type">
+                                                            <span style="color:#0073B6">{$piao1['t_name']}
+                                                            </span>
+                                                        </div> 
+                                                    </dt>
+                                                    <!--门票原始价-->
+                                                    <dd class="W02"> 
+                                                        <span class="gray">{$piao4['t_origin']}</span>
+                                                    </dd>
+                                                    <!--门票蜗牛价-->
+                                                    <dd class="W03">
+                                                        <span class="b-orange">
+                                                            <b>¥</b>
+                                                           {$piao4['t_price']}
+                                                        </span>
+                                                    </dd>
+                                                    <!--节省-->
+                                                    <dd class="W04"> 
+                                                        <span class="ico save">¥{$piao4['t_origin']-$piao4['t_price']}</span>
+                                                    </dd>
+                                                    <!--付款方式-->
+                                                    <dd class="W05">
+                                                        <span class="a-tip">
+                                                            <!--{if $piao4['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </dd>  
+                                                    <dd class="W06"> 
+                                                    <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao4['id']}"  target="_blank">预订</a> </dd> 
+                                                </dl> 
+                                            </div> 
+                                            <!--{/loop}-->
+                                        </div> 
+                                    </div>
+                                    <!--{/if}-->
+                                    
+                                    <!--{if $partner['tejia']}-->
+                                    <div class="api-piao"> 
+                                        <div class="piao-name">
+                                           特价票
+                                        </div> 
+                                        <div class="piao-info"> 
+                                            <!--{loop $partner['tejia'] $piao5}-->
+                                            <div class="piao-list" id="tp_0">
+                                                <dl class="piao-dl">
+                                                    <!--门票标题-->
+                                                    <dt class="W01">
+                                                        <div class="p-type">
+                                                            <span style="color:#0073B6">{$piao1['t_name']}
+                                                            </span>
+                                                        </div> 
+                                                    </dt>
+                                                    <!--门票原始价-->
+                                                    <dd class="W02"> 
+                                                        <span class="gray">{$piao5['t_origin']}</span>
+                                                    </dd>
+                                                    <!--门票蜗牛价-->
+                                                    <dd class="W03">
+                                                        <span class="b-orange">
+                                                            <b>¥</b>
+                                                           {$piao5['t_price']}
+                                                        </span>
+                                                    </dd>
+                                                    <!--节省-->
+                                                    <dd class="W04"> 
+                                                        <span class="ico save">¥{$piao5['t_origin']-$piao5['t_price']}</span>
+                                                    </dd>
+                                                    <!--付款方式-->
+                                                    <dd class="W05">
+                                                        <span class="a-tip">
+                                                            <!--{if $piao5['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                        </span>
+                                                    </dd>  
+                                                    <dd class="W06"> 
+                                                    <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao5['id']}"  target="_blank">预订</a> </dd> 
+                                                </dl> 
+                                            </div> 
+                                            <!--{/loop}-->
+                                        </div> 
+                                    </div>
+                                    <!--{/if}-->
+                                    
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!--{/loop}-->
+            <!--{else}-->
+            <div class="nht_box"> 
+                <span class="nht_l"></span>
+                <div class="nht_r">
+                    <p class="p01">很抱歉，没有找到相关的景点：</p>
+                    <ul>
+                        <li>建议您：</li>
+                        <li>1.变换关键词或筛选条件重新搜索</li>
+                        <li>2.搜索景点所在城市进行查找</li>
+                    </ul>
+                </div> 
+            </div>
+            <!--{/if}-->
+        </div>
+        </div>
+        {$pagestring}
+        </div>
+        
+        
+        <div id="rightPage">
+            
+            <div class="udiy" id="cns_seach_tcadv"><div id="portal-frame-158134494926" class="udiyframe frame-1"><div id="portal-frame-158134494926-left" class="udiycolumn frame-1-c"><div id="portal-block-1123125173253" class="udiyblock" type="CustomHtml">  <div class="reasonBox">
+        <div class="reasonTit">
+            <h3>选择蜗牛旅途的四大理由</h3>
+        </div>
+        <div class="reasonCon">
+            <ul>
+                <li>
+                    <span class="reasonLine"><font class="reasonIco01"></font><label>海量景点</label></span>
+                    <span class="reasonTip">2000余种景点门票供您挑选</span>
+                </li>
+                <li>
+                    <span class="reasonLine"><font class="reasonIco02"></font><label>冰点价格</label></span>
+                    <span class="reasonTip">天天有特价，点评奖金更给力</span>
+                </li>
+                <li>
+                    <span class="reasonLine"><font class="reasonIco03"></font><label>火爆销量</label></span>
+                    <span class="reasonTip">超过100万游客选择蜗牛旅途景点门票</span>
+                </li>
+                <li>
+                    <span class="reasonLine"><font class="reasonIco04"></font><label>品牌保证</label></span>
+                    <span class="reasonTip">荣获中国驰名商标</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+   </div></div><div class="udiyclr"></div></div></div>
+            
+            
+            <div class="udiy" id="cns_seach_radv1"></div>
+            
+            
+             <div class="blue_230 mt20">
+                <div class="blue_head hotSell">
+                    <h3>热销排行</h3>
+                </div>
+                <div class="ht_blue_main">
+                    <ul id="hotSell" class="gul_info">
+                        <!--${$i=1}-->
+                        <!--{loop $result2 $index $r}-->
+                           <li>
+                            <div class="haveNoImg">
+                                <span class="titleLink"><span class="num0{$i}"></span>
+                                    <a href="sceneryticket.php?id={$r['partner_id']}" title="{$r['title']}" target="_blank">{$r['title']}</a>
+                                </span>
+                                <dl class="saveMne">
+                                    <dt>
+                                        <span class="tcTxt">蜗牛价：</span> 
+                                        <span class="Mne">¥</span>${floor($r['ticket']['t_price'])}
+                                    </dt>
+                                    <dd><span>折扣：${ticket_discount($r['ticket'])}折</span></dd>
+                                </dl>
+                            </div> 
+                        </li>
+                    <!--${$i++}-->
+                    <!--{/loop}-->
+                        </ul></div></div>
+            
+            
+            <div class="udiy" id="cns_seach_radv2"></div>
+            
+            
+            <div class="udiy" id="cns_seach_radv3"></div>
+            
+        </div>
+        
+        <div class="clear_float">
+        </div>
+        
+       </div>
+<!--footer start-->
+    <div id="footer">
+        <div class="layout fn-clear">
+            <dl class="fn-left">
+                <dt>关于蜗牛</dt>
+                <dd><a href="#" target="_blank">蜗牛简介</a></dd>
+                <dd><a href="#" target="_blank">用户协议</a></dd>
+                <dd><a href="#" target="_blank">常见问题</a></dd>
+                <dd><a href="#" target="_blank">网站地图</a></dd>
+            </dl>
+            <dl class="fn-left">
+                <dt>合作加盟</dt>
+                <dd><a href="#" target="_blank">景点加盟</a></dd>
+                <dd><a href="#" target="_blank">酒店加盟</a></dd>
+                <dd><a href="#" target="_blank">网站联盟</a></dd>
+                <dd><a href="#" target="_blank">友情链接</a></dd>
+            </dl>
+            <dl class="fn-left">
+                <dt>新手指南</dt>
+                <dd><a href="#" target="_blank">新手注册</a></dd>
+                <dd><a href="#" target="_blank">用户登录</a></dd>
+                <dd><a href="#" target="_blank">支付/退款方式</a></dd>
+            </dl>
+            <dl class="fn-left">
+                <dt>联系我们</dt>
+                <dd><a href="#" target="_blank">联系我们</a></dd>
+                <dd><a href="#" target="_blank">意见反馈</a></dd>
+            </dl>
+        </div>
+        <p class="layout">Copyright © 2013  版权所有 蜗牛旅途股份有限公司  鲁ICP证B2-20100204 
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000072709'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000072709%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        
+       
+        <!--百度商桥-->
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa5f5c3187bed5c554c7835ea49e9fff0' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+        
+         </p>
+    </div>
+    <!--footer end-->
+</body>
+</html>

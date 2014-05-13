@@ -1,0 +1,21 @@
+<form id="order-pay-form" method="post" action="http://pre.netpay.sdo.com/paygate/ibankpay.aspx" target="_blank" sid="{$order_id}">
+    <input name="Version" type="hidden" id="Version" value="{$version}"/>
+    <input name="OrderNo" type="hidden" id="OrderNo" value="{$orderid}"/>
+	<input name="Amount" type="hidden" id="Amount" value="{$amount}"/><input name="PostBackUrl" type="hidden" id="PostBackUrl" value="{$return_url}"/>
+	<input name="NotifyUrl" type="hidden" id="NotifyUrl" value="{$notifyurl}"/>
+	<input name="BackUrl" type="hidden" id="BackUrl" value=""/>
+	<input name="MerchantNo" type="hidden" id="MerchantNo" value="{$merid}"/>
+	<input name="MerchantUserId" type="hidden" id="MerchantUserId" value=""/>
+	<input name="PayChannel" type="hidden" id="PayChannel" value="{$paychannel}"/>
+	<input name="ProductNo" type="hidden" id="ProductNo" value=""/>
+	<input name="ProductDesc" type="hidden" id="ProductDesc" value="{$prodesc}"/>
+	<input name="OrderTime" type="hidden" id="OrderTime" value="{$ordertime}"/>
+	<input name="CurrencyType" type="hidden" id="CurrencyType" value="{$curtype}"/>
+	<input name="NotifyUrlType" type="hidden" id="NotifyUrlType" value="{$notifytype}"/>
+	<input name="SignType" type="hidden" id="paymode" value="{$signtype}"/>
+	<input name="Remark1" type="hidden" id="Remark1" value=""/>
+	<input name="Remark2" type="hidden" id="Remark2" value=""/>
+	<input name="BankCode" type="hidden" id="BankCode" value="ICBC"/>
+	<input name="MAC" type="hidden" id="MAC" value="{$mac}"/>
+	<img src="/static/css/i/sdopay.png" /><br/><input type="submit" class="formbutton gotopay" value="前往盛付通支付" style="vertical-align:middle;"/>
+</form>

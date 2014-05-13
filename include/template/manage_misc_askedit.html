@@ -1,0 +1,42 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="misc">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('misc')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>答复</h2><span class="headtip">{$user['username']}关于（<a href="/team.php?id={$team['id']}" target="_blank">{$team['title']}</a>）的咨询</span></div>
+                <div class="sect">
+                    <form id="login-user-form" method="post" action="/manage/misc/askedit.php?id={$ask['id']}">
+						<input type="hidden" name="id" value="{$ask['id']}" />
+                        <div class="field">
+                            <label>咨询问题</label>
+                            <textarea cols="45" rows="5" name="content" id="team-ask-content" class="f-textarea">${htmlspecialchars($ask['content'])}</textarea>
+                        </div>
+                        <div class="field">
+                            <label>答复内容</label>
+                            <textarea cols="45" rows="5" name="comment" id="team-ask-comment" class="f-textarea">${htmlspecialchars($ask['comment'])}</textarea>
+                        </div>
+                        <div class="act">
+                            <input type="submit" value="编辑" name="commit" id="misc-submit" class="formbutton"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

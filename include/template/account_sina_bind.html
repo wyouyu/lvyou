@@ -1,0 +1,99 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="kaixin">
+
+    <div id="content" class="bind">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><strong>{$name}</strong>，您好！您已经用<!--{if $type=='sina'}-->新浪微博<!--{elseif $type=='qq'}-->腾讯微博<!--{else}-->QQ号<!--{/if}-->成功登录{$INI['system']['abbreviation']}。</div>
+                <div class="sect">
+                    <form method="post" id="kaixin-bind-form">
+					<input type="hidden" name="sns_action" value="bind" />
+                    <ul class="list" id="kaixin-bind-list">
+                        <li id="kaixin-bind-signuped"  class="current">
+                            <div class="text">
+                                <h3  onClick="loginFun()">已经注册过{$INI['system']['abbreviation']}<span class="tip">（绑定<!--{if $type=='sina'}-->新浪微博<!--{elseif $type=='qq'}-->腾讯微博<!--{else}-->QQ号<!--{/if}-->和{$INI['system']['abbreviation']}账户）</span></h3>
+                                <div sheight="145" class="textbody" id="bind">
+
+                                    <div class="textbody-c">
+                                        <table class="enter-account">
+                                            <tr>
+                                                <td style="width:50px;">Email</td>
+                                                <td><input type="text" name="email" class="f-text" value=""/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>密码</td>
+
+                                                <td><input type="password" name="password" class="f-text" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="commit"><input type="submit" value="绑定" class="formbutton" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                        </form>
+                            </div>
+                        </li>
+                        <li id="kaixin-bind-unsignuped">
+                            <div class="text">
+                                <h3  onClick="regFun()" >还没有注册过{$INI['system']['abbreviation']}<span class="tip">（创建一个{$INI['system']['abbreviation']}账户）</span></h3>
+                                <div sheight="72" id="create" class="textbody"  style=" display:none;">
+                          <form method="post" id="kaixin-bind-form"  class="validator">
+						        <input type="hidden" name="sns_action" value="reg" />
+									<div class="textbody-c">
+                                        <table class="enter-account">
+                                            <tr>
+                                                <td style="width:50px;">手机号</td>
+                                                <td><input type="text" name="mobile" class="f-text" value=""  require="${option_yes('needmobile')?'true':'require'}" datatype="mobile" /></td>
+                                            </tr>
+											<tr>
+                                                <td style="width:50px;">Email</td>
+                                                <td><input type="text" name="email" class="f-text" value=""   require="true" min="2"  datatype="email|ajax" msg="格式不正确" url="${WEB_ROOT}/ajax/validator.php" vname="email"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>密码</td>
+
+                                                <td><input type="password" name="password" class="f-text"  datatype="require" require="true"  /></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="commit"><input type="submit" value="创建" class="formbutton" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                          </form>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+
+<!-- bd end -->
+</div> </div> <!-- bdw end -->
+<script language="javascript">
+function regFun(){
+			$("#create").slideToggle("slow"); 
+			$("#bind").slideToggle("slow"); 
+			}
+function loginFun(){
+			$("#create").slideToggle("slow"); 
+			$("#bind").slideToggle("slow"); 
+			}
+</script>
+<!--{include footer}-->
+
+

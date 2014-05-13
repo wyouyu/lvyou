@@ -1,0 +1,58 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('logger')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                     <h2>管理员操作日志</h2>
+						<ul class="filter">
+							<li><form action="/manage/misc/logger.php" method="get">项目：
+								<input type="text" class="h-input" name="search" value="${htmlspecialchars($title)}" >&nbsp;<select name="type">${Utility::Option($option_logger, $type, '分类')}</select>&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/>
+								</form></li>
+							<li><form action="/manage/misc/logger.php" method="post">
+								<input type="hidden" name="clear_data" value="1" />
+								<input type="submit" value="清空操作日志" class="formbutton"  style="padding:1px 6px;" onclick="return confirm('确定清空数据？')";/>
+								</form></li>
+						</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr>
+						<th width="60">记录id</th>
+						<th width="60">用户id</th>
+						<th width="100">邮箱</th>
+						<th width="50">类型</th>
+						<th width="300">操作</th>
+						<th width="260">相关数据</th>
+						<th width="80">时间</th>
+					</tr>
+					<!--{loop $logs $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$one['user_id']}</td>
+						<td>{$one['user_email']}</td>
+						<td>{$one['type']}</td>
+						<td>${htmlspecialchars($one['operation'])}</td>
+						<td><a href="/ajax/logger.php?action=relate_data&id={$one['id']}" class="ajaxlink">查看详细数据</a></td>
+						<td>{$one['create_on']}</td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="6">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

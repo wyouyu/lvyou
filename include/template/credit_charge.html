@@ -1,0 +1,104 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="account-charge">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>充值</h2></div>
+                <div class="sect">
+                    <div class="charge">
+                        <form id="account-charge-form" action="/order/charge.php" method="post" class="validator">
+                            <p>请输入充值金额：</p>
+                            <p class="number">
+                                <input type="text" maxlength="6" class="f-text" name="money" require="true" datatype="money" value="{$money}" /> 元 （不支持小数，最低 1 元）
+                            </p>
+                            <p id="account-charge-tip" class="tip" style="visibility:hidden;"></p>
+                            <div class="choose">
+                                <p class="choose-pay-type">请选择支付方式：</p>
+                                <ul class="typelist">
+								<!--{if $_SESSION['ali_token']}-->
+								        <li><input id="check-alipay" type="radio" name="paytype" value="alipay" {$ordercheck['alipay']} /><label for="check-alipay" class="alipay">支付宝交易，推荐淘宝用户使用</label></li>
+                                 <!--{else}-->
+									<!--{if $INI['paypal']['mid']}-->
+										<li><input id="check-paypal" type="radio" name="paytype" value="paypal" {$ordercheck['paypal']} /><label for="check-paypal" class="paypal">PayPal, Recommended</label></li>
+									<!--{/if}-->
+									<!--{if $INI['alipay']['mid']}-->
+										<li><input id="check-alipay" type="radio" name="paytype" value="alipay" {$ordercheck['alipay']} /><label for="check-alipay" class="alipay">支付宝交易，推荐淘宝用户使用</label></li>
+									<!--{/if}-->
+									<!--{if $INI['tenpay']['mid']}-->
+										<li><input id="check-tenpay" type="radio" name="paytype" value="tenpay" {$ordercheck['tenpay']} /><label for="check-tenpay" class="tenpay">财付通交易，推荐QQ用户使用</label></li>
+									<!--{/if}-->
+                                                                                                           <!--{if $INI['sdopay']['mid']}-->
+										<li><input id="check-sdopay" type="radio" name="paytype" value="sdopay" {$ordercheck['sdopay']} /><label for="check-sdopay" class="sdopay">盛付通交易，推荐盛大一卡通用户使用</label></li>
+									<!--{/if}-->
+									<!--{if $INI['yeepay']['mid']}-->
+										<li><input id="check-bill" type="radio" name="paytype" value="yeepay" {$ordercheck['bill']} /><label for="check-yeepay" class="yeepay">易宝支付</label></li>
+									<!--{/if}-->
+									<!--{if $INI['bill']['mid']}-->
+										<li><input id="check-bill" type="radio" name="paytype" value="bill" {$ordercheck['bill']} /><label for="check-bill" class="bill">快钱交易</label></li>
+									<!--{/if}-->
+									<!--{if $INI['chinabank']['mid']}-->
+										<li><input id="check-chinabank" type="radio" name="paytype" value="chinabank" {$ordercheck['chinabank']} /><label for="check-chinabank" class="chinabank">支持招商、工行、建行、中行等主流银行的网银支付</label></li>
+									<!--{/if}-->
+                                                                                                           <!--{if $INI['cmpay']['mid']}-->
+										<li><input id="check-cmpay" type="radio" name="paytype" value="cmpay" {$ordercheck['cmpay']} /><label for="check-cmpay" class="cmpay">手机号就是您的支付账户，中国移动为您提供随时随地随身的支付服务！</label></li>
+									<!--{/if}-->
+                                    <!--{if $INI['gopay']['mid']}-->
+										<li><input id="check-gopay" type="radio" name="paytype" value="gopay" {$ordercheck['gopay']} /><label for="check-gopay" class="gopay">国家级电子支付平台，超低费率，安全保证。</label></li>
+									<!--{/if}-->
+                                </ul>
+
+		<!--{if $INI['tenpay']['mid']&&'Y'==$INI['tenpay']['direct']}-->
+					<div id="paybank">
+						<!--{loop $paybank $one}-->
+						<p><input id="check-{$one}" type="radio" name="paytype" value="{$one}" /><label for="check-{$one}" class="{$one}"></label></p>
+						<!--{/loop}-->
+					</div>  
+		<!--{/if}-->
+
+		<!--{if $INI['sdopay']['mid']&&'Y'==$INI['sdopay']['direct']&&'N'==$INI['tenpay']['direct']}-->
+					<div id="paybank">
+						<!--{loop $sdopaybank $one $sid}-->
+						<p><input id="check-{$one}" type="radio" name="paytype" value="{$sid}" /><label for="check-{$one}" class="{$one}"></label></p>
+						<!--{/loop}-->
+					</div>  
+		<!--{/if}-->
+
+		<!--{if $INI['yeepay']['mid']&&'Y'==$INI['yeepay']['direct']&&'N'==$INI['tenpay']['direct']&&'N'==$INI['sdopay']['direct']}-->
+					<div id="paybank">
+						<!--{loop $yeepaybank $one $pid}-->
+						<p><input id="check-{$one}" type="radio" name="paytype" value="{$pid}" /><label for="check-{$one}" class="{$one}"></label></p>
+						<!--{/loop}-->
+					</div>  
+		<!--{/if}-->
+        <!--{if $INI['gopay']['mid']&&'Y'==$INI['gopay']['direct']&&'N'==$INI['tenpay']['direct']&&'N'==$INI['sdopay']['direct']&&'N'==$INI['yeepay']['direct']}-->
+					<div id="paybank">
+						<!--{loop $gopaybank $one $gid}-->
+						<p><input id="check-{$one}" type="radio" name="paytype" value="{$gid}" /><label for="check-{$one}" class="{$one}"></label></p>
+						<!--{/loop}-->
+					</div>  
+		<!--{/if}-->
+		<!--{/if}-->
+
+		
+
+                            </div>
+                            <div class="clear"></div>
+                            <p class="commit">
+                                <input type="submit" value="确定，去付款" class="formbutton" />
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

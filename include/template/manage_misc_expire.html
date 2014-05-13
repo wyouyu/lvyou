@@ -1,0 +1,42 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('expire')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                     <h2>项目过期短信提醒</h2>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr>
+						<th>项目名称</th>
+						<th width="150">到期时间</th>
+						<th width="150">未消费优惠券数量</th>
+						<th width="170">短信发送</th>
+					</tr>
+					<!--{loop $teams $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td><a href="/team.php?id={$one['id']}" target="_blank">${mb_strimwidth($one['title'],0, 36,'...')}</a></td>
+						<td>${date('Y年m月d日',$one['expire_time'])}到期</td>
+						<td>${notconsume($one['id'])}</td>
+						<td><!--{if $one['send_time']}-->已发送于${date('Y年m月d日',$one['send_time'])}<!--{else}--><a href="/ajax/expire.php?action=send&id={$one['id']}" class="ajaxlink">发送</a><!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

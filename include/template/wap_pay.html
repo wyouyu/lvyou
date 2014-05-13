@@ -1,0 +1,17 @@
+<!--{include wap_header}-->
+
+<h2>应付总额：<strong>${moneyit($order['origin'])}</strong> 元</h2>
+
+<!--{if $login_user['money'] > $order['origin']}-->
+<form id="order-pay-credit-form" method="post">
+	<input type="hidden" name="order_id" value="{$order_id}" />
+	<input type="hidden" name="service" value="credit" />
+	<input type="submit" class="formbutton gotopay" value="使用账户余额支付" />
+</form>
+<!--{else}-->
+
+<p>你的余额不足以支付，点<a href="index.php">这里</a>返回</p>
+
+<!--{/if}-->
+
+<!--{include wap_footer}-->

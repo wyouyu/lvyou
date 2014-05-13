@@ -1,0 +1,42 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="credit">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account('/credit/score.php')}</ul>
+	</div>
+    <div id="content">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>兑换记录</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${current_credit_index('records')}
+					</ul>
+                </div>
+                <div class="sect">
+					<h3 class="credit-title">当前的账户积分是：<strong>${moneyit($login_user['score'])}</strong></h3>
+					<table id="order-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="150">兑换时间</th><th width="auto">详情</th><th width="120">状态</th></tr>
+						<!--{loop $credits $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}><td style="text-align:left;">${date('Y-m-d H:i', $one['create_time'])}</td><td>${ZCredit::Explain($one)}</td><td><!--{if ($one['state']=='unpay')}-->未发货<!--{else}-->已发货<!--{/if}--></td></tr>
+						<!--{/loop}-->
+						<tr><td colspan="4">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_score}-->
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

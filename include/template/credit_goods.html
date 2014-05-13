@@ -1,0 +1,49 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="credit">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account('/credit/score.php')}</ul>
+	</div>
+    <div id="content">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>兑换商品</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${current_credit_index('goods')}
+					</ul>
+                </div>
+                <div class="sect">
+					<h3 class="credit-title">当前的账户积分是：<strong>${moneyit($login_user['score'])}</strong></h3>
+					<ul style="padding:10px;">
+					<!--{loop $goods $index $one}-->
+						<li style="width:32%; float:left; text-align:center;">
+							<div><img alt="{$one['title']}" src="${team_image($one['image'], true)}" width="160" height="121"></div>
+							<div>
+								<p class="total">已兑：<strong class="count">{$one['consume']}</strong>&nbsp;存量：<strong class="count">{$one['number']-$one['consume']}</strong>&nbsp;限兑：<strong class="count">{$one['per_number']}</strong></p>
+								<p class="total">兑换需积分：<strong class="count">{$one['score']}</strong></p>
+								<p class="price"><a href="/credit/ajax.php?id={$one['id']}&action=exchange" class="ajaxlink" ask="确定使用{$one['score']}点积分兑换{$one['title']}吗？">我现在就要兑换</a></p>
+							</div>
+						</li>
+					<!--{/loop}-->
+					</ul>
+					<div class="clear"></div>
+					<div>{$pagestring}</div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_score}-->
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

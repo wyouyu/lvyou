@@ -1,0 +1,791 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/soso_bg.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <link rel="stylesheet" href="/static/css/subpage.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/960head.css" type="text/css" media="screen" charset="utf-8" />
+    
+    
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    
+    ${Session::Get('script',true);}
+</head>
+<style>
+.comment_des_link {
+height: 52px;
+line-height: 52px;
+background: #FFF4D9;
+padding: 5px 10px;
+}
+.comment_des {
+color: #999;
+height: 25px;
+}
+.comment_link {
+    height: 23px;
+    text-align: center;
+    width: 85px;
+    display: inline-block;
+    background: url(http://img1.40017.cn/cn/new_ui/hotel/image/hotelInfo/comp_css.1.0.png?v=2013050901) no-repeat 0 0;
+    line-height: 23px;
+    color: #fff;
+}
+#tab_top_scenic td{
+    line-height: 20px;
+}
+.rightSearchBox #soso_17u .search_info{
+    padding-bottom:10px
+}
+</style>
+
+
+<body>
+	<!--{include header_top}-->
+    <!-- main content start-->
+    <div id="content">
+       
+        <!--position start-->
+        <div class="position">
+            <div class="hty_nav">
+                <span>您所在位置：</span>
+                <a target="_blank" href="/" title="爱米易旅游网首页">首页</a>&gt;&nbsp;
+                <a target="_blank" href="/scenery.php" title="景区门票">景区门票</a>&gt;&nbsp;
+                <a target="_blank" href="/searchList.php?filter_attr={$city_id['id']}-0-0-0" title="{$city_id['name']}景区门票">{$city_id['name']}景区门票</a>&gt;&nbsp;{$partner['title']}
+            </div>
+        </div>
+        <!--立即预订-->
+        <div class="immediateBook">
+            <div class="scenicNameBox">
+                <div class="udiyblock">
+                    <div class="introduceScenic">
+                        <h1 class="scenicName">{$partner['title']}</h1>
+                    </div>
+                    <div class="positionScenic">
+                        <div class="positionAddress">景点地址：<span>{$partner['address']}</span></div>
+                        <a href="/sceneryticket.php?id={$partner['id']}#tranGuide" class="mapPosition">
+                            <span class="mapPositionIcon"></span>
+                            查看地图
+                        </a>
+                        <span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1297558688&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1297558688:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="scenicBookBox">
+                <a href="#tickets" title="" class="bookLink">立即预订</a>
+                <div class="bookCash" style="margin-top:20px;">
+                    <div class="tcPrice" >
+                        优惠价<span class="arialFont cashSign">¥</span><span class="arialFont cashNum">${floor($minprice)}</span>起
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--图片展示开始-->
+        <div class="imgShowAndDp">
+            <div id="imgFlow" class="imgShow">
+                <div  class="udiyblock">
+                <!--{if $partnerImg}-->  
+                    <!--{if $partnerImg[0]}-->         
+                    <div class="bigImgFlow bigImgFlow_1">
+                        <img src="${team_image($partnerImg[0])}" alt="{$partner['title']}">
+                    </div>
+                    <!--{/if}-->
+                    <!--{if $partnerImg[1]||$partnerImg[2]}-->               
+                    <div class="bigImgFlow bigImgFlow_2">
+                        <img src="${team_image($partnerImg[1])}"  alt="{$partner['title']}">
+                    
+                        <img src="${team_image($partnerImg[2])}" alt="{$partner['title']}" >
+                    </div>
+                    <!--{/if}-->
+                    <!--{if $partnerImg[3]||$partnerImg[4]}-->              
+                    <div class="bigImgFlow bigImgFlow_3">
+                        <!--{if $partnerImg[3]}--> 
+                        <img src="${team_image($partnerImg[3])}" alt="{$partner['title']}" >
+                        <!--{/if}-->
+                        <!--{if $partnerImg[4]}--> 
+                        <img src="${team_image($partnerImg[4])}" alt="{$partner['title']}" >
+                        <!--{/if}-->
+                    </div>
+                    <!--{/if}-->
+                    <!--{if $partnerImg[5]}-->                
+                    <div class="bigImgFlow bigImgFlow_4">
+                        <img src="${team_image($partnerImg[5])}" alt="{$partner['title']}" >
+                    </div>
+                    <!--{/if}-->
+                    <!--<div class="bigImgFlow bigImgFlowAll">
+                        <a rel="external nofollow" href="javascript:void(0);">查看所有图片</a>
+                    </div>-->
+                    
+                </div>
+                <!--{/if}-->
+                <style type="text/css">
+                    .bigWrap{
+                        display:block;
+                        overflow:hidden;
+                        padding:5px;
+                        background:white;
+                        border:1px solid #DDD;
+                        position:absolute;
+                        z-index:100;
+                    }
+                </style>
+                <script type="text/javascript">
+                (function(){
+                    var timer;
+                    $("#imgFlow").find("img").hover(function(){
+                        var imgSrc = $(this).attr('src'),maxsize = 450,w,h,$bigWrap;
+                        var r = $(this).width()/$(this).height();
+                        if (r>=1){
+                            w = maxsize;
+                            h = maxsize/r;
+                        }else{
+                            w = maxsize*r;
+                            h = maxsize;
+                        } 
+                        $bigWrap = $("<img class='bigWrap' src='"+imgSrc+"' width='"+w+"' height='"+h+"'/>");
+                        var posTop = $(this).offset().top;
+                        var posLeft = $(this).offset().left+$(this).width();
+                        $bigWrap.css({"top":posTop+"px","left":posLeft+"px"});
+                        timer = setTimeout(function(){
+                            $("#imgFlow").append($bigWrap)
+                        },300);
+                    },function(){
+                        clearTimeout(timer);
+                        $("#imgFlow").find(".bigWrap").remove();
+                    });
+                    
+                })();
+                </script>
+            </div>
+            <!-- 图片展示end -->
+            <!-- 点评 start -->
+            <div class="dpSliverAndRecommendBox">
+                <div class="udiyblock"> 
+                    <div class="dpSliverBox">
+                        <div class="dpSliver" style="overflow: hidden; position: relative;">
+                            
+                            <!--{if $count==0}-->
+							<!--<div class="dpTop">
+                                <h3>{$partner['title']}最新点评</h3>
+                            </div>
+                             <div class="comment_des_link">
+								
+                                    <span class="comment_des">该景区我去过,</span>
+                                        <a target="_blank" title="立刻点评" class="comment_link" href="/order/index.php">我要点评</a>
+                                </div>-->
+                            <!--{else}-->
+							<div class="dpTop">
+                                <h3>{$partner['title']}最新点评</h3>
+                            </div>
+                            <ul class="dpList">
+                                <li>  
+                                    <div class="dp_selfTalk">
+                                        <!--{if $comments_one['userid']==99999}-->匿名用户<!--{else}-->{$user['username']}<!--{/if}-->：<span class="quotation_left"></span>
+                                        {$comments_one['content']}<span class="quotation_right"></span>
+                                    </div>
+                                </li>
+                            </ul>
+							
+                            <!--{/if}-->
+							<p style="color:#F60;font-size:14px">电话：<b style="color:red">{$partner['phone']}&nbsp;{$partner['mobile']}</b></p>
+                            <script type="text/javascript">
+                            $(function(){
+                                var dpIndex = 0,len = $(".dpList>li").length;
+                                function changeReview(index){
+                                    $(".dpList").css({"left":-index*307+"px"});
+                                    $(".sliverPage>span").text(index+1);
+                                    if(index<=0){
+                                        $(".lastButton").children("a").addClass("cannot");
+                                    }else if(index>=len-1){
+                                        $(".nextButton").children("a").addClass("cannot");
+                                    }else{
+                                        $(".nextButton,.lastButton").children("a").removeClass("cannot");
+                                    }
+                                }
+                                $(".lastButton").click(function(){
+                                    dpIndex --;
+                                    if(dpIndex<0){dpIndex=0;}
+                                    changeReview(dpIndex);
+                                });
+                                $(".nextButton").click(function(){
+                                    dpIndex ++;
+                                    if(dpIndex>=len){dpIndex=len-1;}
+                                    changeReview(dpIndex);
+                                });
+                            });
+                            </script>
+							<style type="text/css">
+							.support-list{overflow:hidden;padding:10px 0 0 0}
+							.support-list .support-tit{float:left}
+							.support-list ul{overflow:hidden;float:left;width:324px}
+							.support-list ul li{float:left;margin-bottom:5px;white-space:nowrap}
+							.support-list ul li a{border:1px #2a98da solid;height:18px;border-radius:2px;background:#fff;line-height:18px;color:#2a98da;float:left;_overflow:hidden;white-space:nowrap;margin-right:10px}
+							.support-list ul li a:hover{background:#2a98da;color:#fff;text-decoration:none}
+							.support-list ul li a b{float:left;width:19px;height:18px;background:url("http://img1.40017.cn/cn/s/final/2014/x-ico.1.png?v=2013120401") no-repeat #2a98da}
+							.support-list ul li .sup-fast b{background-position:0 -272px}
+							.support-list ul li .sup-quit b{background-position:1px -309px}
+							.support-list ul li .sup-com b{background-position:2px -348px}
+							.support-list ul li .sup-draw b{background-position:3px -380px}
+							.support-list ul li .sup-ensu b{background-position:1px -532px}
+							.support-list ul li .sup-draw{margin-right:0}
+							.support-list ul li a strong{_line-height:19px;padding:0 3px;white-space:nowrap;font-weight:normal}.
+							</style>
+							<div class="support-list">
+								<span class="support-tit">服务承诺：</span>
+								<ul>		
+									<li><a target="_blank" rel="nofollow" class="sup-fast" title="预订支付成功后，无需排队直接快速取票/验证入园。"><b></b><strong>快速入园</strong></a></li>
+									<li><a target="_blank" class="sup-quit" rel="nofollow" title="未消费，随时可以退款"><b></b><strong>随时退</strong></a></li>
+									<li><a target="_blank" class="sup-quit" rel="nofollow" title="未消费，过期可以退款"><b></b><strong>过期退</strong></a></li>
+									<li><a target="_blank" class="sup-com" rel="nofollow" title="购买后立即返现"><b></b><strong>买立返</strong></a></li>
+									<li><a target="_blank" class="sup-draw" rel="nofollow" title="支持全额退款"><b></b><strong>全款退</strong></a></li>	
+								</ul>
+							</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- 点评 start -->
+        </div>
+        <div class="leftAndRightBoxes">
+            <div class="right_190" style="margin-top:46px;padding-bottom:5px">
+                <!-- 搜索框 start -->
+                <div class="rightSingleBox rightSearchBox">
+                    <div class="udiyblock">
+                        <div class="soso_bg" id="soso_bg">
+                            <div id="soso_17u" style="padding:0 5px 5px;" class="scenery_search search_Width">
+                                <div id="soso_title" class="searchBox_title">
+                                    <h3>景点门票搜索</h3>
+                                </div>
+                                <div class="search_info">
+                                    <div class="search_right">
+                                        <div class="tray">
+                                        <form action="/searchList.php" method="post" id="sceneryform">
+                                            <table cellspacing="0" cellpadding="0"  id="tab_top_scenic">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="s_tit"> 20000余种景点门票免费预订</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="30">
+                                                            <input type="text" value="" style="width:152px" name="keywords" maxlength="20" id="txtScenicValue" class="input03">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="30">
+                                                            <input type="button" class="btn01" id="scenicSubmit" onclick="javascript:document.getElementById('sceneryform').submit()" value="搜 索">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="scenic_list03">
+                                                                精选目的地：
+                                                            </div>
+                                                            <ul class="scenic_list01">
+                                                                 <div id="portal-block-394348918237" class="udiyblock"  type="AdModel"> 
+                                                                    <!--{loop $hotcitys  $hotcity}-->
+                                                        <li><a target="_blank" title="{$hotcity['name']}景区门票" href="searchList.php?filter_attr={$hotcity['id']}-0-0-0">{$hotcity['name']}</a></li><!--{/loop}-->
+                                                                 </div>
+                                                                
+
+                                                            </ul>
+                                                            <div class="scenic_list01">
+                                                                热门景点推荐：
+                                                            </div>
+                                                            <ul class="scenic_list02">
+                                                                 <div id="portal-block-769379679353" class="udiyblock"  type="AdModel"> 
+                                                                   <!--{loop $hotscenery  $scenery}-->
+                                                        <li><a target="_blank" title="{$scenery['title']}" href="/sceneryticket.php?id={$scenery['id']}">${mb_substr($scenery['title'],0,5,'UTF-8')}</a></li><!--{/loop}-->
+                                                                 </div>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <div style = "clear:both;height:0px;overflow:hidden;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 搜索框 end -->
+                <!-- 预订此景区的还预订了start -->
+                <div class="rightSingleBox mtop" id="div_jqtj">
+                    <div id="jqtj" class="udiy">
+                        <div class="rightBannerBorder">
+                            <h3>您可能还喜欢</h3>
+                        </div>
+                        
+                        <div class="rightContentBorder" id="recomandOrder">
+                            <ul class="imgList">
+							<!--{loop $two_recomment $tr}-->
+							<li><a class="imgA" href="/sceneryticket.php?id={$tr['id']}" target="_blank">
+                                    <img src="${team_image($tr['image'])}" alt="{$tr['title']}"></a>
+                                    <div class="imgOne">
+                                        
+                                        <p>
+                                            <a target="_blank" href="/sceneryticket.php?id={$tr['id']}" title="{$re['title']">{$tr['title']}</a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="rePrice" style="display: block;float:right">¥${GetMinPrice($tr['id'])}</span>
+                                        </p>
+                                    </div>
+                                 
+                                </li>
+
+							<!--{/loop}-->
+                            <!--{loop $recommends $re}-->
+                                <li><a class="imgA" href="/sceneryticket.php?id={$re['id']}" target="_blank">
+                                    <img src="${team_image($re['image'])}" alt="{$re['title']}"></a>
+                                    <div class="imgOne">
+                                        
+                                        <p>
+                                            <a target="_blank" href="/sceneryticket.php?id={$re['id']}" title="{$re['title']">{$re['title']}</a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="rePrice" style="display: block;float:right">¥${GetMinPrice($re['id'])}</span>
+                                        </p>
+                                    </div>
+                                 
+                                </li>
+                            <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 新广告语 start -->
+                <!--<div class="slogan mtop">
+                    <div class="udiyblock" >             
+                        <span class="slogan_top"></span>
+                        <ul class="slogan_main">
+                            <li> <span class="scenery_pic"></span>
+                                <p><b class="cf60">2000</b>余种景点门票供您挑选</p>
+                            </li>
+                            <li> <span class="price_pic"></span>
+                                <p>天天有特价，点评奖金更给力</p>
+                            </li>
+                            <li> <span class="sale_pic"></span>
+                                <p>过去一年超过<b class="cf60">100万</b>游客选择蜗牛旅途预订景点门票</p>
+                            </li>
+                            <li> <span class="brand_pic"></span>
+                                <p>荣获中国驰名商标</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!--AD-->
+                <!--<div class="mtop">
+                    <div id="portal-block-678708669670" class="udiyblock" type="CustomHtml"> 
+                        <div class="memberDay_img">
+                            <a target="_blank" class="mtop" href="/order/index.php" rel="nofollow">
+                            <img src="http://img1.40017.cn/cn/new_ui/scenic/images/scenery/20130218154226EGZJF.jpg"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear_float">
+                </div>-->
+            </div>
+            <div class="left_760">
+                <!--导航列表start -->
+                <div class="leftSingleBox" id="bannerFloat_nav">
+                    <div class="tavernView clearfix" id="scenerypricelist" style="">
+                        <ul id="cheap_list" class="viewCut clearfix">
+                            <li class="viewCut_normalLi current" id="li_nav_ticket"><a title="订票" href="#bannerFloat_dz">订票</a></li>
+                            <li class="viewCut_normalLi" id="li_nav_zs"><a title="住宿预订" href="#bannerFloat_zs">住宿预订</a></li>
+                            <li class="viewCut_normalLi" id="li_nav_notice"><a title="预订须知" href="#bannerFloat_ydxz">预订须知</a></li>     
+                            <li id="li_nav_scenery" class="viewCut_normalLi"><a title="详情" href="#sceneryInfo">详情</a></li>
+                            <li id="li_nav_review" class="viewCut_normalLi float_labelFa"><a title="点评" href="#jqlastwdmkDiv">点评</a> 
+                            </li>
+                            <li id="li_nav_traffic" class="viewCut_normalLi"><a title="交通" href="#tranGuide">交通</a></li>
+                            <li id="li_nav_recom" class="viewCut_normalLi float_labelFa"><a title="附近景点" href="#bannerFloat_zbtj">附近景点</a></li>
+                            <li id="li_nav_hotel" class="viewCut_normalLi float_labelFa">
+                                <a title="附近酒店" href="#bannerFloat_hotel">附近酒店</a>                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--订票-->
+				<!--{if $alltickt}-->
+                <div id="bannerFloat_ticket" class="leftSingleBox mtop">
+                    <div class="udiyblock"> 
+                        <div class="leftContentBorder leftDazheBox" id="cheaptab1">
+                            <div id="dazhe">
+                                <div class="sAPI" id="tickets"> 
+                                    <div class="scenery-piao"> 
+                                        <div class="scenery-piao-head"> 
+                                            <span class="s-type" style="width:360px">门票类型</span> <span class="s-price" style="width:75px">票面价</span> <span class="s-tcPrice" style="width:75px">优惠价</span>  
+                                            <span class="s-favorable" style="width:75px">优惠</span> <span class="s-payment" style="width:75px">支付方式</span> <span class="s-operate" style="width:75px">操作</span> 
+                                        </div>  
+                                        <div class="scenery-piao-content"> 
+
+
+                                        <!--{loop $alltickt $index $at}-->
+                                            <div class="api-piao "> 
+                                                <div class="piao-name">{$at['name']['name']}</div> 
+                                                <div class="piao-info">
+                                                <!--{loop $at['ticket']  $piao}-->
+                                                    <div class="piao-list" id="tp_0">
+                                                        <dl class="piao-dl ">
+                                                            <dt class="W01" style="width:340px">
+                                                                <div class="p-type">
+                                                                    <a class="lp-name" href="javascript:;" style="font-weight:bold;color:#0073b6">{$piao['t_name']}</a> 
+                                                                </div> 
+                                                            </dt> 
+                                                            <dd class="W02" style="width:75px"> <span class="gray">¥{$piao['t_origin']}</span> </dd>
+                                                            <dd class="W03" style="width:75px"><span class="b-orange" ><b>¥</b>{$piao['t_price']}</span></dd> 
+                                                            <dd class="W04" style="width:75px"><span class="ico save"> ¥{$piao['t_origin']-$piao['t_price']}</span> </dd> 
+                                                            
+                                                            <dd class="W05" style="width:75px"><a href="javascript:;" class="a-tip">
+                                                             <!--{if $piao['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                            </a></dd> 
+                                                            <dd class="W06" style="width:75px"> <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$piao['id']}" target="_blank">预订</a> </dd> 
+                                                        </dl> 
+                                                    </div>
+                                                <!--{/loop}-->
+                                                </div> 
+                                            </div> 
+                                       <!--{/loop}-->
+                                       
+                                       
+                                       
+                                       
+                                            
+                                        </div> 
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!--{/if}-->
+                <!--住宿预订-->
+                
+                <!--订票 start-->
+				<!--{if $allroom}-->
+                        <div id="bannerFloat_zs" class="leftSingleBox mtop">
+                            <div class="leftContentBorder leftDazheBox" id="cheaptab1">
+                                <div id="dazhe">
+                                    <div class="sAPI" id="tickets"> 
+                                        <div class="scenery-piao"> 
+                                            <div class="scenery-piao-head"> 
+                                            <span class="s-type" style="width:360px">房间类型</span> <span class="s-price" style="width:75px">前台价</span> <span class="s-tcPrice" style="width:75px">优惠价</span>  
+                                            <span class="s-favorable" style="width:75px">优惠</span> <span class="s-payment" style="width:75px">支付方式</span> <span class="s-operate" style="width:60px">操作</span> 
+                                        </div>
+                                            
+                                            <div class="scenery-piao-content">
+											<!--{loop $allroom $index $at}-->
+                                                         <div class="api-piao "> 
+                                                <div class="piao-name">{$at['name']['name']}</div> 
+                                                <div class="piao-info">
+                                                
+                                                    <!--{loop $at['room'] $r}-->
+                                                    <div class="piao-list" id="tp_0">
+                                                        <dl class="piao-dl ">
+                                                            <dt class="W01" style="width:340px">
+                                                                <div class="p-type">
+                                                                    <a class="lp-name" href="javascript:;" style="font-weight:bold;color:#0073b6">{$r['t_name']}</a> 
+                                                                </div> 
+                                                            </dt> 
+                                                            <dd class="W02" style="width:75px"> <span class="gray"><b>¥</b>{$r['t_origin']}</span> </dd>
+                                                            <dd class="W03" style="width:75px"><span class="b-orange"><b>¥</b>${floor($r['t_price'])}</span></dd> 
+                                                            <dd class="W04" style="width:75px"><span class="ico save"> ¥{$r['t_origin']-$r['t_price']}</span> </dd>
+                                                           
+                                                            <dd class="W05" style="width:75px"><a href="javascript:;" class="a-tip">
+                                                             <!--{if $r['t_type']==1}-->
+                                                            景区现付
+                                                            <!--{else}-->
+                                                            在线支付
+                                                            <!--{/if}-->
+                                                            </a></dd> 
+                                                            <dd class="W06" style="width:75px"> <a class="bookbtn" href="/order/tpay.php?sceneryid={$partner['id']}&ticketid={$r['id']}&type=2" target="_blank">预订</a> </dd> 
+                                                        </dl> 
+                                                    </div>
+                                                <!--{/loop}-->
+                                                
+                                                </div> 
+                                            </div> 
+											  <!--{/loop}-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                       <!--{/if}--> 
+                <!--预订须知start -->
+                <div id="bannerFloat_notice" class="leftSingleBox">
+                    <div class="mtop"></div>
+                    <div class="leftBannerBorder">
+                        <h3>预订须知</h3>
+                    </div>
+                    <div id="notice" class="leftContentBorder">
+                    {$partner['notice']}
+                    </div>
+                </div>
+                <!--景区简介 start -->
+                <div class="leftSingleBox" id="bannerFloat_scenery">
+                    <div class="mtop">
+                    </div>
+                    <div class="leftBannerBorder">
+                        <h3>景区简介</h3>
+                    </div>
+                    <div class="leftContentBorder">
+                    {$partner['other']}                      
+                    </div>
+                </div>
+                <!--用户点评-->
+                <div id="bannerFloat_review" class="leftSingleBox">
+                    <div id="portal-block-1090528332197" class="udiyblock" type="CommonSource">     
+                    <div class="mtop"></div>
+                    <input type="hidden" name="txt_AllpageNumber" value="100" id="txt_AllpageNumber">
+                    <!-- 点评模块 start -->
+                    <div class="leftBannerBorder">
+                       <h3>{$partner['title']}用户点评</h3>
+                    </div>
+                   <div class="leftContentBorder">
+                       <div class="cmtTop">
+                           <div class="myd_box">
+                               <p class="p01" id="p_mydnum"> <!--{if $manyidu==0&&$manyi==0}-->100%<!--{else}-->{$baifenbi}%<!--{/if}--></p>
+                               <p class="p02"> 用户满意度</p>
+                           </div>
+                           <div class="pstar_box">
+                               <ul>
+                                   <li> <span class="stSp01">服&nbsp;&nbsp;务：</span> <span class="stStar canet-{$numcss1}"></span>{$fuwunumavg}</li>
+                                   <li> <span class="stSp01">便&nbsp;&nbsp;捷：</span> <span class="stStar canet-{$numcss2}"></span>{$bianjienumvg}</li>
+                                   <li> <span class="stSp01">优&nbsp;&nbsp;惠：</span> <span class="stStar canet-{$numcss3}"></span>{$youhuinumavg}</li>
+                               </ul>
+                           </div>
+                           <div class="atd_box">
+                              <!-- <p> 共有<span class="orangeColor"><i>{$count1}</i>条</span>通过蜗牛网成功预订游玩后发表点评</p>
+                
+                               <p class="p03"> <a rel="nofollow" target="_blank" href="/order/index.php" class="dp_btm"></a> </p>-->
+                               
+                           </div>
+                       </div>
+                       <div class="dp_content">
+                                   <div class="dp_menu mtop">
+                               <ul id="hotel_cityTitle" class="sl_tab">
+                                   <li class="at"> <span typeid="0"><a href="javascript:void(0);">全部评论({$count1})</a></span> </li>
+                                                     
+                                                                      </ul>
+                           
+                        </div>
+                            <div id="dp_info" class="dp_info" style="margin-top:0px">                                        
+                                    <!--{loop $comments $c}-->
+                                    <div id="info_list">
+                                    
+                                    <div class="info_list mtop">
+                                        <span class="list_left">
+                                            <span class="member">{$users[$c['userid']]['username']}</span>
+                                            <br>${date('Y-m-d',$c['c_time'])}
+                                        </span>
+                                        <div class="down_mid"> 
+                                            <div class="riht_top">
+                                                <span class="tleft">
+                                                    <span class="haop"><!--{if (intval($c['bianjienum'])+intval($c['bianjienum'])+intval($c['youhuinum']))/3>=4}-->好评<!--{elseif (intval($c['bianjienum'])+intval($c['bianjienum'])+intval($c['youhuinum']))/3>=3&&(intval($c['bianjienum'])+intval($c['bianjienum'])+intval($c['youhuinum']))/3<4}-->中评<!--{else}-->差评<!--{/if}--></span>
+                                                    <span class="elm">服务：{$c['fuwunum']}(<!--{if $c['fuwunum']>=4}-->很好<!--{elseif $c['fuwunum']<=4&&$c['fuwunum']>=2}-->一般<!--{else}-->较差<!--{/if}-->)</span>
+                                                    <span class="elm">便捷：{$c['bianjienum']}(<!--{if $c['fuwunum']>=4}-->很好<!--{elseif $c['fuwunum']<=4&&$c['fuwunum']>=2}-->一般<!--{else}-->较差<!--{/if}-->)</span>
+                                                    <span class="elm">优惠：{$c['youhuinum']}(<!--{if $c['fuwunum']>=4}-->很好<!--{elseif $c['fuwunum']<=4&&$c['fuwunum']>=2}-->一般<!--{else}-->较差<!--{/if}-->)</span>
+                                                </span>
+                                                <span class="tright"></span>
+                                            </div> 
+                                        <div class="right_down">
+                                            <div class="dleft">
+                                                <span class="bold">{$c['title']}</span><br>
+                                                <p class="dpwords">{$c['content']}</p>
+                                                <div class="tag_info">
+                                                    <dl><dt>服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：&nbsp;&nbsp;&nbsp;</dt><dd>{$c['service']}</dd></dl>
+                                                    <dl><dt>食&nbsp;&nbsp;购&nbsp;&nbsp;娱：&nbsp;&nbsp;&nbsp;</dt><dd>{$c['other']}</dd></dl>
+                                                    <dl><dt>交&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通：&nbsp;&nbsp;&nbsp;</dt><dd>{$c['traffic']}</dd></dl>
+                                                    <dl><dt>旅行感悟：</dt><dd>{$c['feel']}</dd></dl>
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        
+                                        </div></div></div></div>
+                                        <!--{/loop}-->
+                                </div>
+                            <!--<div id="pageNum_title" class="pager"> 
+                                <div class="pageNum_show">共<span class="totalpage_show">100</span>页</div>
+                                <div class="pageNum_page"><div class="bag_page"><a class="guidnum indexGrey">首页</a><a class="guidnum prevGrey">上一页</a><a class="pagenum currentpage">1</a><a class="pagenum">2</a><a class="pagenum">3</a><a class="pagenum">4</a><a class="pagenum">5</a><a class="pagenum">6</a><span class="mr10">...</span><a class="guidnum nextNormal">下一页</a><a class="guidnum lastNormal">末页</a></div></div>                
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--用户点评 end-->
+                <!-- 交通指南 start -->
+                <div class="leftSingleBox" id="bannerFloat_traffic">
+                    <div class="mtop"></div>
+                    <div class="leftBannerBorder">
+                        <h3>{$partner['title']}交通指南</h3>
+                    </div>
+                    <div class="leftContentBorder" id="tranGuide">
+						<div style="border:1px solid #CCC;padding:8px;margin-bottom:10px">{$partner['location']}</div>
+                        <!--地图-->
+                        <div class="mapBox" id="electronMap" >
+                            <!-- css中设定了固定宽高 -->
+                            <!--{include block_template_map}-->
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--交通end-->
+                <!-- 周边推荐 start -->
+                <div class="leftSingleBox bannerFloat_zbtj" id="bannerFloat_recom">
+                    <div id="portal-block-786638739773" class="udiyblock" type="CommonSource"> 
+                  <!-- 周边推荐 start -->
+                    <div class="mtop"></div>
+                        <div class="leftBannerBorder">
+                            <h3>周边旅游推荐</h3>
+                        </div>
+                    <div class="leftContentBorder">
+                        <div class="nearby">
+                            <h3 class="zbtjBan">{$partner['title']}附近景点：</h3>
+                                <div class="recmBox"> 
+                                    <ul class="recmBox_left">
+                                    <!--{loop $same_city_scenery $sindex $t_scenery}-->
+                                    <!--{if $sindex==1||$sindex==0||$sindex==2}-->                          
+                                        <li>
+                                            <div class="recmNameSome">
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" title="{$t_scenery['title']}">{$t_scenery['title']}</a>
+                                                                                                                                                                                                                    
+                                            </div>
+                                            <div class="recmPrice"><span class="orangeColor">¥{$t_scenery['minprice']}</span>起</div>
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" class="recmLink">查看</a>
+                                        </li>
+                                     <!--{/if}-->
+                                     <!--{/loop}-->                                                                                                                                                                      
+                                        
+                                        
+                                    </ul>
+                                    <ul class="recmBox_right">
+                                    <!--{loop $same_city_scenery $sindex $t_scenery}-->
+                                    <!--{if $sindex==3||$sindex==4||$sindex==5}-->
+                                    <li>
+                                            <div class="recmNameSome">
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" title="{$t_scenery['title']}">{$t_scenery['title']}</a>
+                                                                                                                                                                                                                    
+                                            </div>
+                                            <div class="recmPrice"><span class="orangeColor">¥{$t_scenery['minprice']}</span>起</div>
+                                                <a href="/sceneryticket.php?id={$t_scenery['id']}" target="_blank" class="recmLink">查看</a>
+                                        </li>
+                                    <!--{/if}-->
+                                     <!--{/loop}-->
+                                    </ul>  
+                                  </div>
+                         </div>                
+                        </div>
+                <!-- 周边推荐 end -->
+                    </div>
+                </div>
+                <!--附近酒店开始-->
+                <div class="leftSingleBox mtop" id="bannerFloat_hotel">
+                    <div id="portal-block-858524577854" class="udiyblock" type="CommonSource">                     
+                        <div class="leftBannerBorder">
+                            <h3>附近度假村</h3>
+                        </div>
+                    <div class="leftContentBorder">
+                        <table class="nearby_hotel">
+                            <tbody><tr>
+                                <th class="W01">特惠度假村</th>
+                               
+                                <th class="W03">爱米易优惠价</th>
+                                <th class="W04">操作</th>
+                            </tr>
+                             <!--{loop $same_city_holiday_village $vindex $v_scenery}-->
+                <tr>                                                                                                                            <tr class="">
+                                <td>
+                                    <div class="name">
+                                        <a target="_blank" href="/sceneryticket.php?id={$v_scenery['id']}">{$v_scenery['title']}</a> 
+                                    </div>
+
+                                </td>
+                                
+                                <td>
+                                    <span class="num_f60">¥{$v_scenery['minprice']}</span><span class="col_gray">起</span>
+                                </td>
+                                <td>
+                                    <a class="recmLink" target="_blank" href="/sceneryticket.php?id={$v_scenery['id']}">查看</a>
+                                </td>
+                            </tr>
+                <!--{/loop}-->
+                                
+                                                                                    </tbody></table>
+                        <div class="more_box">
+                            <a href="/hotelSearch.php" target="_blank">更多度假村&gt;&gt;</a>
+                        </div>
+                    </div>
+<script language="javascript">
+    (function () {
+        var hotelCnt = "4";
+        if ((hotelCnt == "" || hotelCnt == "0") && document.getElementById("li_nav_hotel")) {
+            document.getElementById("li_nav_hotel").outerHTML = "";
+        }
+    })();
+</script></div>
+                </div>
+                <!--end-->
+                <script type="text/javascript">
+                (function(){
+                    var navTop = $("#bannerFloat_nav").offset().top;
+                    function scrollToItem(id){
+                        $("#li_nav_"+id).click(function(){
+                            $(this).addClass("current").siblings().removeClass("current");
+                            $(window).scrollTop($("#bannerFloat_"+id).offset().top-40);
+                        });
+                    }
+                    var items = ['ticket','zs','notice','scenery','review','traffic','recom','selftrip']
+                    for(var i = 0; i < items.length; i++){
+                        scrollToItem(items[i]);
+                    }
+                    $(window).scroll(function(e) {
+                        var winTop = $(window).scrollTop();
+                        if(winTop>=navTop){
+                            $("#bannerFloat_nav").attr("style", "position: fixed; top:-16px;_position: absolute; _top:" + winTop + "px;");
+                        }else{
+                            $("#bannerFloat_nav").attr("style", "position: relative;");
+                        }
+                        for(var i = 0; i < items.length; i++){
+                            if(winTop >= $("#bannerFloat_"+items[i]).offset().top-40){
+                                $("#li_nav_"+items[i]).addClass("current").siblings().removeClass("current");
+                            }
+                        }
+                        
+                    });
+                })();
+                </script>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both">
+    </div>
+    <!--{include common_footer}-->

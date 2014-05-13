@@ -1,0 +1,57 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="forum">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_forum(null)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>发表新话题</h2>
+				</div>
+                <div class="sect">
+                    <form id="forum-new-form" method="post" class="validator">
+                        <div class="field">
+                            <label>讨论区</label>
+							<select name='category' style="margin-top:3px;">
+							<optgroup label="本地讨论区">
+								<option value="city">{$city['name']}讨论区</option>
+							</optgroup>
+							<optgroup label="公共讨论区">
+								${Utility::Option($publics, $id)}
+							</optgroup>
+							</select>
+                        </div>
+						<div class="field">
+							<label>标题</label>
+							<input type="text" size="10" name="title" id="team-create-style" class="f-input" value="${htmlspecialchars($topic['title'])}" datatype="require" require="true" />
+						</div>
+						<div class="field">
+							<label>内容</label>
+							<textarea style="width:480px;height:240px;" name="content" id="forum-new-content" class="f-textarea" datatype="require" require="true">${htmlspecialchars($topic['content'])}</textarea>
+						</div>
+					<!--{if option_yes('verifytopic')}-->
+						<!--{include block_block_captcha}-->
+					<!--{/if}-->
+						<div class="act">
+                            <input type="submit" value="成立" name="commit" id="leader-submit" class="formbutton"/>
+                        </div>
+                    </form>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_subscribe}-->
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

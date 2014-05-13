@@ -1,0 +1,20 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:380px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>${$goods?'编辑':'新建'}积分兑换商品</h3>
+	<div style="overflow-x:hidden;padding:10px;">
+	<p>商品标题、兑换积分：均要求分类唯一性</p>
+<form method="post" action="/manage/credit/edit.php" class="validator" enctype="multipart/form-data" >
+	<input type="hidden" name="id" value="{$goods['id']}" />
+	<table width="96%" class="coupons-table">
+		<tr><td width="80" nowrap><b>商品标题：</b></td><td><input type="text" name="title" value="{$goods['title']}" require="true" datatype="require" class="f-input" /></td></tr>
+		<tr><td nowrap><b>兑换积分：</b></td><td><input type="text" name="score" value="${abs(intval($goods['score']))}" maxLength="10" require="true" datatype="number" class="f-input" /></td></tr>
+		<tr><td nowrap><b>商品数量：</b></td><td><input type="text" name="number" value="${abs(intval($goods['number']))}" class="f-input" /></td></tr>
+		<tr><td nowrap><b>每人限兑：</b></td><td><input type="text" name="per_number" value="${abs(intval($goods['per_number']))}" class="f-input" /></td></tr>
+                <tr><td nowrap><b>商品图片：</b></td><td><input type="file" name="upload_image" class="f-input" /></td></tr>
+		<tr><td nowrap><b>排序(降序)：</b></td><td><input type="text" name="sort_order" value="${intval($goods['sort_order'])}" class="f-input" /></td></tr>
+		<tr><td nowrap><b>是否展示：</b></td><td><input type="text" name="display" value="{$goods['display']}" class="f-input" style="text-transform:uppercase;"/></td></tr>
+		<tr><td colspan="2" height="10">&nbsp;</td></tr>
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" /></td></tr>
+	</table>
+</form>
+	</div>
+</div>

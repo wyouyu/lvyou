@@ -1,0 +1,13 @@
+<!--{include wap_header}-->
+
+<h2><a href="index.php">今日主推</a>&nbsp;|&nbsp;正在团购&nbsp;|&nbsp;<a href="done.php">往期团购</a></h2>
+<!--{loop $teams $team}-->
+<!--{if $team}-->
+<p>${++$index}.&nbsp;<a href="team.php?id={$team['id']}">{$team['title']}</a></p>
+<p>现价：{$currency}${moneyit($team['team_price'])} , 原价：{$currency}${moneyit($team['market_price'])} , 折扣：${team_discount($team)}折 , 节省：{$currency}${moneyit($team['market_price']-$team['team_price'])}</p>
+<p><a href="team.php?id={$team['id']}"><img src="${team_image($team['image'], true)}" width="200" height="120" /></a></p>
+<!--{/loop}-->
+
+{$pagestring}
+
+<!--{include wap_footer}-->

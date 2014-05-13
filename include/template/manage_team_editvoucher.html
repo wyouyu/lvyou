@@ -1,0 +1,54 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="leader">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_team('team')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<h2>编辑项目的商户券信息</h2>
+					<ul class="filter">${current_manageteam('editvoucher', $team['id'])}</ul>
+				<!--{/if}-->
+				</div>
+                <div class="sect">
+					<div class="wholetip clear"><h3>1、上传商户券信息</h3></div>
+					<form method="post" action="/manage/team/editvoucher.php?id={$team['id']}" enctype="multipart/form-data" class="validator">
+					<input type="hidden" name="id" value="{$team['id']}" />
+					<div class="field">
+						<label>商户券文件</label>
+						<input type="file" size="30" name="upload_txt" class="f-input" style="width:300px;"/> <input type="submit" value="上传商户券" name="commit" id="leader-submit" class="formbutton" style="margin-left:120px;"/>
+						<span class="hint">文本文件，每行一个券</span>
+					</div>
+					</form>
+
+					<div class="wholetip clear"><h3>2、商户券列表&nbsp;&nbsp;<a href="/manage/team/ajax.php?action=removeteamvoucher&id={$team['id']}" class="ajaxlink" ask="确定清空本项目的商户券吗？">清空商户券</a></h3></div>
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="200">商户券编码</th><th width="200">用户</th><th width="380">订单</th><th width="100" nowrap>操作</th></tr>
+					<!--{loop $vouchers $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="order-list-id-{$one['id']}">
+						<td>{$one['code']}</td>
+						<td nowrap><!--{if $one['user_id']}-->{$users[$one['user_id']]['email']}<br/>{$users[$one['user_id']]['username']}<!--{else}-->NULL<!--{/if}--></td>
+						<td><!--{if $one['order_id']}--><a href="/ajax/manage.php?action=orderview&id={$one['order_id']}" class="ajaxlink">订单详情</a><!--{else}-->NULL<!--{/if}--></td>
+						<td class="op"><a href="/manage/team/ajax.php?action=removeonevoucher&vid={$one['id']}" class="ajaxlink" ask="确定删除本商户券?">删除</a>&nbsp;</td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="4">{$pagestring}</tr>
+                    </table>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

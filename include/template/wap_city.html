@@ -1,0 +1,8 @@
+<!--{include wap_header}-->
+
+<!--{loop $cities $letter $ones}-->	
+<p><b>{$letter}</b></p>
+<!--{loop $ones $one}--><p><a href="city.php?n={$one['ename']}">{$one['name']}</a></p><!--{/loop}-->
+<!--{/loop}-->
+
+<!--{include wap_footer}-->

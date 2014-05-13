@@ -1,0 +1,75 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="forum">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_forum(null)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>${htmlspecialchars($topic['title'])}</h2>
+					<ul class="filter" style="position:absolutely;bottom:0px;clear:both;float:none;"><li><a href="#reply">＋回复</a></li><!--{if is_manager()}--><li><a href="/ajax/topic.php?action=topicremove&id={$topic['id']}" class="ajaxlink" ask="确定删除本话题吗？">－删除</a></li><li><a href="/ajax/topic.php?action=topichead&id={$topic['id']}" class="ajaxlink">＃置顶</a></li><!--{/if}--></ul>
+				</div>
+                <div class="sect">
+				<table id="replies-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr>
+					<td width="48" valign="top"><div class="avatar"><img src="${user_image($users[$topic['user_id']]['avatar'])}" width="48" height="48" /></div></td>
+					<td width="660">
+						<div class="author">
+							<span style="float:right;">${Utility::HumanTime($topic['create_time'])}<!--{if is_manager()}-->&nbsp;<a href="/ajax/topic.php?action=topicremove&id={$topic['id']}" class="ajaxlink" ask="确定删除本话题吗？">－删除</a><!--{/if}--></span><b>{$users[$topic['user_id']]['username']}</b><div class="clear"></div>
+						</div>
+						<div class="topic-content">
+							${nl2br(htmlspecialchars($topic['content']))}
+						</div>
+					</td>
+					</tr>
+					<!--{loop $replies $one}-->
+					<tr>
+					<td width="48" valign="top">
+						<div class="avatar"><img src="${user_image($users[$one['user_id']]['avatar'])}" width="48" height="48" /></div>
+					</td>
+					<td width="660">
+						<div class="author">
+							<span style="float:right;">${Utility::HumanTime($one['create_time'])}<!--{if is_manager()}-->&nbsp;<a href="/ajax/topic.php?action=topicremove&id={$one['id']}" class="ajaxlink" ask="确定删除本回复吗？">－删除</a><!--{/if}--></span><b>{$users[$one['user_id']]['username']}</b><div class="clear"></div>
+						</div>
+						<div class="topic-content">
+							${nl2br(htmlspecialchars($one['content']))}
+						</div>
+					</td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="2">{$pagestring}</td></tr>
+				</table>	
+				</div>
+				<div class="head" id="reply">
+					<h2>我要回复</h2>
+				</div>
+				<div class="sect consult-form">
+					<!--{if is_login()}-->
+                    <form id="forum-reply-form" method="post" action="/forum/topic.php?id={$topic['id']}" class="validator">
+					<input type="hidden" name="parent_id" value="{$topic['id']}" />
+					<textarea style="width:480px;height:240px;" name="content" id="forum-new-content" class="f-textarea" require="true" datatype="require"></textarea>
+					<p class="commit"><input type="submit" value="发布" name="commit" id="leader-submit" class="formbutton"/></p>
+					</form>
+					<!--{else}-->
+					请先<a href="/account/login.php?r={$currefer}">登录</a>或<a href="/account/signup.php">注册</a>再提问
+					<!--{/if}-->
+					<div class="clear"></div>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_subscribe}-->
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

@@ -1,0 +1,28 @@
+<form id="order-pay-form" method="post" action="{$actionUrl}" sid="{$order_id}" target="_blank" >
+	<input type="hidden" name="tranCode" value="{$tranCode}" />
+	<input type="hidden" name="merchantID" value="{$merchantID}" />
+	<input type="hidden" name="merOrderNum" value="{$merOrderNum}" />
+	<input type="hidden" name="tranAmt" value="{$tranAmt}" />
+	<input type="hidden" name="ticketAmt" value="{$ticketAmt}" />
+	<input type="hidden" name="feeAmt" value="{$feeAmt}" />
+	<input type="hidden" name="orgtranDateTime" value="{$orgtranDateTime}" />
+	<input type="hidden" name="orgOrderNum" value="{$orgOrderNum}" />
+	<input type="hidden" name="authID" value="{$authID}" />
+	<input type="hidden" name="orgtranAmt" value="{$orgtranAmt}" />
+	<input type="hidden" name="currencyType" value="{$currencyType}" />
+	<input type="hidden" name="merURL" value="{$merURL}" />
+	<input type="hidden" name="tranDateTime" value="{$tranDateTime}" />
+	<input type="hidden" name="virCardNoIn" value="{$virCardNoIn}" />
+	<input type="hidden" name="tranIP" value="{$tranIP}" />
+	<input type="hidden" name="msgExt" value="{$msgExt}" />
+	<input type="hidden" name="isLocked" value="{$isLocked}" />
+	<input type="hidden" name="virCardNo" value="{$virCardNo}" />
+	<input type="hidden" name="orgTxnStat" value="{$orgTxnStat}" />
+	<input type="hidden" name="orgTxnType" value="{$orgTxnType}" />
+    <input type="hidden" name="bankCode" value="{$bankCode}" />
+	<input type="hidden" name="userType" value="{$userType}" />
+	<input type="hidden"  id="signValue" name="signValue" value="{$signValue}" size="50"/>
+
+	<img src="/static/css/i/gopay.gif" /><br />
+	<input type="submit" class="formbutton gotopay" value="前往国付宝付款" />
+</form>

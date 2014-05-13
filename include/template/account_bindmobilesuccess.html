@@ -1,0 +1,55 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="signuped">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head success"><h2>恭喜您，绑定成功！</h2></div>
+                <div class="sect login-bind-mobile">
+                   <h3 class="notice-title">您的手机号码已绑定成功</h3>
+                    <div class="notice-content">
+                        现在就去 <a href="/">查看今日团购</a> 
+                    </div> 
+                   
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+
+<script language="javascript">
+
+var i=50;
+function change()
+{
+var o=document.getElementById("mobile-input");
+var p=document.getElementById("mobile-verify");
+var s=document.getElementById("mobile-tip");
+if(o.value==""){
+s.innerHTML="请输入正确的手机号码";
+return false;
+}
+i--;
+p.disabled="disabled";
+p.value="重新获取"+i;
+s.innerHTML="已发送。1分钟后如仍未收到短信，可重新获取。";
+if(i==0)
+{ p.value="重新获取"; 
+  p.disabled="";
+  i=50;
+}
+else
+setTimeout("change()",1000);
+}
+
+</script>
+<!--{include footer}-->

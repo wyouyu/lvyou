@@ -1,0 +1,43 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_order('refund')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>申请退款订单</h2>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="40">ID</th><th width="340">项目</th><th width="180">用户</th><th width="40" nowrap>数量</th><th width="50" nowrap>总款</th><th width="50" nowrap>余付</th><th width="50" nowrap>支付</th><th width="50" nowrap>递送</th><th width="50" nowrap>操作</th></tr>
+					<!--{loop $orders $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="order-list-id-{$one['id']}">
+						<td>{$one['id']}</td>
+						<td>{$one['team_id']}&nbsp;(<a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a>)</td>
+						<td><a href="/ajax/manage.php?action=userview&id={$one['user_id']}" class="ajaxlink">{$users[$one['user_id']]['email']}<br/>{$users[$one['user_id']]['username']}</a><!--{if Utility::IsMobile($users[$one['user_id']]['mobile'])}-->&nbsp;&raquo;&nbsp;<a href="/ajax/misc.php?action=sms&v={$users[$one['user_id']]['mobile']}" class="ajaxlink">短信</a><!--{/if}--></td>
+						<td>{$one['quantity']}</td>
+						<td><span class="money">{$currency}</span>${moneyit($one['origin'])}</td>
+						<td><span class="money">{$currency}</span>${moneyit($one['credit'])}</td>
+						<td><span class="money">{$currency}</span>${moneyit($one['money'])}</td>
+						<td>{$option_delivery[$teams[$one['team_id']]['delivery']]}${($one['express_id']&&$one['express_no'])?'Y':''}<!--{if $one['express_id']}--><br /><a href="/manage/order/ajax.php?action=smsexpress&id={$one['id']}" class="ajaxlink">短信</a><!--{/if}--></td>
+						<td class="op" nowrap><a href="/ajax/manage.php?action=refundview&id={$one['id']}" class="ajaxlink">详情</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="9">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

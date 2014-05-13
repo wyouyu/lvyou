@@ -1,0 +1,31 @@
+<div class="sbox">
+	<div class="sbox-top"></div>
+	<div class="sbox-content">
+		<div class="credit fcomment-list-box" style=" padding-top:1px;padding-bottom:1px;" >
+			<h2 style="padding-bottom:5px;">最新点评</h2>
+			<ul class="lcComment" id="items">
+				<!-- {loop $now_comments $k $v} -->
+				<li>
+					<div class="lcName">  <span>{$users[$v['user_id']]['username']}</span>  点评了  <a href="/partner.php?id={$v['partner_id']}">{$cpartners[$v['partner_id']]['title']}</a></div>
+					<div class="lcCont" style="background-image:url('${WEB_ROOT}/static/css/i/comment-icon-{$v['grade']}.gif');">   <a href="/partner.php?id={$v['partner_id']}">{$v['comment']}</a></div>
+					<div class="lcTime"> 
+					<!-- {if $v['timespan'] < 60} -->
+					{$v['timespan']}秒前
+					<!-- {elseif $v['timespan'] < 3600} -->
+					${floor($v['timespan']/60)}分钟前
+					<!-- {elseif $v['timespan'] < 86400} -->
+					${floor($v['timespan']/3600)}小时前
+					<!-- {elseif $v['timespan'] < 259200} -->
+					${floor($v['timespan']/86400)}天前
+					<!-- {else} -->
+					3天前
+					<!-- {/if} -->
+					</div>
+				</li>	
+				<!-- {/loop} -->		
+			</ul>
+			<div class="clear"></div>
+		</div>		
+	</div>
+	<div class="sbox-bottom"></div>
+</div>

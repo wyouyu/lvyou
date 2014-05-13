@@ -1,0 +1,24 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:420px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>我要点评本单</h3>
+	<p class="info" id="smssub-dialog-display-id">请对商家【{$partner['title']}】出点评<br/>一周内可以修改评价！</p>
+	<table width="96%" class="coupons-table">
+		<tr><td width="80" nowrap align="right"><b>满意度：</b></td><td>
+			<select name="commnet_grade" id="dialog_comment_grade">${Utility::Option($option_commentgrade, $order['comment_grade'])}</select>
+		</td></tr>
+        <tr><td width="80" nowrap align="right"><b>愿意再去：</b></td><td>
+			<select name="commnet_wantmore" id="dialog_comment_wantmore">${Utility::Option($option_commentwantmore, $order['comment_wantmore'])}</select>
+		</td></tr>
+		<tr><td nowrap align="right" valign="top"><b>点评：</b></td><td>
+			<textarea style="width:260px;height:80px;" class="f-textarea" name="comment_content" id="dialog_comment_content">${htmlspecialchars($order['comment_content'])}</textarea>
+		</td></tr>
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" onclick="X.misc.ordercomment();" /></td></tr>
+	</table>
+</div>
+<script type="text/javascript">
+X.misc.ordercomment = function() {
+	var s = jQuery('#dialog_comment_grade').val();
+	var t = jQuery('#dialog_comment_content').val();
+    var w = jQuery('#dialog_comment_wantmore').val();
+	if (s&&t&&w) return !X.get(WEB_ROOT + '/order/ajax.php?action=editcomment&id={$order['id']}&s='+s+'&w='+w+'&t='+encodeURIComponent(t));
+};
+</script>

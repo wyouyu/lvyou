@@ -1,0 +1,184 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="order-detail">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account(null)}</ul>
+	</div>
+    <div id="content">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>订单详情</h2>
+                </div>
+                <div class="sect">
+
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>订单编号：</th>
+        <td class="orderid"><strong>{$order['id']}</strong></td>
+        <th>下单时间：</th>
+        <td><span>${date('Y-m-d H:i',$order['create_time'])}</span></td>
+    </tr>
+    <tr>
+        <th>下单序号：</th>
+        <td class="orderid"><strong>{$order['buy_id']}</strong></td>
+        <th>幸运编号：</th>
+        <td><span>{$order['luky_id']}</span></td>
+    </tr>
+<!--{if $order['condbuy']}-->
+    <tr>
+        <th>订单选项：</th>
+        <td colspan="3" class="status">{{$order['condbuy']}}</td>
+    </tr>
+<!--{/if}-->
+<!--{if $order['remark']}-->
+    <tr>
+        <th>订单附言：</th>
+        <td colspan="3" class="status">${htmlspecialchars($order['remark'])}</td>
+    </tr>
+<!--{/if}-->
+</table>
+
+<table cellspacing="0" cellpadding="0" border="0" class="info-table">
+    <tr>
+        <th class="left" width="auto">项目名称</th>
+        <th width="35">单价</th>
+        <th width="10"></th>
+        <th width="45">数量</th>
+        <th width="10"></th>
+        <th width="45">总价</th>
+        <th width="150">状态</th>
+    </tr>
+    <tr>
+        <td class="left"><a href="/team.php?id={$order['team_id']}" target="_blank">{$team['title']}</a></td>
+        <td><span class="money">{$currency}</span>${moneyit($order['price'])}</td>
+        <td>x</td>
+        <td>{$order['quantity']}</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['price']*$order['quantity'])}</td>
+        <td class="status"><!--{if !$express&&!$order['card_id']}-->交易成功<!--{else}-->-<!--{/if}--></td>
+    </tr>
+
+<!--{if $order['card_id']}-->
+    <tr>
+        <td class="left">代金券：{$order['card_id']}</td>
+        <td>${moneyit($order['card'])}</td>
+        <td>x</td>
+        <td>1</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['card'])}</td>
+        <td class="status">-</td>
+    </tr>
+<!--{/if}-->
+
+<!--{if $express}-->
+    <tr>
+        <td class="left">快递</td>
+        <td>${moneyit($order['fare'])}</td>
+        <td>x</td>
+        <td>1</td>
+        <td>=</td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['fare'])}</td>
+        <td class="status">-</td>
+    </tr>
+<!--{/if}-->
+
+<!--{if $express||$order['card_id']}-->
+    <tr>
+        <td class="left"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="total"><span class="money">{$currency}</span>${moneyit($order['origin'])}</td>
+        <td class="status">交易成功</td>
+    </tr>
+<!--{/if}-->
+
+</table>
+
+<!--{if $team['delivery']=='coupon'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>{$INI['system']['couponname']}：</th>
+        <td class="other-coupon"><!--{if empty($coupons)}-->{$INI['system']['couponname']}将在团购成功后，由系统自动发放<!--{/if}--><!--{loop $coupons $one}--><p>{$one['id']} - {$one['secret']}</p><!--{/loop}--></td>
+    </tr>
+    <tr>
+        <th>使用方法：</th>
+        <td>至商家消费时，请出示{$INI['system']['couponname']}，配合商家验证券的编号及密码</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='voucher'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>商户券号：</th>
+        <td class="other-coupon"><!--{if empty($vouchers)}-->商户券将在团购成功后，由系统自动发放<!--{/if}--><!--{loop $vouchers $one}--><p>{$one['code']}&nbsp;&nbsp;<a href="/ajax/coupon.php?action=vouchersms&id={$one['id']}" class="ajaxlink">短信</a></p><!--{/loop}--></td>
+    </tr>
+    <tr>
+        <th>使用方法：</th>
+        <td>至商家消费时，请出示商户券编码，商户券直接可抵用</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='express'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>快递：</th>
+	<!--{if $order['express_id']&&$order['express_no']}-->
+        <td>{$option_express[$order['express_id']]}：{$order['express_no']}</td>
+	<!--{else}-->
+        <td class="other-coupon">请耐心等待发货</td>
+	<!--{/if}-->
+    </tr>
+    <tr>
+        <th>收件人：</th>
+        <td>{$order['realname']}</td>
+    </tr>
+    <tr>
+        <th>收件地址：</th>
+        <td>{$order['address']}</td>
+    </tr>
+	<tr>
+        <th>邮编：</th>
+        <td>{$order['zipcode']}</td>
+    </tr>
+    <tr>
+        <th>手机号码：</th>
+        <td>{$order['mobile']}</td>
+    </tr>
+	<tr>
+        <th>送货时间：</th>
+        <td>{$order['express_xx']}</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='pickup'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <th>自取：</th>
+        <td class="other-coupon"></td>
+    </tr>
+    <tr>
+        <th>取货地址：</th>
+        <td>{$team['address']}</td>
+    </tr>
+    <tr>
+        <th>联系电话：</th>
+        <td>{$team['mobile']}</td>
+    </tr>
+</table>
+<!--{/if}-->
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

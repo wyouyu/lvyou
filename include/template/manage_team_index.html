@@ -1,0 +1,65 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_team($selector)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+				<!--{if $selector=='failure'}-->
+                    <h2>失败项目</h2>
+				<!--{elseif $selector=='success'}-->
+                    <h2>成功项目</h2>
+				<!--{else}-->
+                    <h2>当前项目</h2>
+				<!--{/if}-->
+					<ul class="filter">
+						<li>${!$team_type ? '全部' : '<a href="?">全部</a>'}</li>
+						<li>${$team_type=='normal' ? '团购' : '<a href="?team_type=normal">团购</a>'}</li>
+						<li>${$team_type=='seconds' ? '秒杀' : '<a href="?team_type=seconds">秒杀</a>'}</li>
+						<li>${$team_type=='goods' ? '商品' : '<a href="?team_type=goods">商品</a>'}</li>
+					</ul>
+				</div>
+				<div class="sect" style="padding:0 10px;">
+					<form method="get">
+					<p style="margin:5px 0;">项目编号：<input type="text" name="team_id" class="h-input number" value="{$team_id}" >&nbsp;&nbsp;关键字：<input type="text" name="team_key" class="h-input text" value="{$team_key}" >&nbsp;&nbsp;<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/></p>
+					<form>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="40">ID</th><th width="400">项目名称</th><th width="80" nowrap>类别</th><th width="100">日期</th><th width="50">成交</th><th width="60" nowrap>价格</th><th width="140">操作</th></tr>
+					<!--{loop $teams $index $one}-->
+					<!--${$oldstate = $one['state']}-->
+					<!--${$one['state'] = team_state($one)}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}</a></td>
+						<td>
+							${$one['team_type']=='normal' ? '[团购]' : ''}
+							${$one['team_type']=='seconds' ? '[秒杀]' : ''}
+							${$one['team_type']=='goods' ? '[商品]' : ''}
+							<a class="deal-title" href="/team.php?id={$one['id']}" target="_blank">{$one['title']}</a>
+						</td>
+						<td nowrap>{$cities[$one['city_id']]['name']}<br/>{$groups[$one['group_id']]['name']}</td>
+						<td nowrap>${date('Y-m-d',$one['begin_time'])}<br/>${date('Y-m-d',$one['end_time'])}</td>
+						<td nowrap>{$one['now_number']}/{$one['min_number']}</td>
+						<td nowrap><span class="money">{$currency}</span>${moneyit($one['team_price'])}<br/><span class="money">{$currency}</span>${moneyit($one['market_price'])}</td>
+						<td class="op" nowrap><a href="/ajax/manage.php?action=teamdetail&id={$one['id']}" class="ajaxlink">详情</a>｜<a href="/manage/team/edit.php?id={$one['id']}">编辑</a>｜<a href="/ajax/manage.php?action=teamremove&id={$one['id']}" class="ajaxlink" ask="确定删除本项目吗？" >删除</a><!--{if (in_array($one['state'],array('success','soldout')))}-->｜<a href="/manage/team/down.php?id={$one['id']}" target="_blank">下载</a><!--{/if}--><!--{if $one['delivery']=='express'}--><br /><a href="/manage/team/ajax.php?action=smsexpress&id={$one['id']}" class="ajaxlink">短信快递单号</a><!--{/if}--><br /><a href="/manage/team/downlucky.php?id={$one['id']}" target="_blank">下载幸运编号</a></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="7">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

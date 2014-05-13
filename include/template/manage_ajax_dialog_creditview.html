@@ -1,0 +1,17 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:380px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>商品兑换记录</h3>
+	<div style="overflow-x:hidden;padding:10px;">
+<form method="post" action="/manage/credit/records.php" class="validator" enctype="multipart/form-data" >
+	<table width="96%" class="coupons-table">
+		<tr><td width="80" nowrap><b>商品名称：</b></td><td>{$goods[$credit['detail_id']]['title']}</td></tr>
+		<tr><td width="80" nowrap><b>花费积分：</b></td><td>${$credit['score']>0?$credit['score']:0-$credit['score']}</td></tr>
+		<tr><td width="80" nowrap><b>收货人：</b></td><td>{$credit['rname']}</td></tr>
+		<tr><td width="80" nowrap><b>手机号：</b></td><td>{$credit['rmobile']}</td></tr>
+		<tr><td width="80" nowrap><b>地址：</b></td><td>{$credit['raddress']}</td></tr>
+		<tr><td width="80" nowrap><b>邮编：</b></td><td>{$credit['rcode']}</td></tr>
+		
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" /></td></tr>
+	</table>
+</form>
+	</div>
+</div>

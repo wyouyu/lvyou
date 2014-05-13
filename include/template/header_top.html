@@ -1,0 +1,82 @@
+﻿<!--top start-->
+<script type="text/javascript">
+function AddFavorite(title, url) {
+  try {
+      window.external.addFavorite(url, title);
+  }
+catch (e) {
+     try {
+       window.sidebar.addPanel(title, url, "");
+    }
+     catch (e) {
+         alert("抱歉，您所使用的浏览器无法完成此操作。nn加入收藏失败，请使用Ctrl+D进行添加");
+     }
+  }
+}
+</script>
+</script>
+    <div id="top">
+        <div class="layout fn-clear" style="margin-top:0px">
+            <div class="top-left fn-left">
+            <!--{if !$login_user}-->
+                您好,请
+                <a href="/account/login.php">登陆</a>
+				|
+                <a href="/account/signup.php">注册</a>
+            <!--{else}-->
+            欢迎您，<!--{if $_SESSION['ali_token']}-->
+                ${mb_strimwidth($login_user['realname'],0,10)}！
+                <!--{else}-->
+                ${mb_strimwidth($login_user['username'],0,10)}！
+                <!--{/if}-->
+                <a href="/account/logout.php" style="text-decoration: underline;">退出</a>
+
+				<a href="/order/index.php">个人中心</a>
+            <!--{/if}-->
+			
+			
+            </div>
+            <div class="top-right fn-right">
+                <a href="javascript:void(0);">手机客户端</a> 
+                <a href="javascript:void(0);" id="weixin">二维码扫描 </a>
+                <a href="javascript:void(0);" onclick="AddFavorite('爱米易旅游网',location.href)">收藏本站</a>
+                <div class="weixin"><img src="/static/images/i_app.png" /></div>
+            </div>
+        </div>
+    </div>
+    <!--top end-->
+    
+    <!--header start-->
+    
+    <div class="header fn-clear">
+        <div class="layout">
+            <div class="logo fn-left">
+                <a href="/" title="爱米易旅游网">爱米易旅游网</a>
+            </div>
+			<div class="top_ad" style="width:410px;float:left;height:60px"><a href="http://heihaoshua.com/sceneryticket.php?id=5"><img src="/static/images/sdwh001.jpg" width="410" height="60"/></a></div>
+            <span class="cphone"><b style="padding-top:15px;display:block">023 -68161429</b></span>
+        </div>
+    </div>
+     <!--nav start-->
+    <div class="nav">
+        <div class="layout">
+            <ul id="nav" class="fn-left fn-clear">
+                <li <!--{if $current=='index'}-->class="current"<!--{/if}-->><a href="/" >首页</a></li>
+                
+               
+                <li <!--{if $current=='scenery'}-->class="current"<!--{/if}-->><a href="/scenery.php" >景点门票</a></li>
+                <li <!--{if $current=='hotel'}-->class="current"<!--{/if}-->><a href="/hotel.php">度假村</a></li>
+                                 <li <!--{if $current=='zizhuyou'}-->class="current"<!--{/if}-->><a href="/zizhuyou.php">自助游</a></li> 
+				 <li <!--{if $current=='gentuanyou'}-->class="current"<!--{/if}-->><a href="/gentuanyou.php">跟团游</a></li>
+				   <li <!--{if $current=='xcy'}-->class="current"<!--{/if}-->><a href="/xcy.php">乡村游</a></li>
+                
+                
+            </ul>
+            <span class="help-menu fn-right">
+                 <!--<a href="#" class="strategy">攻略</a>
+                 <a href="#" class="member">会员俱乐部</a>-->
+             </span>
+        </div>
+    </div>
+    <!--nav end-->
+    <!--header end-->

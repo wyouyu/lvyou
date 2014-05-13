@@ -1,0 +1,19 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:420px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>填写退款原因</h3>
+	<p class="info" id="smssub-dialog-display-id">您购买的项目： {$team['title']}<br />购买数量： {$order['quantity']}<br />注：已消费的优惠券不会被审核，请联系客服进行人工退款.</p>
+   
+	<table width="96%" class="coupons-table">
+		
+		<tr><td nowrap align="right" valign="top"><b>退款原因：</b></td><td>
+			<textarea style="width:260px;height:80px;" class="f-textarea" name="comment_content" id="dialog_reason_content">${htmlspecialchars($order['rereason'])}</textarea>
+		</td></tr>
+
+		<tr><td></td><td><input type="submit" value="确定" class="formbutton" onclick="X.misc.refundedit();" /></td></tr>
+	</table>
+</div>
+<script type="text/javascript">
+X.misc.refundedit = function() {
+	var n = jQuery('#dialog_reason_content').val();
+	if (n) return !X.get(WEB_ROOT + '/ajax/refund.php?action=refundreason&oid={$order['id']}&n='+encodeURIComponent(n));
+};
+</script>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />    
+    <link rel="stylesheet" href="/static/css/news.css"  type="text/css">
+    <link rel="stylesheet" href="/static/css/960head.css"  type="text/css">
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    <style type="text/css">
+    .bag_page li.currentpage {
+    background-color:#28E;
+    color:#fff;
+    font-weight:bold;
+    
+}
+.bag_page li.pagenum{
+    width:20px;
+    height:20px;
+    border:1px solid #ddd;
+    float:left;
+    text-align: center;
+    margin-right:10px;
+}
+.bag_page li.pagenum:hover,.bag_page li.guidnum:hover {
+    background-color:#FFF4ED;
+    border:1px solid #FFB17E;
+    color:#f60
+}
+.bag_page li.indexGrey {
+    float:left;
+    margin-right:10px;
+    color:#ddd;
+    cursor:default;
+    background:url("http://img1.40017.cn/cn/comm/images/cn/public/page_link.png") no-repeat scroll 9px 5px transparent;
+    padding:0 15px 0 23px;
+    border:1px solid #ddd;
+    width:30px;
+    height:20px;
+}
+.bag_page a.indexNormal {
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 9px -74px no-repeat;
+    padding:0 15px 0 23px
+}
+.bag_page a.prevGrey {
+    color:#ccc;
+    cursor:default;
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 10px -14px no-repeat;
+    padding:0 15px 0 23px
+}
+.bag_page a.prevGrey:hover {
+    background-color:#fff;
+    color:#ccc;
+    border:1px solid #ddd
+}
+.bag_page a.prevNormal {
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 10px -95px no-repeat;
+    padding:0 15px 0 23px
+}
+.bag_page a.nextGrey {
+    color:#ccc;
+    cursor:default;
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 56px -117px no-repeat;
+    border:1px solid #ddd;
+    padding:0 23px 0 15px
+}
+.bag_page a.nextGrey:hover {
+    background-color:#fff;
+    color:#ccc;
+    border:1px solid #ddd
+}
+.bag_page a.nextNormal {
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 56px -35px no-repeat;
+    padding:0 23px 0 15px
+}
+.bag_page a.lastGrey {
+    color:#ccc;
+    cursor:default;
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 48px -138px no-repeat;
+    padding:0 23px 0 15px
+}
+.bag_page a.lastGrey:hover {
+    background-color:#fff;
+    color:#ccc;
+    border:1px solid #ddd
+}
+.bag_page a.lastNormal {
+    background:url(http://img1.40017.cn/cn/comm/images/cn/public/page_link.png) 48px -55px no-repeat;
+    padding:0 23px 0 15px
+}
+.bag_page span {
+    float:left
+}
+.mtop {
+    margin-top:10px
+}
+.mbottom {
+    margin-bottom:10px
+}
+.bgIframe {
+    position:absolute;
+    filter:alpha(opacity=30);
+    z-index:998;
+    left:0;
+    top:0
+}
+.bgBag {
+    background-color:#000;
+    opacity:.7;
+    filter:alpha(opacity=70);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100
+}
+.outBag {
+    position:absolute;
+    background-color:#fff;
+    top:0;
+    left:0;
+    zoom:1
+}
+    </style>
+   
+   
+</head>
+<body>
+<!--{include header_top}-->
+<div id="content">
+    <div class="right_side">
+        <div class="page_head">
+                您所在位置：<a href="/" title="爱米易旅游首页">爱米易旅游</a>&nbsp;&gt;&nbsp;<a href="/news.php" title="旅游资讯">旅游资讯</a>&nbsp;&gt;&nbsp;{$news['title']}
+        </div>
+        
+        <div class="com_page">
+    <div class="com_page_head">
+        <h3>
+            旅游资讯
+        </h3>
+    </div>
+    
+    <ul class='com_page_ul'>
+    <!--{loop $news_lists $news}-->
+        <li>
+            <span class='sp01'>
+                <a href="news.php?id={$news['id']}" title="{$news['title']}">
+                    {$news['title']}
+                </a>
+            </span>
+            <span class='sp02'>
+                ${date('Y-m-d',$news['begin_time'])}
+            </span>
+        </li>
+    <!--{/loop}-->
+    </ul>
+    
+    <div class="corporate_page">
+        {$pagestring}
+    </div>
+</div>
+</div>
+    
+    <div class="left_side">
+            <!-- 热门酒店资讯推荐   start -->
+        <div class="left_box">
+            <div class="header_box">
+                <h3 class="header_title">热门景点门票推荐</h3>
+                <div class="clear_float">
+                </div>
+            </div>
+            <div class="udiy" id="cn-hot-type-news">
+                <div id="portal-block-839635406430" class="udiyblock" type="NewsModel">  
+                    <div class="left_taim">  
+                        <ul class="infor_chieftain">
+                             <!--{loop $result2 $re}-->
+                            <li><a target="_blank" href="/sceneryticket.php?id={$re['id']}" title="{$re['title']}">{$re['title']}</a></li>
+                             <!--{/loop}-->   
+                        </ul>
+                        <div class="clear_float"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- 热门酒店资讯推荐  end -->
+            <!-- 图片广告  start -->
+             <div class="udiy" id="cn-news-Advertisement-Image"></div>
+            <!-- 图片广告  end -->
+            
+            <!-- 主题活动   start -->
+            <div class="udiy" id="cn-news-index-subject"><div id="portal-block-47101585013" class="udiyblock" > <div class="left_box m_top">
+    <div class="header_box">
+        <h3 class="header_title">
+            主题活动</h3>
+        <span class="header_more"><a target="_blank" href="">更多&gt;&gt;</a></span><div class="clear_float">
+        </div>
+    </div>
+    <div class="left_taim">
+        <!--<div class="theme_activity theme_top">
+            <span class="theme_avimg"><a target="_blank" href="http://tuan.17u.cn/hotel/ " title="团购酒店，就选蜗牛旅途">
+                <img src="" alt="团购酒店，就选蜗牛旅途"></a></span><dl class="dl_introduction">
+                        <dt><a target="_blank" href="http://tuan.17u.cn/hotel/ " title="团购酒店，就选蜗牛旅途">
+                           团购酒店，就选蜗牛旅途</a></dt><dd>17元抢团购酒店， 热门城市酒店2折起， 海景房，轻松省2000元！</dd></dl>
+            <div class="clear_float">
+            </div>
+        </div>-->
+        
+      
+      
+    </div>
+</div></div></div>
+            <!-- 主题活动   end -->
+        </div>
+</div>
+<div style="clear:both"></div>
+<!--footer start-->
+<!--{include common_footer}-->

@@ -1,0 +1,15 @@
+<!--{include wap_header}-->
+
+<h2><a href="my.php">账户详情</a>&nbsp;|&nbsp;收支记录</h2>
+
+<!--{loop $flows $index $one}-->
+<table id="order-list" style="margin:5px 0;" cellspacing="1" cellpadding="2" border="0" bgcolor="#999999" width="100%">
+	<tr><td bgcolor="#CCCCCC" width="60" nowrap>日期：</td><td bgcolor="#FFFFFF">${date('Y-m-d H:i', $one['create_time'])}</td></tr>
+	<tr><td bgcolor="#CCCCCC">内容：</td><td bgcolor="#FFFFFF">{$option_flow[$one['action']]}&nbsp;-&nbsp;<!--{if $one['action']=='coupon'}-->{$INI['system']['couponname']}返利<!--{elseif $one['action']=='invite'}-->好友：{$users[$one['detail_id']]['username']}<!--{elseif $one['action']=='buy'}--><a href="team.php?id={$one['detail_id']}">{$teams[$one['detail_id']]['product']}</a><!--{elseif $one['action']=='refund'}--><a href="team.php?id={$one['detail_id']}">{$teams[$one['detail_id']]['product']}</a><!--{elseif $one['action']=='charge'}-->在线充值<!--{elseif $one['action']=='withdraw'}-->用户提现<!--{elseif $one['action']=='store'}-->线下充值<!--{/if}--></td></tr>
+	<tr><td bgcolor="#CCCCCC">收支：</td><td bgcolor="#FFFFFF">${$one['direction']=='income'?'收入':'支出'}</td></tr>
+	<tr><td bgcolor="#CCCCCC">金额：</td><td bgcolor="#FFFFFF">{$currency}${moneyit($one['money'])}</td></tr>
+</table>
+<!--{/loop}-->
+<table><td>{$pagestring}</td></tr></table>
+
+<!--{include wap_footer}-->

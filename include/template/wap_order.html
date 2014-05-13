@@ -1,0 +1,68 @@
+<!--{include wap_header}-->
+<h2>我的订单</h2>
+<p><a href="myorder.php">已付款</a>&nbsp;|&nbsp;<a href="myorder.php?s=unpay">未付款</a></p>
+<h2>订单详情</h2>
+<p>项目名称：<a href="team.php?{$team['id']}">{$team['title']}</a></p>
+<p>订单编号：{$order['id']}</p>
+<p>下单时间：${date('Y-m-d H:i',$order['create_time'])}</p>
+<h2>订购情况</h2>
+<p>项目单价：${moneyit($order['price'])}</p>
+<p>购买数量：{$order['quantity']}</p>
+<p>代金券抵：${moneyit($order['card'])}</p>
+<p>快递费用：${$express?moneyit($team['fare']):0}</p>
+<p>总计费用：${moneyit($order['origin'])}</p>
+
+<h2>发货情况</h2>
+
+<!--{if $team['delivery']=='coupon'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <td align="right">{$INI['system']['couponname']}：</th>
+        <td class="other-coupon"><!--{if empty($coupons)}-->{$INI['system']['couponname']}将在团购成功后，由系统自动发放<!--{/if}--><!--{loop $coupons $one}--><p>{$one['id']} - {$one['secret']}</p><!--{/loop}--></td>
+    </tr>
+    <tr>
+        <td align="right">使用方法：</th>
+        <td>至商家消费时，请出示{$INI['system']['couponname']}，配合商家验证券的编号及密码</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='express'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <td align="right">快递：</td>
+	<!--{if $order['express_id']}-->
+        <td>{$option_express[$order['express_id']]}：{$order['express_no']}</td>
+	<!--{else}-->
+        <td class="other-coupon">请耐心等待发货</td>
+	<!--{/if}-->
+    </tr>
+    <tr>
+        <td align="right">收件人：</td>
+        <td>{$order['realname']}</td>
+    </tr>
+    <tr>
+        <td align="right">收件地址：</td>
+        <td>{$order['address']}</td>
+    </tr>
+    <tr>
+        <td align="right">手机号码：</td>
+        <td>{$order['mobile']}</td>
+    </tr>
+</table>
+<!--{elseif $team['delivery']=='pickup'}-->
+<table cellspacing="0" cellpadding="0" border="0" class="data-table">
+    <tr>
+        <td align="right">自取：</td>
+        <td class="other-coupon"></td>
+    </tr>
+    <tr>
+        <td align="right">取货地址：</td>
+        <td>{$team['address']}</td>
+    </tr>
+    <tr>
+        <td align="right">联系电话：</td>
+        <td>{$team['mobile']}</td>
+    </tr>
+</table>
+<!--{/if}-->
+
+<!--{include wap_footer}-->

@@ -1,0 +1,575 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/index_1.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    </head>
+<body>
+    <!--{include header_top}-->
+    
+    <div class="layout mt10 fn-clear">
+    	<!---search start -->
+    	<div class="search fn-left fn-clear">
+            <ul id="search-nav" class="fn-left">
+            	<li class="ticket current">景点门票</li>
+            	<li class="travel">自助游</li>
+            	<li class="hotel">度假村预订</li>
+            	<!--<li class="group">团购</li>-->
+            	<li class="other">其它</li>
+            </ul>
+            <ul id="search-con" class="fn-right">
+            	<li class="ticket">
+                	<h4>景点门票免费预订</h4>
+                    <form action="/searchList.php" method="post" class="fn-clear">
+                    	<input type="text" id="ticket" name="keywords" placeholder="请输入景点名或城市名..." />
+                        <button class="btn" type="submit">搜索</button>
+                    </form>
+                    <dl class="fn-clear mt10">
+                    	<dt>精选主题：</dt>
+                        <!--{loop $themes $th $theme}-->
+                        <dd><a href="searchList.php?filter_attr=0-{$theme['id']}-0-0" target="_blank" title="{$theme['name']}">{$theme['name']}</a></dd>
+                       <!--{/loop}-->
+                    </dl>
+                    <dl class="fn-clear">
+                    	<dt>热搜城市：</dt>
+                        <!--{loop $hotcitys  $hotcity}-->
+                        <dd><a href="searchList.php?filter_attr={$hotcity['id']}-0-0-0" target="_blank" title="{$hotcity['name']}">{$hotcity['name']}</a></dd>
+                        <!--{/loop}-->
+                    </dl>
+                    <dl class="fn-clear">
+                    	<dt>热搜景点：</dt>
+                        <!--{loop $hotscenery  $scenery}-->
+                        <dd><a href="/sceneryticket.php?id={$scenery['id']}" target="_blank" title="{$scenery['title']}">{$scenery['title']}</a></dd>
+                        <!--{/loop}-->
+                    </dl>
+                </li>
+                <li class="travel" style="display:none;">
+                	<p>自助游——不跟团，不累，不贵</p>
+                	<h4>行程轻松自由，预定边界省心，套餐价格更低</h4>
+                    <form action="#" method="post" class="fn-clear">
+                    	<input type="text" id="ticket" name="ticket" placeholder="请输入景点名或城市名..." />
+                        <button class="btn" type="submit">搜索</button>
+                    </form>
+                    <dl class="fn-clear mt10">
+                    	<dt>热门搜索：</dt>
+                        <dd><a href="#" target="_blank" title="水上乐园">青岛啤酒节</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                    </dl>
+                </li>
+                <li class="hotel" style="display:none;">
+                    <form action="/hotelSearch.php" method="get" class="fn-clear" id="hotelform" style="position:relative">
+                    	<label for="hotel-city">选择城市</label>
+                    	<input type="text" id="txtHotelCity1" name="hotel-city" placeholder="请输入城市名称" /><br>
+                        <input type="hidden" name="hotelCityId" id="hotelCityId" value="" />
+                        <div id="hotelCities" class="g-cities" style="display: none;">
+                             <h3>热门城市</h3>
+                             <ul class="fn-clear">
+                                <li id="1"><a href="javascript:void(0);">济南</a></li>
+                                <li id="2"><a href="javascript:void(0);">青岛</a></li>
+                                <li id="10"><a href="javascript:void(0);">威海</a></li>
+                                <li id="6"><a href="javascript:void(0);">烟台</a></li>
+                                <li id="5"><a href="javascript:void(0);">东营</a></li>
+                                <li id="15"><a href="javascript:void(0);">临沂</a></li>
+                                <li id="14"><a href="javascript:void(0);">聊城</a></li>
+                                <li id="13"><a href="javascript:void(0);">德州</a></li>
+                                <li id="16"><a href="javascript:void(0);">菏泽</a></li>
+                             </ul>
+                        </div>
+                        <style type="text/css">
+                                    #hotelCities
+                                    {
+                                        display: none;
+                                    }
+                                    #putong_city_list{position:relative}
+                                    .g-cities h3{
+                                        background: #28e;
+                                        color: #fff;
+                                        height: 28px;
+                                        line-height: 28px;
+                                        overflow: hidden;
+                                        text-indent: 10px;
+                                        font-size: 12px;
+                                        font-weight: bold;
+                                    }
+                                    .g-cities{
+                                        width:322px;
+                                        position:absolute;
+                                        z-index:10;
+                                        top:50px;
+                                        left:0;
+                                        background:#FFF;
+                                    }
+                                    .g-cities ul{
+                                        display:block;
+                                        width:300px;
+                                        padding:10px;
+                                        border:1px solid #DDD;
+                                        border-top:none;
+                                    }
+                                    .g-cities li{
+                                        float:left;
+                                        margin:2px 5px;
+                                        display:inline;
+                                        white-space:nowrap;
+                                    }
+                                    .g-cities li a{color: #005bb5;}
+                                    .g-cities li a:hover{color: #F60;}
+                                </style>
+                        <label for="start-time">度假村名称</label>
+                        <input type="text" id="start-time" name="txtHotelName" /><br>
+                        <button class="btn" type="submit" onclick="javascript:document.getElementById('hotelform').submit()">搜索</button>
+                    </form>
+                </li>
+                <li class="group" style="display:none;">
+                	<!--<h4>团购</h4>-->
+                    <form action="#" method="post" class="fn-clear">
+                    	<input type="text" id="group" name="ticket" placeholder="请输入关键字..." />
+                        <button class="btn" type="submit">搜索</button>
+                    </form>
+                    <dl class="fn-clear mt10">
+                    	<!--<dt>热门团购：</dt>-->
+                        <dd><a href="#" target="_blank" title="水上乐园">水上乐园</a></dd>
+                        <dd><a href="#" target="_blank">古镇山水</a></dd>
+                        <dd><a href="#" target="_blank">漂流避暑</a></dd>
+                    </dl>
+                </li>
+                <li class="other" style="display:none;">
+                
+                </li>
+            </ul>
+        </div>
+    	<!---search end -->
+    	<!--scroll start -->
+        <div class="scroll fn-right">
+        	<div class="scroll-img fn-left">
+                <ul id="scroll-imgs" class="fn-clear">
+                    <li><a href="#" target="_blank" title=""><img src="static/img/zhongqiu.jpg" width="100%" height="370"></a></li>
+                    <li><a href="http://lvyou.com/sceneryticket.php?id=9" target="_blank" title=""><img src="static/img/jiudingta.jpg" width="100%" height="370"></a></li>
+                    <li><a href="http://lvyou.com/sceneryticket.php?id=11" target="_blank" title=""><img src="static/img/weishanhu.jpg" width="100%" height="370"></a></li>
+                    <li><a href="#" target="_blank" title=""><img src="static/img/nanshan.jpg" width="100%" height="370"></a></li>
+                    <li><a href="#" target="_blank" title=""><img src="static/img/zhisheng.jpg" width="100%" height="370"></a></li>
+                </ul>
+            </div>
+            <ul id="scroll-vec" class="scroll-vector fn-right">
+                <li class="active"><img src="static/img/zhongqiu.jpg" width="100%" height="100%"><i class="tri-left"></i></li>
+                <li><img src="static/img/jiudingta.jpg" width="100%" height="100%"><i class="tri-left"></i></li>
+                <li><img src="static/img/weishanhu.jpg" width="100%" height="100%"><i class="tri-left"></i></li>
+                <li><img src="static/img/nanshan.jpg" width="100%" height="100%"><i class="tri-left"></i></li>
+                <li><img src="static/img/zhisheng.jpg" width="100%" height="100%"><i class="tri-left"></i></li>
+            </ul>
+        </div>
+    	<!--scroll start -->
+    </div>
+    
+    
+    <div class="layout fn-clear">
+    	<div class="main-left fn-left">
+        	<div class="main-left-block blue-block mt10 fn-clear">
+                <ul class="project fn-left">
+                    <li><a href="/scenery.php" target="_blank" title="title"><img src="static/img/pro-blue.jpg" width="200" height="260"></a></li>
+                    <li class="small"><a href="/order/index.php" target="_blank" title="title"><img src="static/img/pro-blue-bot.jpg" width="200" height="105"></a></li>
+                    <li class="small"><a href="/sceneryticket.php?id=8" target="_blank" title="title"><img src="static/img/blue_3.jpg" width="200" height="105"></a></li>
+                </ul>
+            	<!--main start-->
+                <div class="main fn-right">
+                    <div class="hd fn-clear">
+                        <h2 class="fn-left">蜗牛推荐 特惠专场</h2>
+                        <ul id="viewport-nav" class="fn-left fn-clear">
+                            <li class="active"><a href="javascript:void(0)">泰安</a></li>
+                            <li><a href="javascript:void(0)">济南</a></li>
+                            <li><a href="javascript:void(0)">青岛</a></li>
+                            <li><a href="javascript:void(0)">威海</a></li>
+                            <li><a href="javascript:void(0)">烟台</a></li>
+                            <li><a href="javascript:void(0)">临沂</a></li>
+                        </ul>
+                     
+                        <ul id="moreView" class="more-cur-view fn-right">
+                            <li><a href="/searchList.php?filter_attr=9-0-0-0" title="更多泰安景点">更多泰安景点&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/searchList.php?filter_attr=1-0-0-0" title="更多济南景点">更多济南景点&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/searchList.php?filter_attr=2-0-0-0" title="更多青岛景点">更多青岛景点&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/searchList.php?filter_attr=10-0-0-0" title="更多威海景点">更多威海景点&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/searchList.php?filter_attr=6-0-0-0" title="更多烟台景点">更多烟台景点&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/searchList.php?filter_attr=15-0-0-0" title="更多临沂景点">更多临沂景点&gt;&gt;</a></li>
+                        </ul>
+                    </div>
+                    <!--${$i=1}-->
+                    <!--{loop $tickets $tks $ticket}-->
+                    <div class="main-con viewport-con fn-clear <!--{if $i!=1}-->fn-hide<!--{/if}-->">
+                        <ul class="pro-list fn-left fn-clear">
+                            <!--{loop $ticket $tk $one}-->
+                            <li>
+                                <a class="img" href="/sceneryticket.php?id={$one['id']}" target="_blank" title="title"><img src="${team_image($one['image'])}" width="160" height="120"></a>
+                                <h3><a href="/sceneryticket.php?id={$one['id']}" target="_blank" title="title">{$one['title']}</a></h3>
+                                <p><span>蜗牛价：</span>￥{$one['ticketprice']}</p>
+                            </li>
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
+                    <!--${$i++}-->
+                    <!--{/loop}-->
+                    
+                    
+                </div>
+                <!--main end-->
+            </div>
+            
+            <div class="main-left-block green-block mt10 fn-clear">
+                <ul class="project fn-left">
+                    <li><a href="" target="_blank" title="title"><img src="static/img/pro-green.jpg" width="200" height="260"></a></li>
+                    <li class="small"><a href="/sceneryticket.php?id=19" target="_blank" title="title"><img src="static/img/green_2.jpg" width="200" height="105"></a></li>
+                    <li class="small"><a href="/sceneryticket.php?id=11" target="_blank" title="title"><img src="static/img/green_3.jpg" width="200" height="105"></a></li>
+                </ul>
+                <!--main start-->
+                <div class="main fn-right">
+                	<div class="hd fn-clear">
+                        <h2 class="fn-left">蜗牛推荐 自助游</h2>
+                        <ul id="zizhu-nav" class="fn-left fn-clear">
+                            <li class="active"><a href="javascript:void(0)">泰安</a></li>
+                            <li><a href="javascript:void(0)">济南</a></li>
+                            <li><a href="javascript:void(0)">青岛</a></li>
+                            <li><a href="javascript:void(0)">威海</a></li>
+                            <li><a href="javascript:void(0)">烟台</a></li>
+                            <li><a href="javascript:void(0)">临沂</a></li>
+                        </ul>
+                       
+                        <ul id="moreZizhu" class="more-cur-view fn-right">
+                            <li><a href="#" title="更多泰安自助游">更多泰安自助游&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="#" title="更多济南自助游">更多济南自助游&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="#" title="更多青岛自助游">更多青岛自助游&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="#" title="更多威海自助游">更多威海自助游&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="#" title="更多烟台自助游">更多烟台自助游&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="#" title="更多临沂自助游">更多临沂自助游&gt;&gt;</a></li>
+                        </ul>
+                    </div>
+                    <div class="main-con zizhu-con fn-clear">
+                    	<ul class="travel-list fn-left fn-clear ">
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="#" target="_blank" title="青岛极地海洋世界"><img src="static/img/scroll.png" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="#" target="_blank">青岛极地海洋世界</a></h4>
+                                    <p class="text-ellip">青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界</p>
+                                    <div class="oper">
+                                        <a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>
+                                        <span class="buy">已有<em>345</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>192</b><em>起</em></p>
+                                    <del>￥170</del><span>7折</span>
+                                </div>
+                            </li>
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="#" target="_blank" title="青岛极地海洋世界"><img src="static/img/scroll.png" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="#" target="_blank">青岛极地海洋世界</a></h4>
+                                    <p class="text-ellip">青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界</p>
+                                    <div class="oper">
+                                        <a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>
+                                        <span class="buy">已有<em>345</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>192</b><em>起</em></p>
+                                    <del>￥170</del><span>7折</span>
+                                </div>
+                            </li>
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="#" target="_blank" title="青岛极地海洋世界"><img src="static/img/scroll.png" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="#" target="_blank">青岛极地海洋世界</a></h4>
+                                    <p class="text-ellip">青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界</p>
+                                    <div class="oper">
+                                        <a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>
+                                        <span class="buy">已有<em>345</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>192</b><em>起</em></p>
+                                    <del>￥170</del><span>7折</span>
+                                </div>
+                            </li>
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="#" target="_blank" title="青岛极地海洋世界"><img src="static/img/scroll.png" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="#" target="_blank">青岛极地海洋世界</a></h4>
+                                    <p class="text-ellip">青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界青岛极地海洋世界</p>
+                                    <div class="oper">
+                                        <a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>
+                                        <span class="buy">已有<em>345</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>192</b><em>起</em></p>
+                                    <del>￥170</del><span>7折</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                   
+                   
+                </div>
+                <!--main end-->
+            </div>
+            
+            
+            <div class="main-left-block yellow-block mt10 fn-clear">
+                <ul class="project fn-left">
+                    <li><a href="/sceneryticket.php?id=9" target="_blank" title="title"><img src="static/img/project.jpg" width="200" height="260"></a></li>
+                    <li class="small"><a href="/sceneryticket.php?id=26&type=2" target="_blank" title="title"><img src="static/img/orange_2.jpg" width="200" height="105"></a></li>
+                    <li class="small"><a href="" target="_blank" title="title"><img src="static/img/orange_3.jpg" width="200" height="105"></a></li>
+                </ul>
+            	<!--main start-->
+                <div class="main fn-right">
+                    <div class="hd fn-clear">
+                        <h2 class="fn-left">蜗牛推荐 度假村</h2>
+                        <ul id="chujing-nav" class="fn-left fn-clear">
+                            <li class="active"><a href="javascript:void(0)">泰安</a></li>
+                            <li><a href="javascript:void(0)">济南</a></li>
+                            <li><a href="javascript:void(0)">青岛</a></li>
+                            <li><a href="javascript:void(0)">威海</a></li>
+                            <li><a href="javascript:void(0)">烟台</a></li>
+                            <li><a href="javascript:void(0)">临沂</a></li>
+                        </ul>
+                        
+                        <ul id="moreChuj" class="more-cur-view fn-right">
+                            <li><a href="/hotelSearch.php?hotelCityId=9" title="更多泰安度假村">更多泰安度假村&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/hotelSearch.php?hotelCityId=1" title="更多济南度假村">更多济南度假村&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/hotelSearch.php?hotelCityId=2" title="更多青岛度假村">更多青岛度假村&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/hotelSearch.php?hotelCityId=6" title="更多威海度假村">更多威海度假村&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/hotelSearch.php?hotelCityId=10" title="更多烟台度假村">更多烟台度假村&gt;&gt;</a></li>
+                            <li style="display: none;"><a href="/hotelSearch.php?hotelCityId=15" title="更多临沂度假村">更多临沂度假村&gt;&gt;</a></li>
+                        </ul>
+                    </div>
+                    <!--${$j=1}-->
+                    <!--{loop $holiday_village  $hol}-->
+                    <div class="main-con chujing-con fn-clear">
+                        <ul class="pro-list fn-left fn-clear">
+                            <!--{loop $hol $h}-->
+                                <!--{if $j==1}-->
+                            <li class="first">
+                                <a class="img" href="/sceneryticket.php?id={$h['id']}&type=2" target="_blank" title="{$h['title']}"><img src="${team_image($h['image'])}" width="334" height="325"></a>
+                                <h3><a href="/sceneryticket.php?id={$h['id']}&type=2" target="_blank" title="title">{$h['title']}</a></h3>
+                                <p><span>蜗牛价：</span>￥{$one['ticketprice']}</p>
+                            </li>
+                                <!--{else}-->
+                            <li class="">
+                                <a class="img"  href="/sceneryticket.php?id={$h['id']}&type=2" target="_blank" title="{$h['title']}"><img src="${team_image($h['image'])}" width="160" height="120"></a>
+                                <h3><a href="/sceneryticket.php?id={$h['id']}&type=2" target="_blank" title="title">{$h['title']}</a></h3>
+                                <p><span>蜗牛价：</span>￥{$one['ticketprice']}</p>
+                            </li>
+                            <!--{/if}-->
+                            <!--${$j++}-->
+                           <!--{/loop}-->
+                        </ul>
+                    </div>
+                    
+                    <!--{/loop}-->
+                    
+                </div>
+                <!--main end-->
+            </div>
+            
+        </div>
+        <!--主左侧end-->
+        
+        <!--主右侧start-->
+        <div class="main-right mt10 fn-right">
+        	<!--right-block start-->
+        	<div class="right-block">
+            	<div class="hd fn-clear">
+                    <h3>公司简介</h3>
+                    <a class="more" href="http://www.wnltu.com/news.php?id=1" target="_blank">更多>></a>
+                </div>
+                <div class="con" style="padding:8px;line-height:23px;">
+                	<!--<ul class="hot-list f14 text-ellip">
+                    	<!--{loop $news $n}-->
+                    	<!--<li><a href="/news.php?id={$n['id']}" target="_blank">{$n['title']}</a></li>
+                        <!--{/loop}-->
+                    <!--</ul>-->
+                    &nbsp;&nbsp;&nbsp;&nbsp;蜗牛旅途网隶属于济南领程网络技术有限公司，总部设在济南，经过近2年的创业历程，公司已进入中国在线旅游的前列，也是国内具备B2B和B2C双平台的大型旅游网站。蜗牛旅途网业务涵盖酒店、景点门票、自助旅游在线预订，旅游信息化、旅游目的地资讯及攻略等方面。
+                    <ul class="note-list fn-clear">
+                    	<li><a href="" target="_blank"><img src="static/img/pro.jpg" width="250"></a></li>
+                    	<li><a href="" target="_blank"><img src="static/img/pro.jpg" width="250"></a></li>
+                    	<li><a href="#" target="_blank"><img src="static/img/pro.jpg" width="250"></a></li>
+                    	<li><a href="#" target="_blank"><img src="static/img/pro.jpg" width="250"></a></li>
+                    </ul>
+                </div>
+            </div>
+        	<!--right-block end-->
+            <!--right-block start-->
+        	<div class="right-block mt10">
+            	<div class="hd fn-clear">
+                    <!--<h3>今日团购</h3>-->
+                    <a class="more" href="#" target="_blank">更多>></a>
+                </div>
+                <div class="con">
+                	<!--group block start-->
+                	<div id="viewport" class="group-block bd-bot">
+                    	<div class="title fn-clear">
+                        	<h4 class="animal"><a href="#" target="_blank">景点团购</a></h4>
+                            <div id="viewVector" class="vector">
+                            	<a class="pre invalid" href="javascript:;"></a>
+                            	<a class="next" href="javascript:;"></a>
+                            </div>
+                        </div>
+                        <ul id="viewList" class="group-list">
+                            <li class="current">
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                	<!--group block end-->
+                	<!--group block start-->
+                    <div id="hotel" class="group-block">
+                    	<div class="title fn-clear">
+                        	<h4 class="hotel"><a href="#" target="_blank">酒店团购</a></h4>
+                            <div id="hotelVector" class="vector">
+                            	<a class="pre invalid" href="javascript:;"></a>
+                            	<a class="next" href="javascript:;"></a>
+                            </div>
+                        </div>
+                        <ul id="hotelList" class="group-list">
+                            <li class="current">
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="img" href="#" target="_blank"><img src="static/img/group.jpg" width="220" height="208"></a>
+                                <h5 class="f14"><a class="text-ellip" href="#" target="_blank">动物世界</a></h5>
+                                <div class="detail fn-clear">
+                                    <span class="discount"><i>5</i>折</span>
+                                    <del>原价：￥80</del>
+                                    <span class="price"><i>￥</i>40</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                	<!--group block end-->
+                </div>
+            </div>
+        	<!--right-block end-->
+            
+        </div>
+        <!--主右侧end-->
+    </div>
+    
+    <!--主体部分结束-->
+   
+    <!--footer start-->
+    <div id="footer">
+    	<div class="layout fn-clear">
+        	<dl class="fn-left">
+            	<dt>关于蜗牛</dt>
+                <dd><a href="#" target="_blank">蜗牛简介</a></dd>
+                <dd><a href="#" target="_blank">用户协议</a></dd>
+                <dd><a href="#" target="_blank">常见问题</a></dd>
+                <dd><a href="#" target="_blank">网站地图</a></dd>
+            </dl>
+        	<dl class="fn-left">
+            	<dt>合作加盟</dt>
+                <dd><a href="#" target="_blank">景点加盟</a></dd>
+                <dd><a href="#" target="_blank">酒店加盟</a></dd>
+                <dd><a href="#" target="_blank">网站联盟</a></dd>
+                <dd><a href="#" target="_blank">友情链接</a></dd>
+            </dl>
+            <dl class="fn-left">
+            	<dt>新手指南</dt>
+                <dd><a href="#" target="_blank">新手注册</a></dd>
+                <dd><a href="#" target="_blank">用户登录</a></dd>
+                <dd><a href="#" target="_blank">用户登录</a></dd>
+                <dd><a href="#" target="_blank">支付/退款方式</a></dd>
+            </dl>
+        	<dl class="fn-left">
+            	<dt>联系我们</dt>
+                <dd><a href="#" target="_blank">联系我们</a></dd>
+                <dd><a href="#" target="_blank">意见反馈</a></dd>
+                <dd><a href="#" target="_blank">联系我们</a></dd>
+                <dd><a href="#" target="_blank">意见反馈</a></dd>
+            </dl>
+            
+        </div>
+        <p class="layout">Copyright © 2013 济南领程网络技术有限公司  鲁ICP备13020675号  </p>
+    </div>
+    <!--footer end-->
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>重庆农家乐_重庆周边农家乐_爱米易旅游网</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/hotel.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/1200head.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="/static/js/lib/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3/jquery.ui.datepicker-zh-TW.js"></script>
+    <link rel="stylesheet" href="/static/js/jquery-ui-1.10.3/jquery-ui-1.10.3.custom.css" type="text/css" media="screen" charset="utf-8"/>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+</head>
+<body>
+    <!--{include header_top}-->
+<div id="page" class="fn-clear">
+    <div class="sidebar">
+            <!-- left start -->
+            <!-- 酒店搜索框 start -->
+            <div class="udiy" id="common-search"></div>
+            <!-- 酒店搜索框 end -->
+            <!-- 爱米易旅游好酒店 start-->
+             <div class="udiy" id="tc-goodehotel"></div>
+            <!-- 爱米易旅游好酒店 end-->
+            <!-- 掌上订酒店 start -->
+            <div id="portal-block-248452493270" class="udiyblock" type="AdModel"> <div class="block block-searchbox-mini ">
+    <h3 class="block-title">度假村搜索</h3>
+    <div class="block-content">
+       
+        <div class="searchbox-mini">
+            <div class="tray">
+            <form action="/hotelSearch.php" method="get" id="hotelform">
+                <div id="tab_top_hotel">
+                    <dl class="list">
+                        <dt class="list_tit">搜索名称</dt>
+                        <dd class="list_con">
+                            <input type="text" id="txtHotelName" name="txtHotelName" class="input02" placeholder="输入度假村名称" value="" autocomplete="off"></dd>
+                    </dl>
+                    
+                    <dl class="list">
+                        <dt class="list_tit">入住城市</dt>
+                        <dd class="list_con">
+                            <div id="putong_city_list" class="putong_box">
+                                <input type="text" maxlength="20" autocomplete="off" placeholder="请选择城市" value="" class="input02 color-normal" name="txtHotelCity1" cityid="0" labelid="0" id="txtHotelCity1">
+                                <input type="hidden" name="hotelCityId" id="hotelCityId" value="" />
+                                 <div id="hotelCities" class="g-cities" style="display:none;">
+                                     <h3>热门城市</h3>
+                                    <ul class="fn-clear">
+                                        <li id="1"><a href="javascript:void(0);">济南</a></li>
+                                        <li id="2"><a href="javascript:void(0);">青岛</a></li>
+                                        <li id="10"><a href="javascript:void(0);">威海</a></li>
+                                        <li id="6"><a href="javascript:void(0);">烟台</a></li>
+                                        <li id="5"><a href="javascript:void(0);">东营</a></li>
+                                        <li id="15"><a href="javascript:void(0);">临沂</a></li>
+                                        <li id="14"><a href="javascript:void(0);">聊城</a></li>
+                                        <li id="13"><a href="javascript:void(0);">德州</a></li>
+                                        <li id="16"><a href="javascript:void(0);">菏泽</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                           
+                        </dd>
+                    </dl>
+                    <dl class="list">
+                        <dt class="list_tit">入住日期</dt>
+                        <dd class="list_con">
+                            <input type="text"    class="input02 color-normal" name="txtHotelTime1" id="txtHotelTime1" style="ime-mode: disabled;" data-mcalid="1">
+                         </dd>
+                    </dl>
+                    <dl class="list">
+                        <dt class="list_tit">离店日期</dt>
+                        <dd class="list_con">
+                            <input type="text" placeholder="时间/日期" class="input02 color-normal" name="txtHotelTime2" id="txtHotelTime2" style="ime-mode: disabled;" data-mcalid="2">
+                        </dd>
+                    </dl>
+                    
+                    
+                    <dl class="list btn_search">
+                        <dd class="list_con">
+                            <input type="button" onclick="javascript:document.getElementById('hotelform').submit();" class="submitSearch btn01" id="hotelSubmit" value="">
+                        </dd>
+                    </dl>
+                    
+                </div>
+                </form>
+            </div>
+        </div><!-- .searchbox-mini -->
+        
+    </div>
+    <div class="clear_float"></div>
+    <div class="block_bottom">&nbsp;</div>
+</div></div>
+            <!-- 掌上订酒店 end -->
+            <!-- 客户端下载 start -->
+            <div class="udiy" id="client-download"></div>
+            <!-- 客户端下载 end -->
+            <!-- 当季精选 start -->
+            <div id="portal-block-1351776131441" class="udiyblock" type="AdModel"> <a href="#" target="_blank" style="display:block;margin-bottom:20px;"><img src="/static/img/201382911405422837.jpg" target="_blank"></a></div><div id="portal-block-722620092804" class="udiyblock" type="AdModel">  <div>
+                <div class="block-content">
+                    <a style="display:block" href="#" target="_blank">
+                        <img src="/static/img/370-100.jpg" alt=""></a>
+                </div>
+            </div>
+</div>
+            <!-- 当季精选 end -->
+        </div>
+        
+        
+        <div class="content">
+            <div class="block block-slider-top block-slider-top-processed">
+                <div class="block-content">
+                    <div id="portal-block-534449431585" class="udiyblock" type="AdModel">  
+                        <div class="slide_main_top" id="slide_main_top" style="overflow: hidden; position: relative;">
+                            <div class="slide_main" id="comSlide_main" style="width: 810px; position: relative;">
+                                <a href="{$INI['slide']['slide_url20']}" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:1; z-index:1;"> <img alt="" src="/static/{$INI['slide']['slide_img20']}"></a>
+                                <a href="{$INI['slide']['slide_url21']}" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img alt="" src="/static/{$INI['slide']['slide_img21']}"></a>
+                                <a href="{$INI['slide']['slide_url22']}" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img src="/static/{$INI['slide']['slide_img22']}" alt=""></a>
+                                <a href="{$INI['slide']['slide_url23']}" class="linka monitor-197-processed" target="_blank" style="position:absolute; top:0; left:0; opacity:0; z-index:0;"><img src="/static/{$INI['slide']['slide_img23']}" alt=""></a>
+                                
+                            </div>
+                            <ul id="magicNav" class="mSlider_nav_orange mSlider_nav">    
+                                <li class="current"><a href="javascript:void(0)">1</a></li>
+                                <li class=""><a href="javascript:void(0)">2</a></li>
+                                <li class=""><a href="javascript:void(0)">3</a></li>
+                                <li><a href="javascript:void(0)">4</a></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="portal-block-1202155108913" class="udiyblock" type="AdModel">          <!--增信-->
+                <!--<div class="trust_content fn-clear">
+                    <span class="trust_tip"></span>
+                    <ul class="trust_infos fn-clear">
+                        <li><span class="img1"></span><span>无房赔付首晚房费</span></li>
+                        <li><span class="img2"></span><span>低价承诺</span></li>
+                        <li><span class="img3"></span><span>7x24小时全天候服务</span></li>
+                        <li><span class="img4"></span><span>真实住后点评</span></li>
+                    </ul>
+                </div>-->
+        <!--增信 end--></div>
+        
+        <div class="udiyblock">
+            <div class="block block-locations block-locations-processed">
+                <div class="block-title">
+                    <h2 style="width:50%;float:left">快速查找度假村 &nbsp;&nbsp;<span style="font-size:15px;color:#f9a746;font-weight: 900;">热门景区</span></h2>
+                    <span style="display:block;float:right;margin-top:10px;"><a href="/hotelSearch.php">更多城市景区>></a></span>
+                </div>
+                <div class="block-content fn-clear">
+                    <div class="tab-wrapper">
+                        <div class="tab tab-primary tab-primary-processed">
+                            <ul class="tab-navi fn-clear">
+                                <li class="item-3">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        济南
+                                    </span>
+                                </li>
+                                <li class="item-4">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        青岛
+                                    </span>
+                                </li>
+                                <li class="item-1">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        泰安
+                                    </span>
+                                </li>
+                                <li class="item-5">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        威海
+                                    </span>
+                                </li>
+                                <li class="item-6">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        烟台
+                                    </span>
+                                </li>
+                                <li class="item-7">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        临沂
+                                    </span>
+                                </li>
+                                <li class="item-8">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        日照
+                                    </span>
+                                </li>
+                                <li class="item-2">
+                                    <a href="javascript:void(0);" class="item_img monitor-192-processed">
+                                    </a>
+                                    <span class="item_img_btm">
+                                    </span>
+                                    <span class="item_img_mes">
+                                        莱芜
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="tab-items">
+                                <div class="tab-item tab-item-0">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <div class="tab tab-secondary tab-secondary-processed">
+                                        
+                                        <div class="tab-items">
+                                            <div class="tab-item active">
+                                                <ul class="locations-list fn-clear">
+                                                <!--{loop $jnScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                                <!--{/loop}-->    
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-item tab-item-1">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                       <!--{loop $qdScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                       <!--{/loop}--> 
+                                        
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-2">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $taScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                        
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-3">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $whScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                        
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-4">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $ytScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-5">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $lyScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-6">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $rzScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                        
+                                    </ul>
+                                </div>
+                                <div class="tab-item tab-item-7">
+                                    <span class="tab-item-arrow">
+                                        &nbsp;
+                                    </span>
+                                    <ul class="locations-list fn-clear">
+                                        <!--{loop $lwScenery $jv}-->
+                                                    <li>
+                                                        <a href="/sceneryticket.php?id={$jv['id']}&type={$jv['type']}"
+                                                        target="_blank" title="{$jv['title']}" class="monitor-192-processed monitor-191-processed">
+                                                            {$jv['title']}
+                                                        </a>
+                                                    </li>
+                                        <!--{/loop}--> 
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content-mask" style="height: 129px; width: 808px;">
+                    </div>
+                    <div class="block-content-loading" style="height: 129px; width: 808px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="block block-hotest" id="hotel_group_list">
+            <h2 class="block-title">
+                &nbsp;
+            </h2>
+            <div class="block-content">
+                <div class="tab tab-index tab-index-processed">
+                    <ul class="tab-navi">
+                        <li class="item-2">
+                            <a type="hotel" href="/hotelSearch.php" >
+                                更多度假村>>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-items">
+                        <!-- 推荐酒店 -->
+                        <div class="tab-item active">
+                        <div  class="udiyblock">
+                            <div class="tab-item-inner">
+                                <ul class="recommend-hotels-list list-processed">
+                                <!--{loop $recommends $re}-->
+                                    <li class="">
+                                        <dl class="clearfix">
+                                            <dt>
+                                                <a title="{$re['title']}" href="/sceneryticket.php?id={$re['id']}&type={$re['type']}" rel="nofollow"
+                                                target="_blank" class="monitor-194-processed">
+                                                    <img src="${team_image($re['image'])}">
+                                                </a>
+                                            </dt>
+                                            <dd class="name">
+                                                
+                                                <a title="{$re['title']}" href="/sceneryticket.php?id={$re['id']}&type={$re['type']}" target="_blank" class="monitor-194-processed">
+                                                    {$re['title']}
+                                                </a>
+                                            </dd>
+                                            <dd class="location">
+                                                区域：<span style="color:#f60">{$citys[$re['city_id']]['name']}</span>
+                                            </dd>
+                                            <dd class="comments">
+                                                度假村地址：<span style="color:#f60">{$re['address']}</span>
+                                            </dd>
+                                            <dd class="quote">
+                                                最新评价：{$re['comment']['content']}
+                                            </dd>
+                                            <dd class="price">
+                                                <span>
+                                                    ¥
+                                                    <strong>
+                                                        ${GetMinPrice($re['id'])}
+                                                    </strong>
+                                                </span>
+                                                起
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <!--{/loop}-->
+                                </ul>
+                            </div>
+                           
+                        </div>
+                        </div>
+                        <!-- 团购酒店 -->
+                        <div class="tab-item">
+                            <div class="tab-item-inner groups-list-outer">
+                                <ul class="groups-list fn-clear list-processed">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="//tuan.17u.cn/hotel/detail-117550.html" title="苏州沃姆李公堤酒店连锁" target="_blank"
+                                                rel="nofollow" class="monitor-195-processed">
+                                                    <img src="http://upload.17u.cn/hotel/origin/2013/6/7/1802486e6bd34dc4a357554aca705e73.jpg"
+                                                    alt="苏州沃姆李公堤酒店连锁">
+                                                </a>
+                                            </dt>
+                                            <dd class="name">
+                                                <h3>
+                                                    <a href="//tuan.17u.cn/hotel/detail-117550.html" target="_blank" title="苏州沃姆李公堤酒店连锁"
+                                                    class="monitor-195-processed">
+                                                        苏州沃姆李公堤酒店连锁
+                                                    </a>
+                                                </h3>
+                                            </dd>
+                                            <dd class="desc">
+                                                <a href="//tuan.17u.cn/hotel/detail-117550.html" title="【平日价】仅售219元，即可享门市价沃姆酒店连锁（苏州金鸡湖李公堤商务酒店）标准间/大床房B一晚！酒店环境优雅，临水而筑，设施齐备，宽敞明亮，是旅途中寻找愉悦和新奇的鉴赏家们理想的下榻之处。"
+                                                target="_blank" rel="nofollow" class="monitor-195-processed">
+                                                    【平日价】仅售219元，即可享门市价沃姆酒店连锁（苏州金鸡湖李公堤商务酒店）标准间/大床房B一晚！酒店环境优雅，临水而筑，设施齐备，宽敞明亮，是旅途中寻找愉悦和新奇的鉴赏家们理想的下榻之处。
+                                                </a>
+                                            </dd>
+                                            <dd class="price">
+                                                ¥
+                                                <span>
+                                                    219
+                                                </span>
+                                            </dd>
+                                            <dd class="oriprice">
+                                                原价：¥
+                                                <span>
+                                                    299
+                                                </span>
+                                            </dd>
+                                            <dd class="action">
+                                                <a href="//tuan.17u.cn/hotel/detail-117550.html" title="抢购" target="_blank"
+                                                class="monitor-195-processed">
+                                                    抢购
+                                                </a>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="//tuan.17u.cn/hotel/detail-110842.html" title="苏州雅戈尔富宫大酒店" target="_blank"
+                                                rel="nofollow" class="monitor-195-processed">
+                                                    <img src="http://upload.17u.cn/hotel/origin/2013/6/19/cf5f5ed55c4749478c8d8c243e85b039.jpg"
+                                                    alt="苏州雅戈尔富宫大酒店">
+                                                </a>
+                                            </dt>
+                                            <dd class="name">
+                                                <h3>
+                                                    <a href="//tuan.17u.cn/hotel/detail-110842.html" target="_blank" title="苏州雅戈尔富宫大酒店"
+                                                    class="monitor-195-processed">
+                                                        苏州雅戈尔富宫大酒店
+                                                    </a>
+                                                </h3>
+                                            </dd>
+                                            <dd class="desc">
+                                                <a href="//tuan.17u.cn/hotel/detail-110842.html" title="仅售298元，即享门市价1180元四星苏州雅戈尔富宫大酒店商务标间一晚＋苏州地图+免费上网+免费停车+免费健身等等！住繁华观前，品古典园林，逛悠悠平江路，旧时江南，现代姑苏，种种风情，雅戈尔富宫超值服务温暖您无与伦比的苏州之行。"
+                                                target="_blank" rel="nofollow" class="monitor-195-processed">
+                                                    仅售298元，即享门市价1180元四星苏州雅戈尔富宫大酒店商务标间一晚＋苏州地图+免费上网+免费停车+免费健身等等！住繁华观前，品古典园林，逛悠悠平江路，旧时江南，现代姑苏，种种风情，雅戈尔富宫超值服务温暖您无与伦比的苏州之行。
+                                                </a>
+                                            </dd>
+                                            <dd class="price">
+                                                ¥
+                                                <span>
+                                                    298
+                                                </span>
+                                            </dd>
+                                            <dd class="oriprice">
+                                                原价：¥
+                                                <span>
+                                                    1180
+                                                </span>
+                                            </dd>
+                                            <dd class="action">
+                                                <a href="//tuan.17u.cn/hotel/detail-110842.html" title="抢购" target="_blank"
+                                                class="monitor-195-processed">
+                                                    抢购
+                                                </a>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+        </div>
+</div>
+<div style="clear:both"></div>
+<!--{include common_footer}-->

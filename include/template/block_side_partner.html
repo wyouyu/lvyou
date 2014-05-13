@@ -1,0 +1,43 @@
+<!--${
+$_pa_logos = DB::LimitQuery('partner', array(
+			'condition' => array( 
+				'LENGTH(image)>0',
+				'display' => 'Y',
+				),
+			'order' => 'ORDER BY head DESC',
+			'size' => 4,
+			));
+$_pa_texts = DB::LimitQuery('partner', array(
+			'condition' => array(
+				'display' => 'Y',
+				),
+			'order' => 'ORDER BY head DESC',
+			'size' => 6,
+			'offset' => 4,
+			));
+}-->
+<!--{if ($_pa_logos||$_pa_texts)}-->
+<div class="sbox side-business-tip">
+	<div class="sbox-bubble"></div>
+	<div class="sbox-top"></div>
+	<div class="sbox-content">
+		<div class="tip">
+		   <h2>商户展台</h2>
+			<div class="link">
+			<!--{loop $_pa_logos $one}-->
+				<a href="/partner.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img src="${team_image($one['image'], true)}" alt="{$one['title']}" width="95" /></a>
+			<!--{/loop}-->
+			</div>
+			<div class="cl"></div>
+			<div id="txt_link">
+			<!--{loop $_pa_texts $one}-->
+				<a href="/partner.php?id={$one['id']}" title="{$one['title']}" target="_blank">{$one['title']}</a>
+			<!--{/loop}-->
+			</div>
+			<div class="cl"></div>
+			<div style="margin-top:10px"><div style="float:right;"><a href="/partner/index.php">&gt;&gt;更多</a></div><div class="clear"></div></div>
+		</div>
+	</div>
+	<div class="sbox-bottom"></div>
+</div>
+<!--{/if}-->

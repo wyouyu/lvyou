@@ -1,0 +1,181 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<!--{if is_newbie()}--><div id="sysmsg-guide"><div class="link"><a href="/help/tour.php"></a></div><a id="sysmsg-guide-close" href="javascript:void(0);" class="close">关闭</a></div><!--{/if}-->
+
+<!--{if $team['close_time']}-->
+<div id="sysmsg-tip" class="sysmsg-tip-deal-close"><div class="sysmsg-tip-top"></div><div class="sysmsg-tip-content"><div class="deal-close"><div class="focus">抱歉，您来晚了，<br />秒杀已经结束啦。</div><div id="tip-deal-subscribe-body" class="body"><form id="tip-deal-subscribe-form" method="post" action="/subscribe.php" class="validator"><table><tr><td>不想错过明天的秒杀？立刻订阅每日最新秒杀信息：&nbsp;</td><td><input type="text" name="email" class="f-text" value="" require="true" datatype="email" /></td><td>&nbsp;<input class="commit" type="submit" value="订阅" /></td></tr></table></form></div></div><span id="sysmsg-tip-close" class="sysmsg-tip-close">关闭</span></div><div class="sysmsg-tip-bottom"></div></div>
+<!--{/if}-->
+
+<!--{if $order}-->
+<div id="sysmsg-tip" ><div class="sysmsg-tip-top"></div><div class="sysmsg-tip-content">您已经下过订单，但还没有付款。<a href="/order/check.php?id={$order['id']}">查看订单并付款</a><span id="sysmsg-tip-close" class="sysmsg-tip-close">关闭</span></div><div class="sysmsg-tip-bottom"></div></div><div id="deal-default"> 
+<!--{/if}-->
+
+	<div id="deal-default">
+		<!--{include block_team_share}-->
+		<div id="content">
+			<div id="deal-intro" class="cf">
+                <h1><!--{if $team['close_time']==0}--><a class="deal-today-link" href="/team.php?id={$team['id']}">今日秒杀：</a><!--{/if}-->{$team['title']}</h1>
+                <div class="main">
+                    <div class="deal-buy">
+                        <div class="deal-price-tag"></div>
+					<!--{if ($team['state']=='soldout')}-->
+                        <p class="deal-price"><strong>{$currency}${moneyit($team['team_price'])}</strong><span class="deal-price-soldout"></span></p>
+					<!--{elseif $team['close_time']}-->
+                        <p class="deal-price"><strong>{$currency}${moneyit($team['team_price'])}</strong><span class="deal-price-expire"></span></p>
+					<!--{else}-->
+                        <p class="deal-price"><strong>{$currency}${moneyit($team['team_price'])}</strong><span><a href="${$team['begin_time']<time()?'/team/buy.php?id='.$team['id'] : 'javascript: alert(\'秒杀还未开始...\')'}"><img src="${$team['begin_time']<time()?'/static/css/i/button-deal-buy_seconds.gif' : '/static/css/i/button-deal-buy_seconds_wait.gif'}" /></a></span></p>
+					<!--{/if}-->
+                    </div>
+                    <table class="deal-discount">
+                        <tr>
+                            <th>原价</th>
+                            <th>折扣</th>
+                            <th>节省</th>
+                        </tr>
+                        <tr>
+                            <td>{$currency}${moneyit($team['market_price'])}</td>
+							<td>${team_discount($team)}</td>
+                            <td>{$currency}{$discount_price}</td>
+                        </tr>
+                    </table>
+					<!--{if $team['begin_time'] > time()}-->
+						<div class="deal-box deal-timeleft deal-on" id="deal-timeleft" curtime="{$now}000" diff="{$diff_time}000">
+							<h3>秒杀开始倒计时</h3>
+							<div class="limitdate"><ul id="counter">
+							<!--{if $left_day>0}-->
+								<li><span>{$left_day}</span>天</li><li><span>{$left_hour}</span>小时</li><li><span>{$left_minute}</span>分钟</li>
+							<!--{else}-->
+								<li><span>{$left_hour}</span>小时</li><li><span>{$left_minute}</span>分钟</li><li><span>{$left_time}</span>秒</li>
+							<!--{/if}-->
+							</ul></div>
+						</div>
+					<!--{else}-->
+						<!--{if $team['close_time']}-->
+						<div class="deal-box deal-timeleft deal-off" id="deal-timeleft" curtime="{$now}000" diff="{$diff_time}000">
+							<h3>秒杀结束于</h3>
+							<div class="limitdate"><p class="deal-buy-ended">${date('Y-m-d', $team['close_time'])}<br>${date('H:i:s', $team['close_time'])}</p></div>
+						</div>
+						<!--{else}-->
+						<div class="deal-box deal-timeleft deal-on" id="deal-timeleft" curtime="{$now}000" diff="{$diff_time}000">
+							<h3>秒杀剩余时间</h3>
+							<div class="limitdate"><ul id="counter">
+							<!--{if $left_day>0}-->
+								<li><span>{$left_day}</span>天</li><li><span>{$left_hour}</span>小时</li><li><span>{$left_minute}</span>分钟</li>
+							<!--{else}-->
+								<li><span>{$left_hour}</span>小时</li><li><span>{$left_minute}</span>分钟</li><li><span>{$left_time}</span>秒</li>
+							<!--{/if}-->
+							</ul></div>
+						</div>
+						<!--{/if}-->
+					<!--{/if}-->
+
+					<!--{if $team['close_time']==0}-->
+						<!--{if $team['state']=='none'}-->
+						<div class="deal-box deal-status" id="deal-status">
+							<!--{if ($team['max_number'] - $team['now_number']) > 0}-->
+								<p class="deal-buy-tip-top">还剩 <strong>${($team['max_number'] - $team['now_number'])}</strong></p>
+							<!--{elseif (!$team['max_number'])}-->
+								<p class="deal-buy-tip-top">秒杀进行中</p>
+							<!--{else}-->
+								<p class="deal-buy-tip-top">秒杀已结束</p>
+							<!--{/if}-->
+							<div class="progress-pointer" style="padding-left:{$bar_size-$bar_offset}px;"><span></span></div>
+							<div class="progress-bar"><div class="progress-left" style="width:{$bar_size-$bar_offset}px;"></div><div class="progress-right "></div></div>
+							<div class="cf"><div class="min">0</div><div class="max">{$team['min_number']}</div></div>
+							<p class="deal-buy-tip-btm">还差 <strong>{$team['min_number']-$team['now_number']}</strong> 人到达最低秒杀人数</p>
+						</div>
+						<!--{else}-->
+						<div class="deal-box deal-status deal-status-open" id="deal-status">
+							<p class="deal-buy-tip-top"><strong>{$team['now_number']}</strong> 人已购买</p>
+							<p class="deal-buy-on" style="line-height:200%;"><img src="/static/css/i/deal-buy-succ.gif"/> 秒杀成功！ <!--{if $team['max_number']>$team['now_number']||$team['max_number']==0}--><br/>还可以继续秒杀<!--{/if}--></p>
+						</div>
+						<!--{/if}-->
+					<!--{else}-->
+						<div class="deal-box deal-status deal-status-{$team['state']}" id="deal-status"><div class="deal-buy-seconds"></div><p class="deal-buy-tip-total">共有 <strong>{$team['now_number']}</strong> 人购买</p></div> 
+					<!--{/if}-->
+				</div>
+                <div class="side">
+                    <div class="deal-buy-cover-img" id="team_images">
+					<!--{if $team['image1']||$team['image2']}-->
+						<div class="mid">
+							<ul>
+								<li class="first"><img src="${team_image($team['image'])}"/></li>
+							<!--{if $team['image1']}-->
+								<li><img src="${team_image($team['image1'])}"/></li>
+							<!--{/if}-->
+							<!--{if $team['image2']}-->
+								<li><img src="${team_image($team['image2'])}"/></li>
+							<!--{/if}-->
+							</ul>
+							<div id="img_list">
+								<a ref="1" class="active">1</a>
+							<!--${$imageindex=1;}-->
+							<!--{if $team['image1']}-->
+								<a ref="${++$imageindex}" >{$imageindex}</a>
+							<!--{/if}-->
+							<!--{if $team['image2']}-->
+								<a ref="${++$imageindex}" >{$imageindex}</a>
+							<!--{/if}-->
+							</div> 
+						</div>
+						<!--{else}-->
+							<img src="${team_image($team['image'])}"/>
+						<!--{/if}-->
+					</div>
+				<!--{if strip_tags($team['summary'])!=$team['summary']}-->{$team['summary']}<!--{else}--><div class="digest"><br />${nl2br(strip_tags($team['summary']))}</div><!--{/if}-->
+                </div>
+            </div>
+            <div id="deal-stuff" class="cf">
+                <div class="clear box ${($partner&&!option_yes('teamwhole'))?'box-split':''}">
+                    <div class="box-top"></div>
+                    <div class="box-content cf">
+                        <div class="main" id="team_main_side">
+						<!--{if trim(strip_tags($team['detail']))}-->
+                            <h2 id="detail">本单详情</h2>
+							<div class="blk detail">{$team['detail']}</div>
+						<!--{/if}-->
+						<!--{if trim(strip_tags($team['notice']))}-->
+							<h2 id="detailit">特别提示</h2>
+							<div class="blk cf">{$team['notice']}</div>
+						<!--{/if}-->
+						<!--{if trim(strip_tags($team['userreview']))}-->
+							<h2 id="userreview">他们说</h2>
+							<div class="blk review">${userreview($team['userreview'])}</div>
+						<!--{/if}-->
+						<!--{if trim(strip_tags($team['systemreview']))}-->
+							<h2 id="systemreview">{$INI['system']['abbreviation']}说</h2>
+							<div class="blk review">{$team['systemreview']}</div>
+						<!--{/if}-->
+						</div>
+                        <div class="side" id="team_partner_side_${(!option_yes('teamwhole')&&abs(intval($partner['id'])))?1:0}">
+                            <div id="side-business">
+								<h2>{$partner['title']}</h2>
+								<div style="margin-top:10px;">{$partner['location']}</div>
+								<div style="margin-top:10px;"><a href="{$partner['homepage']}" target="_blank">${domainit($partner['homepage'])}</a></div>
+								<!--{include block_block_partnermap}-->
+							</div>
+						</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="box-bottom"></div>
+                </div>
+            </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_invite}-->
+		<!--{include block_side_bulletin}-->
+		<!--{include block_side_flv}-->
+		<!--{include block_side_others_seconds}-->
+		<!--{include block_side_ask}-->
+		<!--{include block_side_business}-->
+		<!--{include block_side_mobile}-->
+		<!--{include block_side_vote}-->
+		<!--{include block_side_subscribe}-->
+	</div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

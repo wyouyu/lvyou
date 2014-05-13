@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/homepage.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-zykj.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
+    <script src="/static/js/js_function.js"  type="text/javascript" ></script>
+    <!--[if IE 6]>
+    <script src="/static/js/png.js"  type="text/javascript" ></script>
+    <script type="text/javascript">DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    </head>
+<body>
+<!--{include header_top}-->
+<div class="layout mt10 fn-clear">
+<!--{include homePage/home_page_search}-->
+<!--scroll start -->
+<div class="scroll">
+    <ul id="scroll-imgs" class="scroll-imgs fn-clear">
+        <li class="current" style="opacity: 1;">
+            <a href="{$INI['slide']['slide_url1']}" target="_blank" title="">
+                <img  src="/static/{$INI['slide']['slide_img1']}" width="100%" height="370">
+            </a>
+        </li>
+        <li style="opacity: 0;">
+            <a href="{$INI['slide']['slide_url2']}" target="_blank" title="">
+                <img alt="" src="/static/{$INI['slide']['slide_img2']}" width="100%" height="370">
+            </a>
+        </li>
+        <li style="opacity: 0;">
+            <a href="{$INI['slide']['slide_url3']}" target="_blank" title="">
+                <img alt="" src="/static/{$INI['slide']['slide_img3']}" width="100%" height="370">
+            </a>
+        </li>
+        <li style="opacity: 0;">
+            <a href="{$INI['slide']['slide_url4']}" target="_blank" title="">
+                <img alt="" src="/static/{$INI['slide']['slide_img4']}" width="100%" height="370">
+            </a>
+        </li>
+        <li style="opacity: 0;">
+            <a href="{$INI['slide']['slide_url5']}" target="_blank" title="">
+                <img alt="" src="/static/{$INI['slide']['slide_img5']}" width="100%" height="370">
+            </a>
+        </li>
+    </ul>
+    <ul id="scroll-vec" class="scroll-vector fn-right">
+        <li class="active"></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+    </ul>
+</div>
+<div class="fn_clear"></div>
+<!--scroll end --> 
+<div class="layout fn-clear">
+    <div class="main-left fn-left">
+        <!--当季热门 start-->
+        <div id="hot-recommend" class="hot-recommend l">
+                <div class="rec-t">
+                        <div class="lt"></div>
+                        <ul class="rt">
+                                <li class="cur">度假村</li>
+                                <li class="">农家乐</li>
+                                <li class="">采摘</li>
+                                <li class="">温泉</li>
+                                <li class="">烧烤</li>
+                        </ul>
+                </div>
+                <div class="rec-c">
+                        <ul style="display: block; ">
+                                <li class="">
+                                    <a href="/deal/deal-174857.html" target="_blank"><img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                        <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                            </div></a></li>
+                                 <li class="">
+                                     <a href="/deal/deal-174857.html" target="_blank">
+                                         <img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                         <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                         </div></a></li>
+                                  <li class="">
+                                    <a href="/deal/deal-174857.html" target="_blank"><img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                        <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                            </div></a></li>
+                                 <li class="">
+                                     <a href="/deal/deal-174857.html" target="_blank">
+                                         <img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                         <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                         </div></a></li>
+                                  <li class="">
+                                    <a href="/deal/deal-174857.html" target="_blank"><img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                        <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                            </div></a></li>
+                                 <li class="">
+                                     <a href="/deal/deal-174857.html" target="_blank">
+                                         <img src="http://lvyou.com//static/team/2014/0510/13996928291864.jpg" class="img lazyload" border="0">
+                                         <div class="h2">仅69元！卫衣休闲t恤套装/韩版运动服</div><div class="price"><div class="l"><span class="text">同程价：</span><span class="m">￥</span>69</div>
+                                         </div></a></li>
+          
+                        </ul>
+                        <ul style="display: none; ">
+                                <li><a href="/deal/deal-303885.html" target="_blank"><img src="http://indiaimg.go.cn/2014/03/139468304653212ca6c9d90.jpg" class="img lazyload" border="0"><div class="h2">仅68元包邮！韩版中长款甜美修身拼接蕾丝衫</div><div class="price"><div class="l"><span class="m">￥</span>68</div><div class="r">价值<span class="m">￥198</span></div></div></a></li>
+                        </ul>
+                        <ul style="display: none; ">
+                        <li><a href="/deal/deal-269392.html" target="_blank"><img src="http://indiaimg.go.cn/2014/01/4332687664604710902fa9027da52951_360_240.jpg" class="img lazyload" border="0"><div class="h2">北京国汉主题酒店（志新店）（精品主题房）</div><div class="price"><div class="l"><span class="m">￥</span>149</div><div class="r">价值<span class="m">￥308</span></div></div></a></li>
+                        </ul>
+                        <ul style="display: none; ">
+                                <li><a href="/deal/deal-293866.html" target="_blank"><img src="http://indiaimg.go.cn/2014/01/138986712952d7b07962429.jpg" class="img lazyload" border="0"><div class="h2">58元包邮！全世界热销12款香水 买二送一</div><div class="price"><div class="l"><span class="m">￥</span>58</div><div class="r">价值<span class="m">￥998</span></div></div></a></li>
+                        </ul>
+                        <ul style="display: none; ">
+                                <li class=""><a href="/deal/deal-244160.html" target="_blank"><img src="http://indiaimg.go.cn/2014/02/1392776514530415425d99d.jpg" class="img lazyload" border="0"><div class="h2">189元包邮！正品万向轮拉杆箱24寸</div><div class="price"><div class="l"><span class="m">￥</span>189</div><div class="r">价值<span class="m">￥1380</span></div></div></a></li>
+                        </ul>
+                </div>
+        </div>
+        <!--当季热门 end-->
+        <div class="main-left-block blue-block mt10 fn-clear">
+            <!--main start-->
+            <div class="main fn-right">
+                <div class="hd tehui-hd fn-clear">
+                    <h2 class="fn-left">景区门票</h2>
+                    <ul id="viewport-nav" class="fn-left fn-clear">
+                        <!--{loop $sceneryData['city_ids'] $citys}-->
+                        <li <!--{if $citys['id']==0}-->class="active"<!--{/if}-->><a href="javascript:void(0)">{$citys['name']}</a></li>
+                        <!--{/loop}-->
+                    </ul>
+                    <ul id="moreView" class="more-cur-view fn-right">
+
+                       <!--{loop $sceneryData['city_ids'] $citys}-->
+                            <li <!--{if $citys['id']!=0}-->style="display: none;"<!--{/if}-->><a href="/searchList.php?filter_attr={$citys['id']}-0-0-0" title="更多{$citys['name']}景点">更多{$citys['name']}景点&gt;&gt;</a></li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <!--${$i=1}-->
+                <!--{loop $sceneryData['partners'] $tks $ticket}-->
+                <div class="main-con viewport-con fn-clear <!--{if $i!=1}-->fn-hide<!--{/if}-->">
+                    <ul class="pro-list fn-left fn-clear">
+                        <!--{loop $ticket $tk $one}-->
+                        <li>
+                            <a class="img" href="/sceneryticket.php?id={$one['id']}" target="_blank" title="{$one['title']}"><img src="${team_image($one['image'])}" width="180" height="130"></a>
+                            <h3><a href="/sceneryticket.php?id={$one['id']}" target="_blank" title="title">{$one['title']}</a></h3>
+                            <p><span>爱米易价：</span>￥{$one['price']}</p>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <!--${$i++}-->
+                <!--{/loop}-->
+            </div>
+            <!--main end-->
+        </div>
+            
+            <div class="main-left-block green-block mt10 fn-clear">
+               
+                <!--main start-->
+                <div class="main fn-right">
+                	<div class="hd zizhu-hd fn-clear">
+                        <h2 class="fn-left">自助游</h2>
+                        <ul id="zizhu-nav" class="fn-left fn-clear">
+                            <!--{loop $ziZhuYouData['city_ids'] $citys}-->
+                            <li <!--{if $citys['id']==0}-->class="active"<!--{/if}-->><a href="javascript:void(0)">{$citys['name']}</a></li>
+                            <!--{/loop}-->
+                        </ul>
+                       
+                        <ul id="moreZizhu" class="more-cur-view fn-right">
+                            <!--{loop $ziZhuYouData['city_ids'] $citys}-->
+                                <li <!--{if $citys['id']!=0}-->style="display: none;"<!--{/if}-->><a href="/searchZiZhu.php?filter_attr={$citys['id']}-0-0-0" title="更多{$citys['name']}景点">更多{$citys['name']}自助游&gt;&gt;</a></li>
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
+                    <!--${$k=1}-->
+                    <!--{loop $ziZhuYouData['partners'] $tks $zzy}-->
+                    <div class="main-con zizhu-con fn-clear <!--{if $k!=1}-->fn-hide<!--{/if}-->">
+                    	<ul class="travel-list fn-left fn-clear ">
+			<!--{loop $zzy $tkk $one}-->
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="/showzizhuyou.php?id={$one['id']}" target="_blank" title="{$one['title']}"><img src="${team_image($one['image'])}" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="/showzizhuyou.php?id={$one['id']}" target="_blank">{$one['title']}</a></h4>
+                                    <p class="text-ellip">${mb_strimwidth_t($one['tese'],0,120,'...')}</p>
+                                    <div class="oper">
+                                        <!--<a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>-->
+                                        <span class="buy">已有<em>{$one['sellnum']}</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>{$one['price']}</b><em>起</em></p>
+                                </div>
+                            </li>
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
+                    <!--${$k++}-->
+                    <!--{/loop}-->
+                </div>
+                <!--main end-->
+            </div>
+            
+            
+            
+            
+        </div>
+        <!--主左侧end-->
+        
+        <!--主右侧start-->
+        <div class="main-right fn-right">
+        	<!--right-block start-->
+        	<div class="right-block">
+            	<div class="cBoxTitle">
+                        <h3 class="boxH3">同程热点</h3>
+                        <a class="btnMore" title="更多" target="_blank" href="/news/">更多&gt;&gt;</a>
+                </div>
+                <div class="issueBox">
+                    <dl class="issueCon">
+                            <div  class="udiyblock" > 
+                                    <dl class="issueDl">
+                                            <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>  
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>  
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>  
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>  
+                                             <dd class="issueDd">
+                                                    <span class="issueIcon"></span>
+                                                    <a style="color:#ff6600" href="/news/detail-38337.html" title="订机票上同程，微信支付立减5元" target="_blank">订机票上同程，微信支付立减5元</a>
+                                            </dd>  
+                                              
+                                    </dl>
+                            </div>
+                    </dl>
+                    <div class="reportCon">
+                            <div id="portal-block-899074126007" class="udiyblock" > 
+                            <a href="/zhuanti/xianjinquan/" target="_blank" title="" class="reportConA"><img alt="" width="100" class="reportConImg" src="http://img1.40017.cn/cn/comm/images/product/20130522/tcb4.jpg" style="background-image: url(http://img1.40017.cn/cn/comm/images/cn/public/transparent_loading_v2.gif?v=20140417); background-attachment: scroll; background-color: rgb(255, 255, 255); background-position: 50% 50%; background-repeat: no-repeat no-repeat; "></a>
+                            <a href="/news/detail-34180.html" target="_blank" title="" class="reportConA rightReportA"><img alt="" width="100" class="reportConImg" src="http://img1.40017.cn/cn/comm/images/product/20131218/weixin.jpg" style="background-image: url(http://img1.40017.cn/cn/comm/images/cn/public/transparent_loading_v2.gif?v=20140417); background-attachment: scroll; background-color: rgb(255, 255, 255); background-position: 50% 50%; background-repeat: no-repeat no-repeat; "></a>
+                            <a href="/zhuanti/lianmingka/" target="_blank" title="" class="reportConA"><img alt="" class="reportConImg" width="100" src="http://img1.40017.cn/cn/comm/images/product/20130522/tcb3.jpg" style="background-image: url(http://img1.40017.cn/cn/comm/images/cn/public/transparent_loading_v2.gif?v=20140417); background-attachment: scroll; background-color: rgb(255, 255, 255); background-position: 50% 50%; background-repeat: no-repeat no-repeat; "></a>
+                            <a href="/zhuanti/" target="_blank" title="" class="reportConA rightReportA"><img alt="" width="100" class="reportConImg" src="http://img1.40017.cn/cn/comm/images/product/20130522/tcb1.jpg" style="background-image: url(http://img1.40017.cn/cn/comm/images/cn/public/transparent_loading_v2.gif?v=20140417); background-attachment: scroll; background-color: rgb(255, 255, 255); background-position: 50% 50%; background-repeat: no-repeat no-repeat; "></a></div>
+                    </div>
+            </div>
+            </div>
+                
+                
+        	<!--right-block end-->
+            <!--right-block start-->
+        	<div class="right-block mt10">
+            	 <div class="cBoxTitle">
+                        <h3 class="boxH3">热销排行</h3>
+                        <a class="btnMore" title="更多" target="_blank" href="/news/">更多&gt;&gt;</a>
+                </div>
+                    <ul class="rx_list">
+                            <li class="rx_list_first">
+                                    <a class="block" href="http://www.lvmama.com/product/103722" target="_blank" title="大连发现王国">
+                                            <img width="210" height="140" alt="大连发现王国" src="http://s1.lvjs.com.cn/uploads/pc/place2/122822/1363849441746.jpg">
+                                            <div class="product_text">
+                                                    <h4>大连发现王国</h4>
+                                            </div>
+                                           
+                                    </a>
+                                    <p class="rx_jg"><span><dfn>8263</dfn>份已售</span>
+                                    <b>¥170</b></p>
+                            </li>
+                               <li>
+                                    <a class="block" href="http://www.lvmama.com/product/77571" target="_blank" title="北京野生动物园成人票">
+                                            <h5>北京野生动物园成人票</h5>
+                                            <p class="rx_jg"><span><dfn>5521</dfn>份已售</span>
+                                            <b>¥69</b></p>
+                                            <img width="90" height="65" alt="北京野生动物园成人票" src="http://s3.lvjs.com.cn/pics/super/2012/02/1BHVE.jpg">
+                                           
+                                    </a> 
+                            </li>
+                    </ul>
+            </div>
+            
+            <div class="right-block mt10">
+                <a href="/sceneryticket.php?id=9" target="_blank" title="title"><img src="static/images/erweima.jpg" width="230" ></a>
+                
+            </div>
+            <div class="right-block mt10">
+              
+                    <a href="/sceneryticket.php?id=26&type=2" target="_blank" title="title"><img src="static/img/orange_2.jpg" width="230" height="105"></a>
+                    
+                
+                </div>
+                
+                <div class="right-block mt10">
+                    
+                    
+                        
+                        <a href="" target="_blank" title="title"><img src="static/img/orange_3.jpg" width="230" height="105"></a>
+                    
+                </div>
+        	<!--right-block end-->
+            
+        </div>
+        <!--主右侧end-->
+    </div>
+</div>
+    <!--主体部分结束-->
+   <div style="width:1200px;margin:8px auto"><a href="http://heihaoshua.com/sceneryticket.php?id=5"><img src="/static/images/bottom_ad.jpg" width="1200"/></a></div>
+    <!--footer start-->
+    <div id="footer">
+    	<div class="layout fn-clear">
+        	<dl class="fn-left">
+            	<dt>关于爱米易</dt>
+                <dd><a href="http://www.imiyi.cc/news.php?id=1" target="_blank">关于我们</a></dd>
+                <dd><a href="#" target="_blank">用户协议</a></dd>
+                <dd><a href="#" target="_blank">常见问题</a></dd>
+                <dd><a href="#" target="_blank">网站地图</a></dd>
+            </dl>
+        	<dl class="fn-left">
+            	<dt>合作加盟</dt>
+                <dd><a href="#" target="_blank">景点加盟</a></dd>
+                <dd><a href="#" target="_blank">酒店加盟</a></dd>
+                <dd><a href="#" target="_blank">网站联盟</a></dd>
+                <dd><a href="#" target="_blank">友情链接</a></dd>
+            </dl>
+            <dl class="fn-left">
+            	<dt>新手指南</dt>
+                <dd><a href="http://www.imiyi.cc/account/signup.php" target="_blank">新手注册</a></dd>
+                <dd><a href="http://www.imiyi.cc/account/login.php" target="_blank">用户登录</a></dd>
+                <dd><a href="#" target="_blank">用户登录</a></dd>
+                <dd><a href="#" target="_blank">支付/退款方式</a></dd>
+            </dl>
+        	<dl class="fn-left">
+            	<dt>联系我们</dt>
+                <dd><a href="http://www.imiyi.cc/news.php?id=2" target="_blank">联系我们</a></dd>
+                <dd><a href="#" target="_blank">意见反馈</a></dd>
+                <dd><a href="#" target="_blank">联系我们</a></dd>
+                <dd><a href="/news.php?id=8" target="_blank">获取帮助</a></dd>
+            </dl>
+            
+        </div>
+        <p style="margin-top:10px">
+		<strong>友情链接：</strong>
+		<!--{loop $links $lk}-->
+		<a href="http://{$lk['url']}/" target="_blank">{$lk['title']}</a>
+		<!--{/loop}-->
+		</p>
+        <p class="layout">Copyright © 2014    
+                  <div class="bdshare" style="float:right">
+               
+                </div>
+        </p>
+    </div>
+    <!--footer end-->
+
+</body>
+</html>

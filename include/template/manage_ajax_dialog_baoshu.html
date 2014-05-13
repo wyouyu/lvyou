@@ -1,0 +1,28 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:580px;">
+    <h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>项目详情</h3>
+    <div style="overflow-x:hidden;padding:10px;">
+    <form action="/ajax/partner_order.php?&action={$action}&type={$typed}" method="post">
+    <table width="96%" align="center" class="coupons-table">
+    <tr><td width="80"><b>实到人数：</b></td><td width="150"><input  type="input" class="f-input" id="renshu" name="renshu"></td><td><input type="submit" class="formbutton" value="提交" name="submit"><font color="#CCC">过期没到请填0</font></td></tr>
+    <input type="hidden" name="orderid" id="orderid" value="{$id}">  
+    </table>
+    </form>
+    </div>
+</div>
+<script>
+function misc_smssend() {
+    var renshu = jQuery.trim(jQuery('#renshu').val());
+    var oid = jQuery.trim(jQuery('#orderid').val());
+    if (!content) return alert('请输入正确的实到人数');
+    X.get(WEB_ROOT + '/ajax/partner_order.php?action=validate&content=' + renshu+'&oid=' +oid);
+}
+
+function call_succ() {
+   // alert('短信发送到：{$mobile}成功！');
+  //  X.boxClose();
+}
+
+function call_fail(c) {
+   // alert('短信发送到：{$mobile}失败，错误码：' + c);
+}
+</script>

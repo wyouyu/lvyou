@@ -1,0 +1,35 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:580px;">
+	<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>项目详情</h3>
+	<div style="overflow-x:hidden;padding:10px;">
+	<table width="96%" align="center" class="coupons-table">
+		<tr><td width="80"><b>项目名称：</b></td><td><b>{$team['title']}</b></td></tr>
+		<tr><td><b>项目时间：</b></td><td>开始：<b>${date('Y-m-d',$team['begin_time'])}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;截至：<b>${date('Y-m-d',$team['end_time'])}</b></td></tr>
+
+		<tr><td><b>当前状态：</b></td><td><span style="color:#F00;font-weight:bold;">${state_explain($team)}</span><!--{if $team['close_time']&&$team['now_number']>=$team['min_number']&&$team['delivery']!='express'}-->&nbsp;&nbsp;<span style="color:#F8C;font-weight:bold;"><!--{if ($team['teamcoupon'])}-->&lt;{$INI['system']['couponname']}未发完&gt;<!--{else}-->&lt;{$INI['system']['couponname']}已发放&gt;<!--{/if}--></span><!--{/if}--></td></tr>
+		<tr><td><b>限购数量：</b></td><td>最低：{$team['min_number']}&nbsp;&nbsp;&nbsp;&nbsp;最高：${$team['max_number']==0?'无上限':$team['max_number']}</td></tr>
+		<tr><td><b>项目定价：</b></td><td>市场价格：<b>${moneyit($team['market_price'])}</b>&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目价格：<b>${moneyit($team['team_price'])}</b>&nbsp;元</td></tr>
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td><b>销售城市:</b></td>
+			<td>
+				<!--{loop $allcities $index $one}-->
+						<!--{if in_array($one['id'],$team['city_ids'])}-->{$one['name']} <!--{/if}-->
+				<!-- {/loop} -->
+			</td>
+		</tr>
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td><b>成交情况：</b></td><td><b>{$team['now_number']}</b>&nbsp;，实际共&nbsp;<b>{$paycount}</b>&nbsp;人购买了&nbsp;<b>{$buycount}</b>&nbsp;份
+		</td></tr>
+		<tr><td><b>支付统计：</b></td><td>在线支付：<b>${moneyit($onlinepay)}</b>&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;余额支付：<b>${moneyit($creditpay)}</b>&nbsp;元</td></tr>
+		<tr><td><b>项目收支：</b></td><td>支付总额：<b>${moneyit($onlinepay+$creditpay)}</b>&nbsp;元&nbsp;&nbsp;&nbsp;&nbsp;代金券抵用：<b>${moneyit($cardpay)}</b>&nbsp;元</td></tr>
+	<!--{if $team['needline']}-->
+		<tr><th colspan="2"><hr/></th></td>
+		<tr><td colspan="2">
+			<!--{if $team['noticesubscribe']}--><button style="padding:0;" id="dialog_subscribe_button_id" onclick="if(confirm('发送邮件过程中，请耐心等待，同意吗？')){this.disabled=true;return X.misc.noticenext({$team['id']},0);}">邮件订阅&nbsp;(<span id="dialog_subscribe_count_id">0</span>/{$subcount})</button>&nbsp;<!--{/if}-->
+			<!--{if $team['noticesmssubscribe']}--><button style="padding:0;" id="dialog_smssubscribe_button_id" onclick="if(confirm('发送短信过程中，请耐心等待，同意吗？')){this.disabled=true;return X.misc.noticenextsms({$team['id']},0);}">短信订阅&nbsp;(<span id="dialog_smssubscribe_count_id">0</span>/{$smssubcount})</button>&nbsp;<!--{/if}-->
+			<!--{if $team['noticesms']}--><button id="dialog_sms_button_id" onclick="if(confirm('发送短信过程中，请耐心等待，同意吗？')){this.disabled=true;return X.misc.noticesms({$team['id']},0);}">短信发券&nbsp;(<span id="dialog_sms_count_id">0</span>/{$couponcount})</button>&nbsp;<!--{/if}-->
+			<!--{if $team['teamcoupon']}--><button onclick="this.disabled=true;return X.manage.teamcoupon({$team['id']});">自动发券&nbsp;({$couponcount}/{$buycount})</button>&nbsp;<!--{/if}-->
+		</td></tr>
+	<!--{/if}-->
+	</table>
+	</div>
+</div>

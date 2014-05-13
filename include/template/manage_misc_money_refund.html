@@ -1,0 +1,51 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="money">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('money')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>退款记录 (总金额：<span class="currency">{$currency}</span>{$summary})</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${mcurrent_misc_money($s)}
+					</ul>
+				</div>
+				<div class="sect" style="padding:0 10px;">
+					<form method="post" action="money.php?s=refund">
+						<p style="margin:5px 0;">用户ID：<input type="text" name="id" value="" class="h-input"/>&nbsp;用户名：<input type="text" name="username" class="h-input" value="" >
+						<input type="submit" value="筛选" class="formbutton"  style="padding:1px 6px;"/></p>
+					<form>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="360">项目名称</th><th width="160">Email/用户名</th><th width="80">动作</th><th width="80">金额</th><th width="160">操作员</th><th width="140">退款时间</th></tr>
+					<!--{loop $flows $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}>
+							<td><a class="deal-title" href="/team.php?id={$one['detail_id']}" target="_blank">{$teams[$one['detail_id']]['title']}</a></td>
+							<td nowrap>{$users[$one['user_id']]['email']}<br/>{$users[$one['user_id']]['username']}</td>
+							<td nowrap>退款</td>
+							<td nowrap><span class="money">{$currency}</span>${moneyit($one['money'])}</td>
+							<td nowrap>{$users[$one['admin_id']]['email']}<br/>{$users[$one['admin_id']]['username']}</td>
+							<td nowrap>${date('Y-m-d H:i', $one['create_time'])}</td>
+						</tr>
+					<!--{/loop}-->
+						<tr><td colspan="6">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

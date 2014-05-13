@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/960head.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/order.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3/jquery.ui.datepicker-zh-TW.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.unobtrusive-ajax.min.js"></script>
+    <link rel="stylesheet" href="/static/js/jquery-ui-1.10.3/jquery-ui-1.10.3.custom.css" type="text/css" media="screen" charset="utf-8"/>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    <style>
+     .orange{
+     color:#F60;   
+    }
+    .field-validation-error
+    {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<!--{include header_top}-->
+<div id="header_lite" style="margin-top:10px;">
+        <div style="clear: both; overflow: hidden; height: 0;">
+        </div>
+        <div class="menu">
+            <ul class="menu_info05">
+                <li class="menu_not" style="width: 320px;">
+                    <h2>
+                        1、搜索选择景区</h2>
+                </li>
+                <li class="menu_at" style="width: 320px;">
+                    <h2>
+                        2、填写订单信息</h2>
+                </li>
+                <li class="menu_sel" style="width: 320px;">
+                    <h2>
+                        3、预订成功</h2>
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both; overflow: hidden; height: 0;">
+        </div>
+</div>
+<form action="/order/tpay.php?sceneryid={$sceneryid}&ticketid={$ticketid}" method="post" id="orderdeal">
+<div id="content">
+    <div id="alipaySpeDiv" class="jq_order_view">
+           
+            <!--右侧内容 start-->
+            <div id="bookRightSide" class="rightBox">
+                <!--已选有票型 start-->
+                <div id="haveTic">
+                    <div id="folderBoxId"><div class="borderBox oragBor" smark="order_0" style="">
+        <span class="informationCollect" style="display: none;" isrealname="0" isusecard="0" thisprice="200" paymode="1" minamount="1" maxamount="99" minlimit="1" maxlimit="99" max_dikou="5" actually_dikou="0" maxcanusemoney="0" remaintic="0" ticketid="22662" postprice="0" ispost="0" ptype="0" plid="0" actid="0"></span>
+       
+        <div class="separationBox">
+            <div class="bottomLineBanner">
+                <span class="bottomLineName">预订信息</span>
+            </div>
+            <div  class="bookOrderDetails">
+                <span class="bookOrderDetailsLeft">门票名称：</span>
+                <div class="bookOrderDetailsRight dataMarginBox">
+                    {$partner['title']}-{$ticket['t_name']}
+                </div>
+                
+            </div>
+            
+            <div class="bookOrderDetails">
+                <span class="bookOrderDetailsLeft">门票数量：</span>
+                <div id="ticNum" class="bookOrderDetailsRight dataBorderBox">
+                    <span id="priceSub" class="CandP"><i class="forMarkCut unCutIcon"></i></span>
+                    <input class="ticNum" value="<!--{if $ticket['start_num']}-->{$ticket['start_num']}<!--{else}-->1<!--{/if}-->" readonly type="text" maxlength="2" name="quantity">
+                    <span id="pricePlus" class="CandP"><i class="forMarkPlus plusIcon"></i></span>
+                </div>
+            </div>
+           
+            <div class="bookOrderDetails">
+                <span class="bookOrderDetailsLeft">出游日期：</span>
+                <div class="bookOrderDetailsRight dataMarginBox">
+                   
+                    <input type="text" name="outtime" id="outtime" placeholder="选择出游日期"/>
+                    
+                </div>
+                <span>&nbsp;&nbsp;<!--{if $ticket['end_book_time']}-->(当天购票，请在 ${date('H:i',$ticket['end_book_time'])}前下单)<!--{/if}--></span>
+            </div>
+           
+            <div class="bookOrderDetails">
+                <span class="bookOrderDetailsLeft">订单总价：</span>
+                <div class="bookOrderDetailsRight dataMarginBox">
+                   <span class="orangeColor farial" >¥<b class="totalTicPrice" id="totalTicPriceId" style="font-size:18px;">
+                   <!--{if $ticket['start_num']}-->
+                   ${(floor($ticket['t_price'])-floor($ticket['fanxian']))*$ticket['start_num']}
+                   <!--{else}-->${floor($ticket['t_price'])-floor($ticket['fanxian'])}<!--{/if}-->
+                   </b></span>
+                   <input type="hidden" name="money" id="tprice" value="<!--{if $ticket['start_num']}-->
+                   ${(floor($ticket['t_price'])-floor($ticket['fanxian']))*$ticket['start_num']}
+                   <!--{else}-->${floor($ticket['t_price'])-floor($ticket['fanxian'])}<!--{/if}-->">
+                    <input type="hidden" name="hidenmoney" id="hidenmoney" value="">
+                </div>
+                
+            </div>
+             <script type="text/javascript">
+                $("#pricePlus").click(function(e) {
+                    var num = parseInt($("#ticNum").children("input").val());
+                    var ticNum;
+                    
+                    var outtime = $("#outtime").val();
+                    var ticketid = $("#ticketid").val();
+                    ticNum = num+1;
+                    if($("#priceSub").children("i").hasClass("unCutIcon")){
+                        $("#priceSub").children("i").removeClass("unCutIcon").addClass("cutIcon");
+                    }
+                    $("#ticNum").children("input").val(ticNum);
+                    $.ajax({
+                            
+                        url:'/ajax/return_price.php',
+                        data:{outtime:outtime,ticketid:ticketid,num:ticNum},
+                        type:"POST",
+                        datatype:'json',
+                        success:function(data)
+                        {
+                            json = eval("(" + data + ")");
+                            $("#totalTicPriceId").text(ticNum*parseInt(json.price));
+                            $("#tprice").val(ticNum*parseInt(json.price));
+                        }
+
+                    })
+                        
+                });
+                $("#priceSub").click(function(e) {
+                    var num = parseInt($("#ticNum").children("input").val());
+                    var ticNum;
+                    var outtime = $("#outtime").val();
+                    var ticketid = $("#ticketid").val();
+                    ticNum = num-1;
+                    
+                    var start_num = $("#start_num").val();
+                    if(start_num)
+                    {
+                        if(ticNum<start_num){alert('预订数不能小于'+start_num);return false;}
+                    }
+                    if(ticNum<=0){alert('预订数不能小于0');return false;}
+                    if(ticNum==1){$("#priceSub").children("i").removeClass("cutIcon").addClass("unCutIcon");}
+                    $("#ticNum").children("input").val(ticNum);
+                    $.ajax({
+                            
+                        url:'/ajax/return_price.php',
+                        data:{outtime:outtime,ticketid:ticketid,num:ticNum},
+                        type:"POST",
+                        datatype:'json',
+                        success:function(data)
+                        {
+                            json = eval("(" + data + ")");
+                            $("#totalTicPriceId").text(ticNum*parseInt(json.price));
+                            $("#tprice").val(ticNum*parseInt(json.price));
+                        }
+
+                    })
+                    
+                });
+              
+            </script>
+        </div>
+        
+        <div class="thisTicPriceBox">
+            <div class="payUnline none">
+                [<span class="fontweight">小计:<i class="orangeColor">¥<i class="underLineP">0</i></i></span>]</div>
+        </div>
+    </div><!--填写订单 start--><!--填写订单 end--></div>
+                   
+                    <!--预订人 start-->
+                    <div id="getMemberId" class="borderBox">
+                        <div class="getMember">
+                            <div class="bottomLineBanner">
+                                <span class="bottomLineName">取票人信息</span> <span class="bottomLineMore none">您选择的票型中包括实名制票型，需要填写多个取票人信息</span>
+                            </div>
+                            <div id="getTicPerson">
+                                <ul class="getMemberList noBorder" getmes="out">
+                                    <li>
+                                        <label>
+                                            <span class="redSnow">*</span> <span>取票人：</span>
+                                        </label>
+                                        <input name="realname" type="text" data-val="true" data-val-regex="请输入2-6个汉字,并且填写真实姓名" data-val-regex-pattern="^([一-龥]){2,6}$" data-val-required="请输入您的真实姓名" id="" class="getMemberName getMemberVer">
+                                        <span class="field-validation-valid" data-valmsg-for="realname" data-valmsg-replace="true"></span>
+                                        <span class="orange">请填写真实姓名,须与本人身份证相同</span>
+                                    </li>
+                                    <li>
+                                        <label class="getMemPhoneSpec">
+                                            <span class="redSnow">*</span> <span>手机号码：</span>
+                                        </label>
+                                        <input name="mobile" type="text" id="" data-val="true" data-val-regex="请正确填写手机号" data-val-regex-pattern="^1[3,4,5,8][\d]{9}$" data-val-required="请输入手机号码" class="getMemberPhone getMemberVer getMemberPhoneVer" maxlength="11">
+                                        <span class="field-validation-valid" data-valmsg-for="mobile" data-valmsg-replace="true"></span>
+                                        <span class="orange">免费接收订单确认信息，请务必填写正确</span>
+
+                                    </li>
+                                    <li id="li_T_cardno" style="display: none;" class="seCardClass">
+                                        <label>
+                                            <span class="redSnow">*</span> <span>身份证号：</span>
+                                        </label>
+                                        <input type="text" data-err-rq="请正确填写身份证号" maxlength="18" data-err-fn="请正确填写身份证号" vfn="validateIdCard" data-err-idcard="请正确填写身份证号" vtype="rq" class="getMemberId getMemberIDVer" id="getMemberID_0">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--预订人 end-->
+                    <input type="hidden" name="type" value="{$ticket['type']}">
+                    <input type="hidden" name="ntype" value="{$ticket['type']}">
+                    <input type="hidden" name="paytype" value="{$ticket['t_type']}">
+                    <input type="hidden" name="endbooktime" id="endbooktime" value="${date('H',$ticket['end_book_time'])}">
+                    <input type="hidden" id="ticketid" name="ticketid" value="{$ticket['id']}">
+                    <input type="hidden" id="start_num" name="start_num" value="{$ticket['start_num']}"> 
+                    <div class="submitAll" title="提交订单">
+                        <div class="submitAllIcon" id="submitAllIcon">提交订单</div>
+                        <!--{if $ticket['t_type']==2}-->
+                        <span class="payOnlineIcon"></span>
+                        <!--{/if}-->
+                    </div>
+               
+                </div>
+                <!--已选有票型 end-->
+                <!--未选择票型 start-->
+                <div class="none" id="noTic">
+                    <div class="borderBox">
+                        <div class="bookRemind clearfix">
+                            <div class="bookRemindIcon">
+                            </div>
+                            <div>
+                                <p class="fontweight">
+                                    您还没有选择需要预订的票型</p>
+                                <p>
+                                    您可以：<br>
+                                    在左侧的购票夹内选择需要预订的票型</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--未选择票型 end-->
+            </div>
+            <!--右侧内容 end-->
+        </div>
+</div>
+</form>
+<script type="text/javascript">
+$("#submitAllIcon").click(function(){
+    var clientCheck = $("#orderdeal").valid();
+    $("#orderdeal").submit();
+});
+</script>
+<!--{include common_footer}-->

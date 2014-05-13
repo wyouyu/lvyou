@@ -1,0 +1,49 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account('/coupon/index.php')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>我的{$INI['system']['couponname']}</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${current_coupon_sub('index')}
+					</ul>
+				</div>
+                <div class="sect">
+					<!--{if $selector=='index'&&!$coupons}-->
+					<div class="notice">目前没有可用的{$INI['system']['couponname']}</div>
+					<!--{/if}-->
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="240">项目名称</th><th width="100" nowrap>{$INI['system']['couponname']}编号</th><th width="60" nowrap>密码</th><th width="100" nowrap>有效日期</th><th width="100">操作</th></tr>
+					<!--{loop $coupons $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}>
+							<td><a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a></td>
+							<td>{$one['id']}</td>
+							<td>{$one['secret']}</td>
+							<td>${date('Y-m-d', $one['expire_time'])}</td>
+							<td><a class="ajaxlink" href="/ajax/coupon.php?action=mobile_choice&mid={$one['order_id']}&id={$one['id']}">短信</a>｜<a href="/coupon/print.php?id={$one['id']}" target="_blank">打印</a></td>
+						</tr>	
+					<!--{/loop}-->
+						<tr><td colspan="5">{$pagestring}</td></tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+		<!--{include block_side_aboutcoupon}-->
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

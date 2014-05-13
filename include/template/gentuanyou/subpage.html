@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+ 
+    <link rel="stylesheet" href="/static/css/zizhuyou.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/960head.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/gentuansubpage.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <script src="/static/js/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="/static/js/index_1.js" type="text/javascript"></script>
+    
+    ${Session::Get('script',true);}
+</head>
+<style>
+.comment_des_link {
+height: 52px;
+line-height: 52px;
+background: #FFF4D9;
+padding: 5px 10px;
+}
+.comment_des {
+color: #999;
+height: 25px;
+}
+.comment_link {
+    height: 23px;
+    text-align: center;
+    width: 85px;
+    display: inline-block;
+    background: url(http://img1.40017.cn/cn/new_ui/hotel/image/hotelInfo/comp_css.1.0.png?v=2013050901) no-repeat 0 0;
+    line-height: 23px;
+    color: #fff;
+}
+#tab_top_scenic td{
+    line-height: 20px;
+}
+.rightSearchBox #soso_17u .search_info{
+    padding-bottom:10px
+}
+</style>
+
+
+<body>
+	<!--{include header_top}-->
+    <!-- main content start-->
+	<div class="cf"></div>
+    
+<!-- 路线顶部内容-->
+<div class="qn_tts_page">
+
+
+<div class="q_page">
+    <div class="main">
+   	<div class="c_top" style="height:31px">
+       	<div class="c_l"></div>
+           
+   		<div class="c_r"></div>
+   	</div>
+       <div class="top_show cf">
+       	<div class="title">
+           	<div class="type type1"><pre><!--{if $partner_gentuan['leixing']==1}-->国内游<!--{elseif $partner_gentuan['leixing']==2}-->出境游<!--{else}-->周边游<!--{/if}--></pre></div>
+                <h2>{$partner['title']}
+
+
+
+               </h2>
+               
+        </div> 
+      </div>
+</div>
+</div>
+
+
+
+
+<!--推广图片展示-->
+
+
+<div class="q_page">
+    <div class="main">
+       <div class="top_show cf">         
+        <div class="show_d">
+           	<div class="left">
+
+
+<!--产品图片展示-->
+<div>
+		<div class="img_l" >
+			
+				<img height="260" width="390" alt="" src="${team_image($partner['image'])}">
+				
+		</div>
+
+
+
+	<div class="texttips" style="display: none;"></div>
+
+	<div class="down">
+		<span class="left_p" placeholder="js_prev"></span>
+		<span class="left_n nonext" placeholder="js_next"></span>
+		
+	</div>
+</div>
+
+           </div>
+           
+           <div class="right">
+               	<div class="text_dtl">
+
+
+
+
+
+
+
+
+	                   	<div class="text_dtl_p cf">
+							<b class="t">出发城市</b>
+							<div class="ct">
+                                {$partner_gentuan['chufa_city']}&nbsp;出发
+							</div>
+						</div>
+					
+					
+					
+					
+	                   	<div class="text_dtl_p cf">
+							<b class="t">目的地</b>
+							<div class="ct" id="js_des_desc">{$partner_gentuan['mudi_city']}</div>
+						</div>
+					
+					
+					
+					
+						<div class="text_dtl_p cf">
+							<b class="t">时间安排</b>
+							<div class="ct">{$partner_gentuan['tianshu']}天
+								
+							</div>
+						</div>
+					
+					
+					
+					
+						<div class="text_dtl_p cf">
+							<b class="t">发团日期</b>
+							<div class="ct">
+								{$partner_gentuan['fatuan_day']}
+								
+							</div>
+						</div>
+					
+					
+					
+					
+						
+							
+						
+						<div class="text_dtl_p cf">
+							<b class="t">交通信息</b>
+							<div class="ct">
+                                {$partner_gentuan['jiaotong']}
+
+								
+							</div>
+						</div>
+					
+					
+					
+					
+                       
+                       		
+                       
+                       <div class="text_dtl_p cf">
+	                       <b class="t">酒店住宿</b>
+	                       <div class="ct">
+	 {$partner_gentuan['hotel_type']}
+	                       </div>
+	                   </div>
+                   
+ 
+
+<div class="price" id="price_div">
+  
+
+	<div class="price_p cf">
+        
+        
+            
+            
+                <b class="t">蜗牛价</b>
+            
+        
+        
+            
+            
+                <span class="yen">¥</span>
+                <em placeholder="js_qunar_price">{$partner_gentuan['price']}</em>
+            
+        
+
+		<span class="tips">起
+			
+				
+		       	
+		       		/人
+
+		</span>
+       	
+       	
+	     
+       
+	</div>
+
+		
+	    
+		    <div class="price_p cf">
+                
+                
+                    
+                    
+                        <a class="order" href="/order/gtpay.php?sceneryid={$partner['id']}" placeholder="commit">开始预订</a>
+                    
+                
+			</div>
+			
+				
+			
+			
+	    
+
+
+
+
+
+</div>
+              </div>
+              
+           </div> 
+             
+           <div class="clear"></div>    
+       </div>
+       
+       
+       
+       <div id="js_baidu_hot_top" class="b_hottop hide"></div>
+	   <div id="js_baidu_destinction" class="b_hottop b_hottop_2 hide"></div>
+	   
+       <div class="detail cf" id="js_detail_wrapper">
+       <div class="det_l">
+			       
+       		 
+     	   <dujia_ad data-id="tts_detail_info" data-type="dujia_ad" style="display:none;"></dujia_ad>
+
+
+
+
+           <script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+           <script type="text/javascript">
+               $(function(){
+                   var items = [];
+                   var navTop = $("#bannerFloat_nav").offset().top;
+                   $("#bannerFloat_nav>ul>li").each(function(){
+                       var id = $(this).children("a").attr("href");
+                       items.push(id);
+                       $(this).click(function(){
+                           $(this).addClass("active").siblings().removeClass("active");
+                           $(window).scrollTop($(id).offset().top-40);
+                       });
+                   });
+                   $(window).scroll(function(e) {
+                       var winTop = $(window).scrollTop();
+                       if(winTop>=navTop){
+                           $("#bannerFloat_nav").attr("style", "position: fixed; top:0;_position: absolute; _top:" + winTop + "px;z-index: 1000; width: 770px;");
+                       }else{
+                           $("#bannerFloat_nav").attr("style", "position: relative;top: 0px; z-index: 1000; width: 770px;");
+                       }
+                       for(var i = 0; i < items.length; i++){
+                           if(winTop >= $(items[i]).offset().top-40){
+                               $("a[href='"+items[i]+"']").parent().addClass("active");
+                               $("a[href='"+items[i]+"']").parent().siblings().removeClass("active");
+                           }
+                       }
+                   });
+               });
+           </script>
+           	<div id="bannerFloat_nav" class="det_title" placeholder="js_tabs_title" style="position: relative; top: 0px; z-index: 1000; width: 770px;">
+               	<span class="narrow"></span>
+                <ul placeholder="js_tabs_handler">
+                   <li class="active"><a href="#js_payment">费用说明</a></li>
+                   <li class=""><a href="#js_product_detail">产品详情</a></li>
+                   <li><a href="#js_notes">注意事项</a></li>
+                </ul>
+                <a class="order" href="javascript:void(0)" placeholder="js_tabs_book_btn">立即预订</a>
+            </div>
+            <div class="det_content">
+                <div id="js_payment">
+                    <div class="bluetitle"><span class="narrow"></span><b>费用说明</b></div>
+                    <div class="det_l_content">
+                        <!--内容-->
+                        {$partner_gentuan['feiyong']}
+                    </div>
+                </div>
+                <div id="js_product_detail">
+                    <div class="bluetitle"><span class="narrow"></span><b>产品详情</b></div>
+                    <div class="det_l_content">
+                        <!--内容-->
+                       {$partner['other']}
+                    </div>
+                </div>
+                <div id="js_notes">
+                    <div class="bluetitle"><span class="narrow"></span><b>注意事项</b></div>
+                    <div class="det_l_content">
+                        <!--内容-->
+                        {$partner_gentuan['notice']}
+                </div>
+                </div>
+            </div>
+       	
+ 
+       </div>
+           <div class="det_r">
+				<!--相关推荐ajax-->
+				<div class="sug hide" id="js_suggest_hot_wrapper" style="display: block;">
+					<h3>热销产品</h3>
+					<div class="cont">
+						<ul placeholder="js_suggest_item">
+						<!--{loop $hot_zizhu $zizhu}-->
+							<li>
+								<div class="box_img">
+									<a target="_blank" href="/showgentuanyou.php?id={$zizhu['id']}" title="{$zizhu['title']}">
+										<img width="159" height="106" alt="{$zizhu['title']}" src="${team_image($zizhu['image'])}">
+									</a>
+								</div>
+								<p>
+									<a target="_blank" href="/showgentuanyou.php?id={$zizhu['id']}" title="{$zizhu['title']}">{$zizhu['title']}</a>
+								</p>
+								<div class="price">
+									<a target="_blank" href="/showgentuanyou.php?id={$zizhu['id']}" title="{$zizhu['title']}">¥<em>{$zizhu['price']}</em><i>起</i></a>
+								</div>
+							</li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+           </div>
+           
+           <div class="cf"></div>
+       </div> 
+     </div> 
+  </div> 
+
+<div class="cf"></div>
+    <!--{include common_footer}-->

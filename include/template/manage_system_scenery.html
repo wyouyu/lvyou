@@ -1,0 +1,121 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="partner">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_system('slide')}</ul>
+	</div>
+	<div id="content" class="clear mainwide">
+        <div class="clear box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+					<h2>幻灯片设置</h2>
+				</div>
+                <div class="sect">
+                    <form method="post"  enctype="multipart/form-data">
+						<!--<div class="wholetip clear"><h3>1、图片尺寸</h3></div>
+                        <div class="field">
+                            <label>图片宽度</label>
+                            <input type="text" size="30" name="slide[slide_width]" disabled style="width:50px;" class="f-input f-hint" value="960"/><span class="inputtip">单位:px</span>
+						</div>
+						<div class="field">
+							<label>图片高度</label>
+							<input type="text" size="30" name="slide[slide_height]" style="width:50px;" class="f-input f-hint" value="{$INI['slide']['slide_height']}"/><span class="inputtip">单位:px</span>
+						</div>-->
+						<div class="wholetip clear"><h3>1、图片设置</h3></div>
+                        <div class="field">
+							<label>专题1图片</label>
+							<input type="file" size="30" name="slide_img12" id="partner-create-image" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img12']}--><span class="hint">${team_image($INI['slide']['slide_img12'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题1链接</label>
+                            <input type="text" size="30" name="slide[slide_url12]" class="f-input f-hint" value="{$INI['slide']['slide_ur12']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+						<div class="field">
+							<label>专题2图片</label>
+							<input type="file" size="30" name="slide_img13" id="partner-create-image1" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img13']}--><span class="hint">${team_image($INI['slide']['slide_img13'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题2链接</label>
+                            <input type="text" size="30" name="slide[slide_url13]" class="f-input f-hint" value="{$INI['slide']['slide_url13']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+						<div class="field">
+							<label>专题3图片</label>
+							<input type="file" size="30" name="slide_img14" id="partner-create-image2" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img14']}--><span class="hint">${team_image($INI['slide']['slide_img14'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题3链接</label>
+                            <input type="text" size="30" name="slide[slide_url14]" class="f-input f-hint" value="{$INI['slide']['slide_url14']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+						<div class="field">
+							<label>专题4图片</label>
+							<input type="file" size="30" name="slide_img15" id="partner-create-image3" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img15']}--><span class="hint">${team_image($INI['slide']['slide_img15'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题4链接</label>
+                            <input type="text" size="30" name="slide[slide_url15]" class="f-input f-hint" value="{$INI['slide']['slide_url15']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+						<div class="field">
+							<label>专题5图片</label>
+							<input type="file" size="30" name="slide_img16" id="partner-create-image4" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img16']}--><span class="hint">${team_image($INI['slide']['slide_img16'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题5链接</label>
+                            <input type="text" size="30" name="slide[slide_url16]" class="f-input f-hint" value="{$INI['slide']['slide_url16']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+
+						<div class="field">
+							<label>专题6图片</label>
+							<input type="file" size="30" name="slide_img17" id="partner-create-image4" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img17']}--><span class="hint">${team_image($INI['slide']['slide_img17'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题6链接</label>
+                            <input type="text" size="30" name="slide[slide_url17]" class="f-input f-hint" value="{$INI['slide']['slide_url17']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+
+						<div class="field">
+							<label>专题7图片</label>
+							<input type="file" size="30" name="slide_img18" id="partner-create-image4" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img18']}--><span class="hint">${team_image($INI['slide']['slide_img18'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题7链接</label>
+                            <input type="text" size="30" name="slide[slide_url18]" class="f-input f-hint" value="{$INI['slide']['slide_url18']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+
+						<div class="field">
+							<label>专题8图片</label>
+							<input type="file" size="30" name="slide_img19" id="partner-create-image4" class="f-input f-hint" />
+							<!--{if $INI['slide']['slide_img19']}--><span class="hint">${team_image($INI['slide']['slide_img19'])}</span><!--{/if}-->
+						</div>
+						<div class="field">
+                            <label>专题8链接</label>
+                            <input type="text" size="30" name="slide[slide_url19]" class="f-input f-hint" value="{$INI['slide']['slide_url19']}"/><span class="inputtip">请以http://开头</span>
+						</div>
+
+						<div class="act">
+                            <input type="submit" value="保存" name="commit" class="formbutton" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+
+<div id="sidebar">
+</div>
+
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

@@ -1,0 +1,36 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:580px;">
+    <h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>订单详情</h3>
+    <div style="overflow-x:hidden;padding:10px;">
+    <table width="96%" align="center" class="coupons-table">
+    <tr>
+    <td width="80"><b>门票单价：</b></td><td width="150">{$order['price']}</td>
+    </tr>
+    <tr>
+    <td width="80"><b>预订数量：</b></td><td width="150">{$order['quantity']}</td>
+    </tr>
+    <tr>
+    <td width="80"><b>门票总价：</b></td><td width="150">{$order['money']}</td>
+    </tr>
+    <tr>
+    <td width="80"><b>支付时间：</b></td><td width="150"><!--{if $order['pay_time']}-->${date('Y-m-d',$order['pay_time'])}<!--{/if}--></td>
+    </tr>
+    </table>
+    </div>
+</div>
+<script>
+function misc_smssend() {
+    var renshu = jQuery.trim(jQuery('#renshu').val());
+    var oid = jQuery.trim(jQuery('#orderid').val());
+    if (!content) return alert('请输入正确的实到人数');
+    X.get(WEB_ROOT + '/ajax/partner_order.php?action=validate&content=' + renshu+'&oid=' +oid);
+}
+
+function call_succ() {
+   // alert('短信发送到：{$mobile}成功！');
+  //  X.boxClose();
+}
+
+function call_fail(c) {
+   // alert('短信发送到：{$mobile}失败，错误码：' + c);
+}
+</script>
