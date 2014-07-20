@@ -8,7 +8,7 @@ $id = abs(intval($_REQUEST['id']));
 $category = Table::Fetch('category', $id);
 $table = new Table('category', $_POST);
 $table->letter = strtoupper($table->letter);
-$uarray = array( 'zone', 'ename', 'letter', 'name', 'czone','fid', 'display', 'sort_order', 'relate_data','jingxuan','resou'); 
+$uarray = array( 'zone', 'ename', 'letter', 'name', 'czone','fid', 'display', 'sort_order', 'relate_data','jingxuan','resou','menu_id'); 
 $table->display = strtoupper($table->display)=='Y' ? 'Y' : 'N';
 $table->jingxuan = strtoupper($table->jingxuan)=='Y' ? 'Y' : 'N';
 $table->resou = strtoupper($table->resou)=='Y' ? 'Y' : 'N';

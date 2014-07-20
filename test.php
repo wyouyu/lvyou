@@ -1,3 +1,3 @@
 <?php
-echo date('Y-m-d H:i:s',1395072000);
+echo time()+3600*24*5;
 ?>

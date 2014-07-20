@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/homepage.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/scenery.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/focus_1000.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-zykj.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
+    <script src="/static/js/base.js" type="text/javascript"></script>
+    <script src="/static/js/focus_1000.js"  type="text/javascript" ></script>
+    <!--[if IE 6]>
+    <script src="/static/js/png.js"  type="text/javascript" ></script>
+    <script type="text/javascript">DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    </head>
+<body>
+<!--{include header_top}-->
+<!--{include search/hotel_focus}-->
+<div id="screening">
+	<div class="sc_tiaojian">
+    	<div class="se_biaoti">省份：</div>
+	  	<div class="se_city">
+  			<div class="se_left">
+            	<ul id="provicelist">
+                    <li <!--{if $province_id==0}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist(0,'province_id');">全部</a></li>
+				               
+                                                <!--{loop $allprovice $p}-->
+				                <li <!--{if $province_id==$p['id']}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist({$p['id']},'province_id');">{$p['name']}</a></li>
+				                <!--{/loop}-->
+				                
+				                </ul>
+          </div>
+            <div class="se_right"><a href="#" id="moreprovince">显示更多省份</a></div>
+        </div>
+    </div>
+    <!--{if $hotcities}-->
+    <div class="sc_tiaojian">
+    	<div class="se_biaoti">城市：</div>
+        <div class="se_city">
+  			<div class="se_left">
+            	<ul id="citylist">
+                                <li <!--{if $city_id==0}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist(0,'city_id');">全部</a></li>
+                                      <!--{loop $hotcities $c}-->
+				                <li <!--{if $city_id==$c['id']}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist({$c['id']},'city_id');">{$c['name']}</a></li>
+				               <!--{/loop}-->
+				                </ul>
+          </div>
+            <div class="se_right"><a href="#" id="morecity">显示更多城市</a></div>
+        </div>
+    </div>
+    <!--{/if}-->
+    <div class="sc_tiaojian" style="background:none;">
+    	<div class="se_biaoti">主题：</div>
+        <div class="se_city">
+        	<ul>
+                        <li <!--{if $theme_id==0}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist(0,'theme_id');">全部</a></li>
+                          <!--{loop $allthemes $t}-->
+			            <li <!--{if $theme_id==$t['id']}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist({$t['id']},'theme_id');">{$t['name']}</a></li>
+			            
+			            <!--{/loop}-->
+			            </ul>
+        </div>
+    </div>
+    
+    <div class="sc_tiaojian" style="background:none;">
+    	<div class="se_biaoti">价格：</div>
+        <div class="se_city">
+        	<ul>
+                        <li <!--{if $price_id==0}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist(0,'theme_id');">全部</a></li>
+			            <!--{loop $allprice $pr}-->
+			            <li <!--{if $price_id==$pr['id']}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist({$pr['id']},'price_id');">{$pr['name']}</a></li>
+                                    <!--{/loop}-->
+			            </ul>
+        </div>
+    </div>
+    
+    <div class="sc_tiaojian" style="background:none;">
+    	<div class="se_biaoti">级别：</div>
+        <div class="se_city">
+        	<ul>
+                        <li <!--{if $jibie_id==0}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist(0,'theme_id');">全部</a></li>
+			            <!--{loop $jibie $j}-->
+			            <li <!--{if $jibie_id==$j['id']}-->class="curect"<!--{/if}-->><a href="javascript:;" onclick="javascript:scenerylist({$j['id']},'jibie_id');">{$j['name']}</a></li>
+                                    <!--{/loop}-->
+			            </ul>
+        </div>
+    </div>
+    
+</div>
+<div class="blank02"></div>
+<div id="conter">
+	<div id="lefter">
+    	<div class="paixu">
+        	<div class="paixu_lls">共为您找到 <span style="color:#0077C3; font-weight:bold;">5046</span> 个景区</div>
+            <div class="paixu_shaixuan">
+				<a id="hot_scenery_sort_settting" href="javascript:void(0)" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image36','','http://www.yikuaiqu.com/menpiao/images/icon6_1.jpg',1)"><img src="http://www.yikuaiqu.com/menpiao/images/icon6.jpg" name="Image36" width="70" height="20" border="0" id="Image36"></a><a id="hot_sell_scenery_sort_settting" href="javascript:void(0)" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image37','','http://www.yikuaiqu.com/menpiao/images/icon7_1.jpg',1)"><img src="http://www.yikuaiqu.com/menpiao/images/icon7.jpg" name="Image37" width="70" height="20" border="0" id="Image37"></a><a id="scenery_price_sort_settting" href="javascript:void(0)" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image38','','http://www.yikuaiqu.com/menpiao/images/icon8_1.jpg',1)"><img src="http://www.yikuaiqu.com/menpiao/images/icon8.jpg" name="Image38" width="81" height="20" border="0" id="Image38"></a>
+			</div>
+        </div>
+        <div class="blank02"></div>
+		        <div class="jd_box">
+        	<div class="jq_about">
+            	<div class="jq_img"><a target="_blank" href="http://www.yikuaiqu.com/mudidi/detail.php?scenery_id=12646"><img class="lazy" data-original="http://image.yikuaiqu.com/tyftp/image/0/0/6/1542/1317562.320x240.jpg" src="http://image.yikuaiqu.com/tyftp/image/0/0/6/1542/1317562.320x240.jpg" width="240" height="180" alt="" style="display: inline; "></a></div>
+                <div class="jq_jieshao">
+                	<div class="jq_title01"><a target="_blank" href="http://www.yikuaiqu.com/mudidi/detail.php?scenery_id=12646">阿坝州九寨沟景区</a></div>
+                    <div class="clear"></div>
+                    <div class="jq_neirong">
+                    	<div class="jq_left">
+                        	<p>景区星级：<span style="color:#EA6625; font-weight:bold; font-family:Verdana;">AAAAA</span>
+							<br>景区主题：
+														公园&nbsp;&nbsp;&nbsp;&nbsp;
+														<br>支付方式：在线支付<br><span style="line-height:24px;">景区地址：四川省阿坝藏族羌族自治州九寨沟县</span></p>
+                        </div>
+                        <div class="jq_right">
+							<div class="jq01">一块去旅行价：</div>
+                            <div class="jq02"><span style=" font-size:24px; font-family:Verdana;">￥</span>120<span style=" font-size:18px; font-family:'微软雅黑';">起</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="jq_dingpiao">
+            	<div class="jqdp_title">
+					<table width="688" border="0" cellspacing="0" cellpadding="0">
+                      <tbody><tr>
+                        <td width="270">门票类型</td>
+                        <td width="85" align="center">票面价</td>
+                        <td width="85" align="center">优惠价</td>
+                        <td width="85" align="center">节省</td>
+                        <td width="85" align="center">支付方式</td>
+                        <td width="82" align="center">操 作</td>
+                      </tr>
+                    </tbody></table>
+                </div>
+                <div class="jqdp_box">
+                	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tbody><tr id="row_info_117450">
+						  <td width="40%" height="50" class="dash" style="padding-left:10px;cursor:pointer;" onclick="javascript:openDesc(117450);">九寨沟《高原红》藏羌风情晚会门票成人票&nbsp;&nbsp;<img src="images/icon06.gif" width="9" height="5"></td>
+						  <td width="12%" height="50" align="center" class="dash" style="text-decoration:line-through; color: #666;">￥150</td>
+						  <td width="12%" height="50" align="center" class="dash" style=" color:#FF6600; font-size:16px;font-weight:bold;">￥120</td>
+						  <td width="12%" height="50" align="center" class="dash" style="color:#fff;">						  	
+			  				<div class="saveMoney" style="margin-left: 30px;">
+								<span class="fl">省</span>
+								<span class="m fl">¥30</span>
+							</div>							
+						  </td>
+						  <td width="13%" height="50" align="center" class="dash">在线支付</td>
+						  <td width="11%" height="50" align="center" class="dash">
+							<a href="http://www.yikuaiqu.com/mudidi/detail.php?scenery_id=12646" target="_blank">
+																<img src="http://www.yikuaiqu.com/menpiao/images/button02_02.jpg" width="70" height="24">
+															</a>
+						  </td>
+						</tr>
+						<tr style="display:none;" id="row_desc_117450">
+							<td colspan="6" class="dash">
+								<div class="mpxx">费用包含：九寨沟印象九寨《高原红》藏羌风情晚会成人票1张<br>退款说明：如需退改请在游玩前1天17:00之前致电1010 6060，在此之后不退不改。<br></div>
+							</td>
+						</tr>
+																							<tr id="row_info_116910">
+						  <td width="40%" height="50" class="dash" style="padding-left:10px;cursor:pointer;" onclick="javascript:openDesc(116910);">九寨沟诺日朗餐厅自助餐+《高原红》藏羌风情晚会票联票成人票&nbsp;&nbsp;<img src="images/icon06.gif" width="9" height="5"></td>
+						  <td width="12%" height="50" align="center" class="dash" style="text-decoration:line-through; color: #666;">￥210</td>
+						  <td width="12%" height="50" align="center" class="dash" style=" color:#FF6600; font-size:16px;font-weight:bold;">￥180</td>
+						  <td width="12%" height="50" align="center" class="dash" style="color:#fff;">						  	
+			  				<div class="saveMoney" style="margin-left: 30px;">
+								<span class="fl">省</span>
+								<span class="m fl">¥30</span>
+							</div>							
+						  </td>
+						  <td width="13%" height="50" align="center" class="dash">在线支付</td>
+						  <td width="11%" height="50" align="center" class="dash">
+							<a href="http://www.yikuaiqu.com/mudidi/detail.php?scenery_id=12646" target="_blank">
+																<img src="http://www.yikuaiqu.com/menpiao/images/button02_02.jpg" width="70" height="24">
+															</a>
+						  </td>
+						</tr>
+						<tr style="display:none;" id="row_desc_116910">
+							<td colspan="6" class="dash">
+								<div class="mpxx">费用包含：1.诺日朗餐厅A区自助午餐1次<br>2.《高原红》藏羌风情晚会门票1张<br>退款说明：1.诺日朗自助午餐:请在游玩日期前1天12点前致电1010 6060，之后退票将收取10元/张退票费；<br>2.《藏迷》晚会票：请在游玩日期前1天12点前致电1010 6060，在此之后不退不改。<br></div>
+							</td>
+						</tr>
+																</tbody></table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="blank03"></div>
+		        
+		        <div class="sggk_page">
+        	<div class="list_page">
+				<li>首页</li> <li class="thisclass">1</li> <li><a href="/menpiao/?page=2">2</a></li>  <li><a href="/menpiao/?page=3">3</a></li>  <li><a href="/menpiao/?page=2">下一页</a></li> <li><a href="/menpiao/?page=505">末页</a></li> <li><span class="pageinfo">共 <strong>505</strong>页<strong>5046</strong>条</span></li>
+			</div>
+        </div>
+    </div>
+    <div id="righter">
+    	<div class="download"><a href="http://www.yikuaiqu.com/download.php"><img src="http://www.yikuaiqu.com/menpiao/images/download01.jpg" width="212" height="116" alt=""></a></div>
+        <div class="clear"></div>
+    	<div class="rmxs">
+        	<div class="rm_title01">热门销售排行</div>
+            <div class="rm_nesw01">
+            	<ul>
+                
+                <li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=13261">天涯海角</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12915">百万葵园</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=13436">总统府</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=151318">双廊春色满园客栈 </a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12667">黄鹤楼</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12764">世界之窗</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=26033">秦淮河画舫</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=21793">红山森林动物园</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=13404">八里沟</a></li><li><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=21503">沙湾古镇</a></li></ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="rmjq">
+        	<div class="rm_title02">热门景区</div>
+            <div class="clear"></div>
+            <div class="rm_nesw02">
+            	<ul>
+                
+                <li><span>￥120</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12646">九寨沟</a></p></li><li><span>￥40</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=16332">凤凰古城</a></p></li><li><span>￥10</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12820">鼓浪屿</a></p></li><li><span>￥250</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=24733">泸沽湖</a></p></li><li><span>￥80</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=13388">西塘</a></p></li><li><span>￥168</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12905">黄山风景区</a></p></li><li><span>￥308</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12832">乌镇</a></p></li><li><span>￥148</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12707">泰山</a></p></li><li><span>￥300</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12782">长白山</a></p></li><li><span>￥22</span><p><a target="_blank" style="font-family:'微软雅黑';" href="http://www.yikuaiqu.com/mudidi/detail?scenery_id=12708">庐山</a></p></li></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+(function(){
+	$('#provicelist li').each(function(i){
+		if(i > 12 && !$(this).hasClass('curect')){
+			$(this).hide();
+		}
+	});
+
+	$('#citylist li').each(function(i){
+		if(i > 12 && !$(this).hasClass('curect')){
+			$(this).hide();
+		}
+	});
+
+	provinceshow = false;
+	cityshow = false;
+	
+	$('#moreprovince').click(function(){
+		if(provinceshow){
+			provinceshow = false;
+			$('#provicelist li').each(function(i){
+				if(i > 12 && !$(this).hasClass('curect')){
+					$(this).hide();
+				}
+			});
+		}else{
+			provinceshow = true;
+			$('#provicelist li').show();
+		}
+	});
+	$('#morecity').click(function(){
+		if(cityshow){
+			cityshow = false;
+			$('#citylist li').each(function(i){
+				if(i > 12 && !$(this).hasClass('curect')){
+					$(this).hide();
+				}
+			});
+		}else{
+			cityshow = true;
+			$('#citylist li').show();
+		}
+	});
+})();
+</script>
+
+<!--{include common_footer}-->

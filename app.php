@@ -26,8 +26,12 @@ $currency = $INI['system']['currency'];
 $login_user_id = ZLogin::GetLoginId();
 $login_user = Table::Fetch('user', $login_user_id);
 
-//$hotcities = option_hotcategory('city', false, true);
+$hotcities = option_hotcategory('city', false, true);
 $allcities = option_category('city', false, true);
+$allprovice = option_category('province', false, true);
+$allthemes = option_category('group', false, true);
+$allprice = option_category('price', false, true);
+$jibie = option_category('jibie', false, true);
 //$city = cookie_city(null);
 if (!isset($_COOKIE['referer'])) {
 	setcookie('referer',$_SERVER['HTTP_REFERER']);

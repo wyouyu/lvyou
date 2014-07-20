@@ -1,103 +1,151 @@
-<div class="search fn-left fn-clear">
-        <ul id="search-nav" class="fn-left">
-            <li class="ticket">
-                <h6>当季玩法<i></i></h6>
-                <div class="search-con ticket">
-                    <h4>你想怎么玩？</h4>
+<!---search start -->
+    	<div class="search fn-left fn-clear">
+            <ul id="search-nav" class="fn-left">
+                <li class="wanfa current">当季玩法<span class="left_sp"></span></li>
+            	<li class="ticket">农家乐</li>
+            	<li class="travel">景区门票</li>
+            	<li class="hotel">周边游</li>
+            	<!--<li class="group">团购</li>
+            	<li class="other">其它</li>-->
+            </ul>
+            <ul id="search-con" class="fn-right">
+                <li class="wanfa current">
+                	<h4>你想怎么玩？</h4>
                     <form action="/searchList.php" method="post" class="fn-clear">
-                        <input type="text" id="ticket" name="keywords" value="">
+                    	<input type="text" id="ticket" name="keywords" value="" />
                         <button class="btn" type="submit">搜索</button>
                     </form>
                     <dl class="fn-clear mt10">
-                        <dt>热门玩法：</dt>
+                    	<dt>热门主题：</dt>
                         <!--{loop $themes $th $theme}-->
                         <dd><a href="searchList.php?filter_attr=0-{$theme['id']}-0-0" target="_blank" title="{$theme['name']}">{$theme['name']}</a></dd>
                        <!--{/loop}-->
                     </dl>
                     
-                </div>
-            </li>
-            <li class="ticket">
-                <h6>景点门票<i></i></h6>
-                <div class="search-con ticket">
-                    <h4>景点门票免费预订</h4>
+                </li>
+                
+            	<li class="ticket" style="display:none;">
+                	<h4>景点门票免费预订</h4>
                     <form action="/searchList.php" method="post" class="fn-clear">
-                        <input type="text" id="ticket" name="keywords" value="请输入景点名或城市名...">
+                    	<input type="text" id="ticket" name="keywords" value="请输入景点名或城市名..." />
                         <button class="btn" type="submit">搜索</button>
                     </form>
                     <dl class="fn-clear mt10">
-                        <dt>精选主题：</dt>
+                    	<dt>精选主题：</dt>
                         <!--{loop $themes $th $theme}-->
                         <dd><a href="searchList.php?filter_attr=0-{$theme['id']}-0-0" target="_blank" title="{$theme['name']}">{$theme['name']}</a></dd>
                        <!--{/loop}-->
                     </dl>
                     <dl class="fn-clear">
-                        <dt>热搜城市：</dt>
+                    	<dt>热搜城市：</dt>
                         <!--{loop $hotcitys  $hotcity}-->
                         <dd><a href="searchList.php?filter_attr={$hotcity['id']}-0-0-0" target="_blank" title="{$hotcity['name']}">{$hotcity['name']}</a></dd>
                         <!--{/loop}-->
                     </dl>
                     <dl class="fn-clear">
-                        <dt>热搜景点：</dt>
+                    	<dt>热搜景点：</dt>
                         <!--{loop $hotscenery  $scenery}-->
                         <dd><a href="/sceneryticket.php?id={$scenery['id']}" target="_blank" title="{$scenery['title']}">{$scenery['title']}</a></dd>
                         <!--{/loop}-->
                     </dl>
-                </div>
-            </li>
-            <li class="travel">
-                <h6>自助游<i></i></h6>
-                <div class="search-con travel">
-                    <p>自助游——不跟团，不累，不贵</p>
-                    <h4>行程轻松自由，预定边界省心，套餐价格更低</h4>
-
+                </li>
+                <li class="travel" style="display:none;">
+                	<p>自助游——不跟团，不累，不贵</p>
+                	<h4>行程轻松自由，预定边界省心，套餐价格更低</h4>
                     <form action="/searchZiZhu.php" method="post" class="fn-clear">
-                        <input type="text" id="zizhuyou" name="keywords" value="请输入景点名或城市名...">
+                    	<input type="text" id="zizhuyou" name="keywords" value="请输入景点名或城市名..." />
                         <button class="btn" type="submit">搜索</button>
                     </form>
                     <dl class="fn-clear mt10">
-                        <dt>热门搜索：</dt>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="水上乐园">青岛啤酒节</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
-                        <dd><a href="http://www.imiyi.cc/#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                    	<dt>热门搜索：</dt>
+                        <dd><a href="#" target="_blank" title="水上乐园">青岛啤酒节</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
+                        <dd><a href="#" target="_blank" title="青岛极地海洋世界">青岛极地海洋世界</a></dd>
                     </dl>
-                </div>
-            </li>
-        <li class="hotel">
-            <h6>度假村<i></i></h6>
-            <div class="search-con hotel">
-                <form action="http://www.imiyi.cc/hotelSearch.php" method="get" class="fn-clear" id="hotelform" style="position:relative">
-                    <label for="txtHotelCity1">选择城市</label>
-                    <input type="text" id="txtHotelCity1" name="hotel-city" value="请输入城市名称"><br>
-                    <input type="hidden" name="hotelCityId" id="hotelCityId" value="">
-
-                    <div id="hotelCities" class="g-cities" style="display: none;">
-                        <h3>热门城市</h3>
-                        <ul class="fn-clear">
-                            <li id="1"><a href="javascript:void(0);">重庆</a></li>
-                            <li id="2"><a href="javascript:void(0);">成都</a></li>
-                            <li id="10"><a href="javascript:void(0);">威海</a></li>
-                            <li id="6"><a href="javascript:void(0);">烟台</a></li>
-                            <li id="5"><a href="javascript:void(0);">东营</a></li>
-                            <li id="15"><a href="javascript:void(0);">临沂</a></li>
-                            <li id="14"><a href="javascript:void(0);">聊城</a></li>
-                            <li id="13"><a href="javascript:void(0);">德州</a></li>
-                            <li id="16"><a href="javascript:void(0);">菏泽</a></li>
-                        </ul>
-                    </div>
-                    <label for="start-time">度假村名称</label>
-                    <input type="text" id="start-time" name="txtHotelName"><br>
-                    <button class="btn" type="submit" onclick="javascript:document.getElementById('hotelform').submit()">搜索
-                    </button>
-                </form>
-            </div>
-        </li>
-    </ul>
-    <ul id="search-con" class="fn-right">
-
-    </ul>
-</div>
+                </li>
+                <li class="hotel" style="display:none;">
+                    <form action="/hotelSearch.php" method="get" class="fn-clear" id="hotelform" style="position:relative">
+                    	<label for="hotel-city">选择城市</label>
+                    	<input type="text" id="txtHotelCity1" name="hotel-city" value="请输入城市名称" /><br>
+                        <input type="hidden" name="hotelCityId" id="hotelCityId" value="" />
+                        <div id="hotelCities" class="g-cities" style="display: none;">
+                             <h3>热门城市</h3>
+                             <ul class="fn-clear">
+                                <li id="1"><a href="javascript:void(0);">济南</a></li>
+                                <li id="2"><a href="javascript:void(0);">青岛</a></li>
+                                <li id="10"><a href="javascript:void(0);">威海</a></li>
+                                <li id="6"><a href="javascript:void(0);">烟台</a></li>
+                                <li id="5"><a href="javascript:void(0);">东营</a></li>
+                                <li id="15"><a href="javascript:void(0);">临沂</a></li>
+                                <li id="14"><a href="javascript:void(0);">聊城</a></li>
+                                <li id="13"><a href="javascript:void(0);">德州</a></li>
+                                <li id="16"><a href="javascript:void(0);">菏泽</a></li>
+                             </ul>
+                        </div>
+                        <style type="text/css">
+                                    #hotelCities
+                                    {
+                                        display: none;
+                                    }
+                                    #putong_city_list{position:relative}
+                                    .g-cities h3{
+                                        background: #28e;
+                                        color: #fff;
+                                        height: 28px;
+                                        line-height: 28px;
+                                        overflow: hidden;
+                                        text-indent: 10px;
+                                        font-size: 12px;
+                                        font-weight: bold;
+                                    }
+                                    .g-cities{
+                                        width:322px;
+                                        position:absolute;
+                                        z-index:10;
+                                        top:50px;
+                                        left:0;
+                                        background:#FFF;
+                                    }
+                                    .g-cities ul{
+                                        display:block;
+                                        width:300px;
+                                        padding:10px;
+                                        border:1px solid #DDD;
+                                        border-top:none;
+                                    }
+                                    .g-cities li{
+                                        float:left;
+                                        margin:2px 5px;
+                                        display:inline;
+                                        white-space:nowrap;
+                                    }
+                                    .g-cities li a{color: #005bb5;}
+                                    .g-cities li a:hover{color: #F60;}
+                                </style>
+                        <label for="start-time">度假村名称</label>
+                        <input type="text" id="start-time" name="txtHotelName" /><br>
+                        <button class="btn" type="submit" onclick="javascript:document.getElementById('hotelform').submit()">搜索</button>
+                    </form>
+                </li>
+                <li class="group" style="display:none;">
+                	<h4>团购</h4>
+                    <form action="#" method="post" class="fn-clear">
+                    	<input type="text" id="group" name="ticket" placeholder="请输入关键字..." />
+                        <button class="btn" type="submit">搜索</button>
+                    </form>
+                    <dl class="fn-clear mt10">
+                    	<dt>热门团购：</dt>
+                        <dd><a href="#" target="_blank" title="水上乐园">水上乐园</a></dd>
+                        <dd><a href="#" target="_blank">古镇山水</a></dd>
+                        <dd><a href="#" target="_blank">漂流避暑</a></dd>
+                    </dl>
+                </li>
+                <li class="other" style="display:none;">
+                
+                </li>
+            </ul>
+        </div>

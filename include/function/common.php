@@ -768,13 +768,12 @@ function state_explain($team, $error='false') {
 
 function get_zones($zone=null) {
 	$zones = array(
+                        'province' => '省份列表',
 			'city' => '城市列表',
 			'group' => '主题分类',
 			'ticket'=> '门票分类',
-			//'public' => '讨论区分类',
-			//'grade' => '用户等级',
-			//'express' => '快递公司',
-			//'partner' => '商户分类',
+                        'price'=> '价格分类',
+                        'jibie'=> '级别分类',
 			);
 	if ( !$zone ) return $zones;
 	if (!in_array($zone, array_keys($zones))) {
@@ -812,7 +811,7 @@ function option_hotcategory($zone='city', $force=false, $all=false) {
 	$cates = option_category($zone, $force, true);
 	$r = array();
 	foreach($cates AS $id=>$one) {
-		if ('Y'==strtoupper($one['display'])) $r[$id] = $one;
+		if ('Y'==strtoupper($one['jingxuan'])) $r[$id] = $one;
 	}
 	return $all ? $r: Utility::OptionArray($r, 'id', 'name');
 }
@@ -821,7 +820,18 @@ function option_category($zone='city', $force=false, $all=false) {
 	$cache = $force ? 0 : 86400*30;
 	$cates = DB::LimitQuery('category', array(
 		'condition' => array( 'zone' => $zone, ),
-		'order' => 'ORDER BY sort_order DESC, id DESC',
+		'order' => 'ORDER BY sort_order, id DESC',
+		'cache' => $cache,
+	));
+	$cates = Utility::AssColumn($cates, 'id');
+	return $all ? $cates : Utility::OptionArray($cates, 'id', 'name');
+}
+/*获取子分类*/
+function option_child_category($zone='city', $force=false, $all=false,$fid=0) {
+	$cache = $force ? 0 : 86400*30;
+	$cates = DB::LimitQuery('category', array(
+		'condition' => array( 'zone' => $zone, 'fid'=>$fid),
+		'order' => 'ORDER BY sort_order, id DESC',
 		'cache' => $cache,
 	));
 	$cates = Utility::AssColumn($cates, 'id');

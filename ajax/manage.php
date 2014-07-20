@@ -502,19 +502,33 @@ elseif ( 'categoryedit' == $action ) {
 	$zone = get_zones($zone);
 
 	/* 判断是否是快递公司,快递公司页面有价格表单 */
-	if ($zone[0] == 'express') {
-		$html = render('manage_ajax_dialog_express');
-	}else if ($zone[0] == 'group') {
+        if ($zone[0] == 'group') {
 		  $newcategory = DB::LimitQuery('category', array(
 						   'condition' => array( 
-			                'zone' => 'group',
-			                'fid' => '0',
-			                'display' => 'Y') ,
+                                                    'zone' => 'group',
+                                                    'fid' => '0',
+                                                    'display' => 'Y') ,
 						    ));
 		  $newcategory = Utility::OptionArray($newcategory, 'id', 'name');
-		  $html = render('manage_ajax_dialog_categorygroup');
-	}else{
-		$html = render('manage_ajax_dialog_categoryedit');
+                  
+                  $menu = DB::LimitQuery('menu',array('condition'=>array('display'=>1),));
+                  $menu = Utility::OptionArray($menu, 'id', 'name');
+                  
+		  $html = render('manage/manage_ajax_dialog_categorygroup');
+	}
+        else if ($zone[0] == 'city') {
+		  $newcategory = DB::LimitQuery('category', array(
+						   'condition' => array( 
+                                                    'zone' => 'province',
+                                                    'fid' => '0',
+                                                    'display' => 'Y') ,
+						    ));
+		  $newcategory = Utility::OptionArray($newcategory, 'id', 'name');
+                  
+		  $html = render('manage/manage_ajax_dialog_categorycity');
+        }
+        else{
+		$html = render('manage/manage_ajax_dialog_categoryedit');
 	}
 	json($html, 'dialog');
 }

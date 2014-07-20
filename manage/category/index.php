@@ -19,4 +19,4 @@ $categories = DB::LimitQuery('category', array(
 	'offset' => $offset,
 ));
 $groups = Table::Fetch('category', Utility::GetColumn($categories, 'fid'));
-include template('manage_category_index');
+include template('manage/manage_category_index');

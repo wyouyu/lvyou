@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
     <link rel="stylesheet" href="/static/css/homepage.css" type="text/css" media="screen" charset="utf-8" />
     <script src="/static/js/jquery-zykj.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
     <script src="/static/js/js_function.js"  type="text/javascript" ></script>
     <!--[if IE 6]>
     <script src="/static/js/png.js"  type="text/javascript" ></script>
@@ -74,9 +75,7 @@
         <!--当季热门 start-->
         <div id="hot-recommend" class="hot-recommend l">
                 <div class="rec-t">
-                    <div class="lt main_title">
-                        <h3 style="padding-left:13px;padding-top:10px">当季玩法</h3>
-                    </div>
+                        <div class="lt"></div>
                         <ul class="rt">
                                 <li class="cur">度假村</li>
                                 <li class="">农家乐</li>
@@ -131,111 +130,90 @@
                 </div>
         </div>
         <!--当季热门 end-->
-        <div class="main-left-block  mt10 fn-clear">
+        <div class="main-left-block blue-block mt10 fn-clear">
             <!--main start-->
-            <div class="xianlu_box clearfix">
-                            <div class="main_title">
-                                    <a class="title_gd" href="http://www.lvmama.com/destroute" rel="nofollow" target="_blank">更多<i class="icon_arrow"></i></a>
-                                    <div class="main_title_list">
-                                            <a href="http://www.lvmama.com/search/group/1-312.html" target="_blank">云南<i class="icon_arrow"></i></a>
-                                            <a href="http://www.lvmama.com/search/route/1-251.html" target="_blank">桂林<i class="icon_arrow"></i></a>
-                                    </div>
-                                    <h3>景点门票</h3><span class="main_title_small">嘿要耍推荐,优惠专场</span>
-                            </div>
-                            <!--国内游左边切换图-->
-                            <div class="banner_box3 js_banner2">
-                                    <div class="banner_list_box">
-                                            <ul class="banner_list">
-                                                    <li>
-                                                            <a href="http://www.lvmama.com/search/route/1-267.html" target="_blank" title="三亚自由行">
-                                                            <img width="226" height="314" alt="" src="http://s3.lvjs.com.cn/uploads/pc/place2/20511/1397642439870.jpg">
-                                                            <div class="img_text">
-                                                                    <p>早订早优惠</p>
-                                                                    <h4>三亚自由行线路精选</h4>
-                                                                    <span><big>2.6折起</big></span>
-                                                            </div>
-                                                            </a>
-                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <ul class="banner_tab" style="display: none;">
-                                             <li><span></span></li>
-                                    </ul>
-                                    <span class="btn_l" style="display: none;"></span>
-                                    <span class="btn_r"></span>
-                            </div>
+            <div class="main fn-right">
+                <div class="hd tehui-hd fn-clear">
+                    <h2 class="fn-left">景区门票</h2>
+                    <ul id="viewport-nav" class="fn-left fn-clear">
+                        <!--{loop $sceneryData['city_ids'] $citys}-->
+                        <li <!--{if $citys['id']==0}-->class="active"<!--{/if}-->><a href="javascript:void(0)">{$citys['name']}</a></li>
+                        <!--{/loop}-->
+                    </ul>
+                    <ul id="moreView" class="more-cur-view fn-right">
 
-                            <!--国内游右边图-->
-                            <ul class="product_list clearfix css3_run css3_liy-5 css3_shadow_li">
-                                    <li>
-                                            <a class="block" href="http://www.lvmama.com/product/105282" title="北京-丽江往返机票" target="_blank">
-                                                    <img width="226" height="151" alt="" src="http://s1.lvjs.com.cn/uploads/pc/place2/20549/1397642671992.jpg">
-                                                    <div class="product_text">
-                                                    <span>¥1770起</span>
-                                                            <h4>北京-丽江往返机票</h4>
-                                                    </div>
-                                            </a>
-                                    </li>
-
-                            </ul>
-                    </div>
+                       <!--{loop $sceneryData['city_ids'] $citys}-->
+                            <li <!--{if $citys['id']!=0}-->style="display: none;"<!--{/if}-->><a href="/searchList.php?filter_attr={$citys['id']}-0-0-0" title="更多{$citys['name']}景点">更多{$citys['name']}景点&gt;&gt;</a></li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <!--${$i=1}-->
+                <!--{loop $sceneryData['partners'] $tks $ticket}-->
+                <div class="main-con viewport-con fn-clear <!--{if $i!=1}-->fn-hide<!--{/if}-->">
+                    <ul class="pro-list fn-left fn-clear">
+                        <!--{loop $ticket $tk $one}-->
+                        <li>
+                            <a class="img" href="/sceneryticket.php?id={$one['id']}" target="_blank" title="{$one['title']}"><img src="${team_image($one['image'])}" width="180" height="130"></a>
+                            <h3><a href="/sceneryticket.php?id={$one['id']}" target="_blank" title="title">{$one['title']}</a></h3>
+                            <p><span>嘿要耍价：</span>￥{$one['price']}</p>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <!--${$i++}-->
+                <!--{/loop}-->
             </div>
             <!--main end-->
-        
+        </div>
             
-            <div class="main-left-block  mt10 fn-clear">
+            <div class="main-left-block green-block mt10 fn-clear">
                
                 <!--main start-->
-
-                	<div class="xianlu_box clearfix">
-                            <div class="main_title">
-                                    <a class="title_gd" href="http://www.lvmama.com/destroute" rel="nofollow" target="_blank">更多<i class="icon_arrow"></i></a>
-                                    <div class="main_title_list">
-                                            <a href="http://www.lvmama.com/search/group/1-312.html" target="_blank">云南<i class="icon_arrow"></i></a>
-                                            <a href="http://www.lvmama.com/search/route/1-251.html" target="_blank">桂林<i class="icon_arrow"></i></a>
-                                    </div>
-                                    <h3>自助游</h3><span class="main_title_small">行走山水间,足迹遍中国</span>
-                            </div>
-                            <!--国内游左边切换图-->
-                            <div class="banner_box3 js_banner2">
-                                    <div class="banner_list_box">
-                                            <ul class="banner_list">
-                                                    <li>
-                                                            <a href="http://www.lvmama.com/search/route/1-267.html" target="_blank" title="三亚自由行">
-                                                            <img width="226" height="314" alt="" src="http://s3.lvjs.com.cn/uploads/pc/place2/20511/1397642439870.jpg">
-                                                            <div class="img_text">
-                                                                    <p>早订早优惠</p>
-                                                                    <h4>三亚自由行线路精选</h4>
-                                                                    <span><big>2.6折起</big></span>
-                                                            </div>
-                                                            </a>
-                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <ul class="banner_tab" style="display: none;">
-                                             <li><span></span></li>
-                                    </ul>
-                                    <span class="btn_l" style="display: none;"></span>
-                                    <span class="btn_r"></span>
-                            </div>
-
-                            <!--国内游右边图-->
-                            <ul class="product_list clearfix css3_run css3_liy-5 css3_shadow_li">
-                                    <li>
-                                            <a class="block" href="http://www.lvmama.com/product/105282" title="北京-丽江往返机票" target="_blank">
-                                                    <img width="226" height="151" alt="" src="http://s1.lvjs.com.cn/uploads/pc/place2/20549/1397642671992.jpg">
-                                                    <div class="product_text">
-                                                    <span>¥1770起</span>
-                                                            <h4>北京-丽江往返机票</h4>
-                                                    </div>
-                                            </a>
-                                    </li>
-
-                            </ul>
+                <div class="main fn-right">
+                	<div class="hd zizhu-hd fn-clear">
+                        <h2 class="fn-left">自助游</h2>
+                        <ul id="zizhu-nav" class="fn-left fn-clear">
+                            <!--{loop $ziZhuYouData['city_ids'] $citys}-->
+                            <li <!--{if $citys['id']==0}-->class="active"<!--{/if}-->><a href="javascript:void(0)">{$citys['name']}</a></li>
+                            <!--{/loop}-->
+                        </ul>
+                       
+                        <ul id="moreZizhu" class="more-cur-view fn-right">
+                            <!--{loop $ziZhuYouData['city_ids'] $citys}-->
+                                <li <!--{if $citys['id']!=0}-->style="display: none;"<!--{/if}-->><a href="/searchZiZhu.php?filter_attr={$citys['id']}-0-0-0" title="更多{$citys['name']}景点">更多{$citys['name']}自助游&gt;&gt;</a></li>
+                            <!--{/loop}-->
+                        </ul>
                     </div>
-
+                    <!--${$k=1}-->
+                    <!--{loop $ziZhuYouData['partners'] $tks $zzy}-->
+                    <div class="main-con zizhu-con fn-clear <!--{if $k!=1}-->fn-hide<!--{/if}-->">
+                    	<ul class="travel-list fn-left fn-clear ">
+			<!--{loop $zzy $tkk $one}-->
+                            <li class="fn-clear">
+                                <a class="img fn-left" href="/showzizhuyou.php?id={$one['id']}" target="_blank" title="{$one['title']}"><img src="${team_image($one['image'])}" height="72" width="100"></a>
+                                <div class="con fn-left">
+                                    <h4><a href="/showzizhuyou.php?id={$one['id']}" target="_blank">{$one['title']}</a></h4>
+                                    <p class="text-ellip">${mb_strimwidth_t($one['tese'],0,120,'...')}</p>
+                                    <div class="oper">
+                                        <!--<a class="comm" href="#" target="_blank">已有<em>88</em>人评论</a>-->
+                                        <span class="buy">已有<em>{$one['sellnum']}</em>人购买</span>
+                                    </div>
+                                </div>
+                                <div class="price fn-right">
+                                	<p>￥<b>{$one['price']}</b><em>起</em></p>
+                                </div>
+                            </li>
+                            <!--{/loop}-->
+                        </ul>
+                    </div>
+                    <!--${$k++}-->
+                    <!--{/loop}-->
+                </div>
                 <!--main end-->
             </div>
+            
+            
+            
             
         </div>
         <!--主左侧end-->

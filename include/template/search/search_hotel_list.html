@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv=content-type content="text/html; charset=UTF-8" />
+    <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}</title>
+    <!--{if $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+    <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+    <!--{else}-->
+        <meta name="description" content="{$INI['system']['description']}" />
+    <!--{/if}-->
+    <!--{if $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+    <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['keywords']}" />
+    <!--{/if}-->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="shortcut icon" href="/static/icon/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/homepage.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/holiday.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/focus_1000.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="/static/js/jquery-zykj.min.js" type="text/javascript"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
+    <script src="/static/js/focus_1000.js"  type="text/javascript" ></script>
+    <!--[if IE 6]>
+    <script src="/static/js/png.js"  type="text/javascript" ></script>
+    <script type="text/javascript">DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    </head>
+<body>
+<!--{include header_top}-->
+<!--{include search/hotel_focus}-->
+<div id="list" class="wrap holiday-wrap">
+    <div class="list-container clearfix">
+        <div class="list-property">
+        <!--搜索结果-->
+            <label>共 <span class="color-peach">298</span> 家度假酒店符合搜索条件</label>
+        </div>
+        <!--关键词有唯一维度-->
+            <div class="row clearfix">
+                <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域:</span>
+                    <ul>
+                        <li><a href="http://www.lvmama.com/search/hotel/79-N1.html" hidefocus="false">上海本地度假酒店</a></li>
+                       <li class="hotel-select"><a href="http://www.lvmama.com/search/hotel/79-N0.html" hidefocus="false">上海周边度假酒店</a></li>
+                    </ul>
+
+            </div>
+
+         <!-- 搜素筛选\\ -->
+         <!-- #if cities_show || hotelTopics_show || prodTopics_show || stars_show  -->
+
+                <div class="row clearfix">
+                    <span>当季玩法:</span> 
+                     <div class="select-wrap">
+                        <ul class="select-inner">
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-J427.html#list" hidefocus="false"> 山水景观<em>(78)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-J437.html#list" hidefocus="false"> 温泉<em>(59)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-J408.html#list" hidefocus="false"> 田园度假<em>(44)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-J445.html#list" hidefocus="false"> 主题乐园<em>(38)</em></a></li>
+
+                        </ul>
+                        <i class="popu-open" title="更多" style="display: inline; "></i>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <span>酒店印象:</span>
+                    <div class="select-wrap">
+                        <ul class="select-inner">
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-F16664.html#list" hidefocus="false"> 现代<em>(160)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-F16377.html#list" hidefocus="false"> 浪漫<em>(132)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-F16540.html#list" hidefocus="false"> 时尚<em>(115)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-F16412.html#list" hidefocus="false"> 旅游景区<em>(111)</em></a></li>
+                                     <li><a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-F457.html#list" hidefocus="false"> 精品酒店<em>(110)</em></a></li>
+
+                        </ul>
+                        <i class="popu-open" title="更多" style="display: inline; "></i>
+                    </div>
+                </div>
+
+                <div class="row last-row clearfix">
+                    <span>酒店星级:</span>
+                    <ul>
+                                 <li>
+                                    <a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-E5.html#list" hidefocus="false"> 
+                                            五星级/豪华型<em>(102)</em>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-E4.html#list" hidefocus="false"> 
+                                            四星级/高档型<em>(100)</em>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-E3.html#list" hidefocus="false"> 
+                                            三星级/舒适型<em>(70)</em>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a rel="nofollow" href="http://www.lvmama.com/search/hotel/79-E2.html#list" hidefocus="false"> 
+                                            二星级/简约型
+                                        <em>(26)</em>
+                                    </a>
+                                 </li>
+                    </ul>
+            </div>
+    </div>
+    
+    <div class="filters">
+            <div class="filter-inner" id="js-filter-wrap">
+                    <div class="filter-wrap clearfix">
+                            <div class="sort">
+                                    <!--
+                                    <a class="sort-default sort-selected" href="#" >驴妈妈推荐</a>
+                                    <a class="sort-distance sort-selected" href="#">距离<i class="arrow-down"></i></a> 距离就单项由近到远，直接删除
+                                    <a class="sort-price last-sort" href="#">价格<i class="arrow-up"></i></a> 价格分拆
+                                    -->
+                                            <a rel="nofollow" title="驴妈妈推荐排序" class="sort-default sort-selected" href="http://www.lvmama.com/search/hotel/79.html#list" hidefocus="false">驴妈妈推荐</a>
+                                                    <a rel="nofollow" title="距离从近到远" class="sort-distance" href="http://www.lvmama.com/search/hotel/79-S10.html#list" hidefocus="false">距离<i class="arrow-up"></i></a>
+                                            <a rel="nofollow" title="价格由高到低" class="sort-price" href="http://www.lvmama.com/search/hotel/79-S2.html#list" hidefocus="false">价格<i class="arrow-down"></i></a>
+                                            <a rel="nofollow" title="价格由低到高" class="sort-price last-sort" href="http://www.lvmama.com/search/hotel/79-S3.html#list" hidefocus="false">价格<i class="arrow-up"></i></a>
+
+                            </div>
+                            <div class="price-range">
+                                    <div class="price-inner">
+                                            <form action="http://www.lvmama.com/search/hotel/79-K1O1.html#list">
+                                                    <ul>
+                                                            <li><input class="price-input" type="text" maxlength="5" autocomplete="off" placeholder="最低价" value=""></li>
+                                                            <li class="dash">-</li>
+                                                            <li><input class="price-input" type="text" maxlength="5" autocomplete="off" placeholder="最高价" value=""></li>
+                                                    </ul>
+                                                    <ul class="price-btn">
+                                                            <li class="clear-price" style="border: none; margin-right: 12px; ">
+                                                            </li>
+                                                            <li class="confirm-price"><input class="button" type="button" value="确定"></li>
+                                                    </ul>
+                                            </form>
+                                    </div>
+                            </div>
+                            <div class="conditions">
+                                    <span class="tuan-checkbox">
+                                            <a rel="nofollow" class="tuan-label" href="http://www.lvmama.com/search/hotel/79-V1.html#list" hidefocus="false">促销</a>
+                                     </span>
+                            </div> 
+                            <div class="styles">
+                                            <a rel="nofollow" class="style-icon-big styles-select" href="http://www.lvmama.com/search/hotel/上海.html#list" hidefocus="false"><i class="icon-grid"></i>默认</a>
+                                             <a rel="nofollow" class="style-icon-small" href="http://www.lvmama.com/search/hotel/simple/上海.html#list" hidefocus="false"><i class="icon-list"></i>简约</a>
+                            </div>
+
+                            <div class="result-search">
+                               <!--<input  type="text" value=""  class="input-text input-result-search" placeholder="在结果中查找…" /><i></i>-->
+                                    <input id="js-result-search" type="text" value="" placeholder="在结果中查找…">
+                                    <i class="clear-search"></i>
+                                    <input url="http://www.lvmama.com/search/hotel/79-Q1.html#list" type="button" class="result-button">
+                            </div>
+                    </div>
+                    <a class="filter-trigger" href="javascript:void(0);" hidefocus="false" style="display: none; ">展开<i></i></a>
+            </div>
+    </div>
+    <div class="content clearfix">
+        <div class="tuan-list">
+            <div class="items clearfix">
+                <i class="tuan-ico"></i>
+                <a class="tuan-see" href="http://www.lvmama.com/hotel/v155675" target="_blank" rel="nofollow" onclick="coremetrics('上海_上海_hotel_1-1_155675');" hidefocus="false"></a>
+                <div class="tuan-head">
+                    <h2><a href="http://www.lvmama.com/hotel/v155675" target="_blank" onclick="coremetrics('上海_上海_hotel_1-1_155675');" hidefocus="false">
+                         常州新城瑞壹精品酒店公寓
+                    </a></h2>
+                    <div class="tuan-head-star">
+                        <span></span>
+                        <!--星钻-->
+
+
+
+
+                        <span class="tuan-diamond vm-tuan" title="高档型（驴妈妈用户评定为3.5钻）"><i style="width:70%"></i></span> 
+
+
+
+                    </div>
+                </div>
+                <!--主题-->
+                <div class="tuan-tags">
+                    <span class="addr">[江苏<em>•</em>常州]</span>
+                    <span class="tuan-tagslist">
+                                        <a href="http://www.lvmama.com/search/hotel/79-J445.html#list" rel="nofollow" hidefocus="false">主题乐园</a>
+                                        <a href="http://www.lvmama.com/search/hotel/79-J437.html#list" rel="nofollow" hidefocus="false">温泉</a>
+                                        <a href="http://www.lvmama.com/search/hotel/79-J426.html#list" rel="nofollow" hidefocus="false">艺术</a>
+                                        <a href="http://www.lvmama.com/search/hotel/79-J450.html#list" rel="nofollow" hidefocus="false">动漫</a>
+                                        <a href="http://www.lvmama.com/search/hotel/79-J419.html#list" rel="nofollow" hidefocus="false">主题体验</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F457.html#list" rel="nofollow" hidefocus="false">精品酒店</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16259.html#list" rel="nofollow" hidefocus="false">公寓式酒店</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16540.html#list" rel="nofollow" hidefocus="false">时尚</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16664.html#list" rel="nofollow" hidefocus="false">现代</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16377.html#list" rel="nofollow" hidefocus="false">浪漫</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16222.html#list" rel="nofollow" hidefocus="false">都市</a>
+                                    <a href="http://www.lvmama.com/search/hotel/79-F16518.html#list" rel="nofollow" hidefocus="false">商业区</a>
+                    </span>
+                </div>
+                <p class="turn-intro-word">
+                    酒店位于城市中心地带，毗邻火车站，距离机场40分钟车程，是商旅人士的选择。个性化、品质化、精品化的客房带您品味时尚。
+                </p>
+                <!--图片-->
+                    <div class="isotope tuan-big">
+                <!--#if display=="simple" -->
+                    <dl>
+                                <dd img="large">
+                                    <div data-show-presence="true" class="mediaSquare" style="width: 486px; height: 324px;">
+                                        <a href="http://www.lvmama.com/hotel/v155675" target="_blank" rel="nofollow" hidefocus="false">
+                                            <img class="lazy" src="http://s3.lvjs.com.cn/uploads/pc/place2/155675/1377225204270.jpg" data-original="http://s3.lvjs.com.cn/uploads/pc/place2/155675/1377225204270.jpg" width="486" height="324" style="display: inline; ">
+                                        <div class="tuan-imginfo" style="bottom: -32px; ">
+                                            <h4>新城小厨</h4>
+                                            <p></p>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </dd>
+
+                                <dd img="small">
+                                    <div data-show-presence="true" class="mediaSquare small" style="width: 240px; height: 159px;">
+                                        <a href="http://www.lvmama.com/hotel/v155675" target="_blank" rel="nofollow" hidefocus="false">
+                                            <img class="lazy" src="http://s2.lvjs.com.cn/uploads/pc/place2/155675/1386925672604.jpg" data-original="http://s2.lvjs.com.cn/uploads/pc/place2/155675/1386925672604.jpg" width="240" height="159" style="display: inline; ">
+                                        <div class="tuan-imginfo" style="bottom: -32px; ">
+                                            <h4>酒店前台</h4>
+                                            <p>
+
+                                            </p>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </dd>
+
+                                <dd img="small">
+                                    <div data-show-presence="true" class="mediaSquare small" style="width: 240px; height: 159px;">
+                                        <a href="http://www.lvmama.com/hotel/v155675" target="_blank" rel="nofollow" hidefocus="false">
+                                            <img class="lazy" src="http://s1.lvjs.com.cn/uploads/pc/place2/155675/1384225190187.jpg" data-original="http://s1.lvjs.com.cn/uploads/pc/place2/155675/1384225190187.jpg" width="240" height="159" style="display: inline; ">
+                                        <div class="tuan-imginfo" style="bottom: -32px; ">
+                                            <h4>标准大床房</h4>
+                                            <p>
+
+                                            </p>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </dd>
+
+                    </dl>
+                    <div class="info-tags">
+                        <ul>
+                            <li><dfn>¥</dfn><i>279</i>起</li>
+                                <li>近一周<span class="color-peach">179</span>人预订</li>
+                        </ul>
+                    </div>
+                        <span class="distance-remind" style="bottom: 0px; "><i></i>距离上海 156.95 KM</span>
+                </div>
+            </div>
+            <!--列表结束-->
+        </div>
+        <div class="sidebar">
+                <div class="box">
+                        <h3>为什么选择我们</h3>
+                        <dl class="superiority">
+                                <dt><i class="is1"></i>价格优廉</dt>
+                                <dd>同样价格，多重享受，涵盖吃、住、游、玩。</dd>
+                                <dt><i class="is2"></i>套餐丰富</dt>
+                                <dd>多达几千种不同目的地、不同品级的套餐产品。 </dd>
+                                <dt><i class="is3"></i>资讯完整</dt>
+                                <dd>全面多样的目的地资讯，助您身临其境、感同身受。</dd>
+                                <dt><i class="is4"></i>服务贴心</dt>
+                                <dd>所见即所得，即付即走。只需动动手指、打点行装，走起!</dd>
+                        </dl>
+                </div>
+
+                        <!--自由行套餐推荐-->
+                        <!--<div class="top-border"></div>-->
+                        <div class="box">
+                                <h3>一周自由行套餐热榜</h3>
+                                <dl>
+                                                        <dd>
+                                                                <p><a href="http://www.lvmama.com/product/100744" target="_blank" hidefocus="false">
+                                                                        【赠上海意大利中心门票】双人自由行—上海黄浦江游览...
+                                                                </a></p>
+                                                                <p><dfn>¥<i>369</i>起</dfn><span class="tagsback" tip-title="提示标题" tip-content="提示内容">
+                                                                <em>返</em><i class="money"><dfn>¥ 11</dfn></i></span></p>
+                                                        </dd>
+                                                        <dd>
+                                                                <p><a href="http://www.lvmama.com/product/30502" target="_blank" hidefocus="false">
+                                                                        自由行团购·普陀山景区2人2日游*含普陀山大门票2...
+                                                                </a></p>
+                                                                <p><dfn>¥<i>1188</i>起</dfn><span class="tagsback" tip-title="提示标题" tip-content="提示内容">
+                                                                <em>返</em><i class="money"><dfn>¥ 0</dfn></i></span></p>
+                                                        </dd>
+                                                        <dd>
+                                                                <p><a href="http://www.lvmama.com/product/108004" target="_blank" hidefocus="false">
+                                                                        双人自由行—游上海意大利中心，住开元曼居（罗山店）...
+                                                                </a></p>
+                                                                <p><dfn>¥<i>250</i>起</dfn><span class="tagsback" tip-title="提示标题" tip-content="提示内容">
+                                                                <em>返</em><i class="money"><dfn>¥ 8</dfn></i></span></p>
+                                                        </dd>
+                                                        <dd>
+                                                                <p><a href="http://www.lvmama.com/product/104489" target="_blank" hidefocus="false">
+                                                                        【赠上海意大利中心门票】【4月特惠，预定立减50元...
+                                                                </a></p>
+                                                                <p><dfn>¥<i>758</i>起</dfn><span class="tagsback" tip-title="提示标题" tip-content="提示内容">
+                                                                <em>返</em><i class="money"><dfn>¥ 0</dfn></i></span></p>
+                                                        </dd>
+                                                        <dd>
+                                                                <p><a href="http://www.lvmama.com/product/76539" target="_blank" hidefocus="false">
+                                                                        游常州嬉戏谷，住常州九洲环宇大酒店豪华房2日游赠上...
+                                                                </a></p>
+                                                                <p><dfn>¥<i>599</i>起</dfn><span class="tagsback" tip-title="提示标题" tip-content="提示内容">
+                                                                <em>返</em><i class="money"><dfn>¥ 0</dfn></i></span></p>
+                                                        </dd>
+                                </dl>
+                        </div>
+                         <!--浏览历史-->
+        </div>
+    </div>
+</div>
+<!--{include common_footer}-->

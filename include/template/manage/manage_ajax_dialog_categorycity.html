@@ -9,12 +9,12 @@
 		<tr><td width="80" nowrap><b>中文名称：</b></td><td><input type="text" name="name" value="{$category['name']}" require="true" datatype="require" class="f-input" /></td></tr>
 		<tr><td nowrap><b>英文名称：</b></td><td><input type="text" name="ename" value="{$category['ename']}" require="true" datatype="english" class="f-input" style="text-transform:lowercase;" /></td></tr>
 		<tr><td nowrap><b>首字母：</b></td><td><input type="text" name="letter" value="{$category['letter']}" maxLength="1" require="true" datatype="english" class="f-input" style="text-transform:uppercase;" /></td></tr>
-		<tr><td nowrap><b>所属分类：</b></td><td>
-				<select name="fid" class="f-input"  style="width:auto;"><option value="0">一级大类</option>${Utility::Option($newcategory, $category['fid'])}</select>
+		<tr><td nowrap><b>所属省份：</b></td><td>
+				<select name="fid" class="f-input"  style="width:auto;"><option value="0">选择分类</option>${Utility::Option($newcategory, $category['fid'])}</select>
 		</td></tr>
 		<tr><td nowrap><b>导航显示(Y/N)：</b></td><td><input type="text" name="display" value="{$category['display']}" class="f-input" style="text-transform:uppercase;"/></td></tr>
 		<tr><td nowrap><b>排序(降序)：</b></td><td><input type="text" name="sort_order" value="${intval($category['sort_order'])}" class="f-input" /></td></tr>
-        <tr><td nowrap><b>精选主题(Y/N)：</b></td><td><input type="text" name="jingxuan" value="{$category['jingxuan']}" class="f-input" style="text-transform:uppercase;"/></td></tr>
+        <tr><td nowrap><b>热门城市(Y/N)：</b></td><td><input type="text" name="jingxuan" value="{$category['jingxuan']}" class="f-input" style="text-transform:uppercase;"/></td></tr>
 		<tr><td colspan="2" height="10">&nbsp;</td></tr>
 		<tr><td></td><td><input type="submit" value="确定" class="formbutton" /></td></tr>
 	</table>
