@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__). '/include/application.php');
-
+echo test;
 /* magic_quota_gpc */
 $_GET = magic_gpc($_GET);
 $_POST = magic_gpc($_POST);
